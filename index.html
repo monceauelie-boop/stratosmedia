@@ -1,0 +1,1158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STRATOS — Géopolitique & Analyse Stratégique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:      #050c1a;
+  --s1:      #070e1e;
+  --s2:      #0a1222;
+  --s3:      #0e1828;
+  --s4:      #121e32;
+  --rule:    rgba(255,255,255,.07);
+  --rule2:   rgba(255,255,255,.13);
+
+  --blanc:   #dde4f0;
+  --b80:     rgba(221,228,240,.8);
+  --b55:     rgba(221,228,240,.55);
+  --b30:     rgba(221,228,240,.3);
+  --b12:     rgba(221,228,240,.07);
+
+  --rouge:   #c8102e;
+  --rouge-v: #e8132e;
+  --rouge-glow: rgba(232,19,46,.35);
+  --bleu:    #1a3a8f;
+  --bleu-v:  #2550c0;
+  --bleu-pale: rgba(37,80,192,.18);
+  --or:      #c9a44a;
+  --or-dim:  rgba(201,164,74,.15);
+  --or-b:    rgba(201,164,74,.45);
+
+  --ft-logo: 'Rajdhani', sans-serif;
+  --ft-serif:'Libre Baskerville', Georgia, serif;
+  --ft-sans: 'DM Sans', sans-serif;
+  --ft-mono: 'DM Mono', monospace;
+
+  --max: 1100px;
+  --tr:  .16s ease;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--blanc);
+  font-family:var(--ft-sans);font-size:14px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+
+/* ── DEMO BAR ── */
+.demo-bar{
+  background:#020508;border-bottom:1px solid var(--rule);
+  padding:6px 16px;display:flex;align-items:center;gap:8px;
+  font-family:var(--ft-mono);font-size:11px;color:var(--b30);flex-wrap:wrap;
+}
+.demo-bar strong{color:var(--or)}
+.d-btn{
+  padding:3px 10px;border:1px solid var(--rule2);background:transparent;
+  color:var(--b30);font-family:var(--ft-mono);font-size:10px;
+  cursor:pointer;transition:var(--tr);
+}
+.d-btn:hover{border-color:var(--b30);color:var(--blanc)}
+.d-btn.on{background:var(--bleu-v);border-color:var(--bleu-v);color:#fff}
+#demo-status{color:var(--or);margin-left:4px}
+
+/* ── COOKIE WALL ── */
+#cookie-wall{
+  position:fixed;inset:0;z-index:9000;
+  background:rgba(5,12,26,.97);
+  display:flex;align-items:center;justify-content:center;padding:20px;
+}
+.cw-box{
+  background:var(--s2);
+  border:1px solid var(--rule2);
+  border-top:2px solid var(--rouge-v);
+  max-width:480px;width:100%;padding:36px 30px;
+}
+.cw-logo-wrap{margin-bottom:22px}
+.cw-logo-svg{display:flex;align-items:center;gap:0}
+.cw-logo-text{
+  font-family:var(--ft-logo);font-size:22px;font-weight:700;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--blanc);
+}
+.cw-logo-o{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;position:relative;
+  font-family:var(--ft-logo);font-size:22px;font-weight:700;
+  letter-spacing:.22em;color:var(--blanc);
+}
+.cw-logo-o::before{
+  content:'';position:absolute;
+  width:18px;height:18px;border-radius:50%;
+  border:2px solid var(--rouge-v);
+  box-shadow:0 0 8px var(--rouge-glow),inset 0 0 4px rgba(232,19,46,.2);
+}
+.cw-tagline{
+  font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--b30);margin-top:2px;
+}
+.cw-title{font-family:var(--ft-serif);font-size:20px;font-weight:700;line-height:1.2;margin-bottom:10px}
+.cw-desc{font-size:13px;color:var(--b55);line-height:1.65;margin-bottom:20px}
+.cw-options{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.cw-opt{
+  display:flex;align-items:flex-start;gap:14px;
+  padding:13px 15px;border:1px solid var(--rule);
+  cursor:pointer;transition:var(--tr);background:var(--s1);
+}
+.cw-opt:hover{border-color:var(--rule2);background:var(--s3)}
+.cw-opt.featured{border-color:var(--bleu-v)}
+.cw-opt-body{flex:1}
+.cw-opt-title{font-size:13px;font-weight:600;margin-bottom:3px;display:flex;align-items:center;gap:8px}
+.cw-tag{
+  font-family:var(--ft-mono);font-size:8px;
+  letter-spacing:.1em;padding:2px 6px;border:1px solid currentColor;
+}
+.cw-tag-b{color:var(--bleu-v)}.cw-tag-o{color:var(--or)}
+.cw-opt-desc{font-size:12px;color:var(--b30);line-height:1.5}
+.cw-opt-price{
+  font-family:var(--ft-serif);font-size:18px;font-weight:700;
+  color:var(--or);white-space:nowrap;flex-shrink:0;
+}
+.cw-opt-price small{font-size:11px;color:var(--b30);font-family:var(--ft-sans);font-weight:400}
+.cw-footer{font-size:11px;color:var(--b30);line-height:1.6;border-top:1px solid var(--rule);padding-top:13px}
+.cw-footer a{color:var(--bleu-v);cursor:pointer}
+
+/* ── COOKIE BANNER ── */
+#cookie-banner{
+  position:fixed;bottom:0;left:0;right:0;z-index:8000;
+  background:var(--s2);border-top:1px solid var(--rule2);
+  padding:11px 20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.cb-text{font-size:12px;color:var(--b55);flex:1;line-height:1.5}
+.cb-text a{color:var(--bleu-v);cursor:pointer}
+.btn-sm{
+  padding:5px 13px;border:1px solid var(--rule2);background:transparent;
+  color:var(--b55);font-family:var(--ft-sans);font-size:12px;font-weight:500;
+  cursor:pointer;transition:var(--tr);
+}
+.btn-sm:hover{border-color:var(--b30);color:var(--blanc)}
+.btn-sm-f{
+  padding:5px 13px;border:none;background:var(--bleu-v);color:#fff;
+  font-family:var(--ft-sans);font-size:12px;font-weight:600;cursor:pointer;
+}
+
+/* ── UPGRADE POPUP ── */
+#upgrade-popup{
+  position:fixed;bottom:22px;right:22px;z-index:7000;
+  background:var(--s2);border:1px solid var(--rule2);
+  border-top:2px solid var(--or);
+  max-width:272px;width:100%;padding:20px 18px;
+  box-shadow:0 8px 40px rgba(0,0,0,.6);
+  animation:slideup .25s ease;
+}
+@keyframes slideup{from{transform:translateY(12px);opacity:0}to{transform:translateY(0);opacity:1}}
+.up-close{position:absolute;top:10px;right:12px;background:transparent;border:none;color:var(--b30);font-size:15px;cursor:pointer}
+.up-close:hover{color:var(--blanc)}
+.up-lbl{font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:8px}
+.up-title{font-family:var(--ft-serif);font-size:16px;font-weight:700;margin-bottom:5px;line-height:1.2}
+.up-sub{font-size:12px;color:var(--b55);line-height:1.5;margin-bottom:11px}
+.up-price{font-family:var(--ft-serif);font-size:20px;font-weight:700;color:var(--or);margin-bottom:10px}
+.up-price small{font-size:11px;color:var(--b30);font-family:var(--ft-sans);font-weight:400}
+.btn-primary{
+  width:100%;padding:9px;border:none;
+  background:var(--bleu-v);color:#fff;font-family:var(--ft-sans);
+  font-size:13px;font-weight:600;cursor:pointer;transition:var(--tr);
+}
+.btn-primary:hover{background:#1d40a8}
+.up-list{list-style:none;margin-top:10px;display:flex;flex-direction:column;gap:4px}
+.up-list li{font-size:11px;color:var(--b55);display:flex;align-items:center;gap:6px}
+.up-list li::before{content:'—';color:var(--or);font-size:10px}
+
+/* ── AD SLOTS ── */
+.ad-slot{
+  border:1px dashed var(--rule2);
+  display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:4px;padding:14px;
+  color:var(--b30);font-family:var(--ft-mono);font-size:10px;
+  text-align:center;background:var(--b12);position:relative;
+}
+.ad-slot::before{content:'PUBLICITÉ';position:absolute;top:5px;left:8px;font-size:8px;letter-spacing:.12em;color:var(--b30)}
+.ad-leader{height:74px}.ad-rect{height:108px}.ad-half{height:240px}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:linear-gradient(90deg,var(--bleu) 0%,#1a2f6a 100%);
+  padding:5px 20px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-family:var(--ft-mono);font-size:11px;color:rgba(255,255,255,.5);
+  gap:10px;flex-wrap:wrap;
+}
+.topbar-left{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.topbar strong{color:rgba(255,255,255,.85)}
+.tb-live{
+  display:flex;align-items:center;gap:5px;
+  background:var(--rouge-v);color:#fff;
+  padding:2px 8px;font-size:9px;font-weight:500;letter-spacing:.12em;
+}
+.tb-live::before{
+  content:'';width:5px;height:5px;background:#fff;
+  border-radius:50%;animation:blink 1.4s infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+
+/* ── FLASH BAR ── */
+.flash-bar{
+  background:var(--rouge-v);
+  position:relative;overflow:hidden;
+}
+.flash-inner{display:flex;align-items:center;height:36px}
+.flash-label{
+  background:rgba(0,0,0,.28);height:100%;
+  display:flex;align-items:center;padding:0 16px;
+  font-family:var(--ft-logo);font-size:13px;font-weight:700;
+  letter-spacing:.2em;color:#fff;white-space:nowrap;flex-shrink:0;gap:6px;
+  border-right:1px solid rgba(255,255,255,.2);
+}
+.flash-label::before{
+  content:'';width:6px;height:6px;background:#fff;
+  border-radius:50%;animation:blink 1s infinite;
+  flex-shrink:0;
+}
+.flash-scroll{flex:1;overflow:hidden;position:relative}
+.flash-scroll::before{content:'';position:absolute;left:0;top:0;bottom:0;width:20px;background:linear-gradient(90deg,var(--rouge-v),transparent);z-index:2}
+.flash-scroll::after{content:'';position:absolute;right:36px;top:0;bottom:0;width:40px;background:linear-gradient(-90deg,var(--rouge-v),transparent);z-index:2}
+.flash-items{
+  display:inline-flex;align-items:center;
+  animation:flashroll 70s linear infinite;
+  white-space:nowrap;padding-left:24px;
+}
+.flash-item{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:0 26px;
+  font-family:var(--ft-sans);font-size:12px;font-weight:500;
+  color:#fff;border-right:1px solid rgba(255,255,255,.18);
+  cursor:pointer;transition:background .15s;
+}
+.flash-item:hover{background:rgba(0,0,0,.12)}
+.flash-time{
+  font-family:var(--ft-mono);font-size:9px;
+  color:rgba(255,255,255,.6);flex-shrink:0;
+}
+.flash-ctrls{display:flex}
+.flash-btn{
+  width:36px;height:36px;border:none;
+  background:rgba(0,0,0,.22);color:rgba(255,255,255,.8);
+  cursor:pointer;font-size:11px;transition:var(--tr);
+  display:flex;align-items:center;justify-content:center;
+  border-left:1px solid rgba(255,255,255,.15);
+}
+.flash-btn:hover{background:rgba(0,0,0,.4);color:#fff}
+@keyframes flashroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── TICKER ── */
+.ticker{
+  background:var(--s1);border-bottom:1px solid var(--rule);
+  padding:6px 0;overflow:hidden;white-space:nowrap;position:relative;
+}
+.ticker-lbl{
+  position:absolute;left:0;top:0;bottom:0;z-index:3;
+  background:var(--s3);display:flex;align-items:center;padding:0 14px;
+  font-family:var(--ft-logo);font-size:11px;font-weight:600;
+  letter-spacing:.2em;color:var(--b30);
+}
+.ticker-lbl::after{content:'';position:absolute;right:-10px;top:0;bottom:0;width:10px;background:linear-gradient(90deg,var(--s3),transparent)}
+.ticker-fade{position:absolute;right:0;top:0;bottom:0;width:50px;background:linear-gradient(-90deg,var(--s1),transparent);z-index:2}
+.ticker-inner{
+  display:inline-block;padding-left:110px;
+  animation:tscroll 60s linear infinite;
+  font-family:var(--ft-mono);font-size:11px;color:var(--b30);letter-spacing:.03em;
+}
+.ticker-inner .sep{color:var(--rule2);margin:0 12px}
+@keyframes tscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── NAV ── */
+.nav{
+  background:var(--s1);
+  border-bottom:1px solid var(--rule);
+  padding:0 20px;display:flex;align-items:center;
+  height:58px;position:sticky;top:0;z-index:200;
+  backdrop-filter:blur(12px);
+}
+.nav-logo{
+  display:flex;align-items:center;gap:4px;
+  padding-right:22px;border-right:1px solid var(--rule);
+  margin-right:20px;flex-shrink:0;cursor:pointer;
+  text-decoration:none;
+}
+/* Logo inline SVG matching the image style */
+.logo-container{
+  display:flex;align-items:center;gap:0;
+  line-height:1;
+}
+.logo-letter{
+  font-family:var(--ft-logo);
+  font-size:20px;font-weight:700;
+  letter-spacing:.06em;
+  color:var(--blanc);
+  text-transform:uppercase;
+  /* Subtle emboss like in the image */
+  text-shadow:0 1px 3px rgba(0,0,0,.6), 0 -1px 1px rgba(255,255,255,.06);
+}
+.logo-O-wrap{
+  position:relative;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;
+  margin:0 1px;
+}
+.logo-O-wrap .logo-letter{position:relative;z-index:2}
+.logo-O-ring{
+  position:absolute;
+  width:20px;height:20px;
+  border-radius:50%;
+  border:1.5px solid var(--rouge-v);
+  box-shadow:0 0 6px var(--rouge-glow), 0 0 14px rgba(232,19,46,.2), inset 0 0 4px rgba(232,19,46,.15);
+  animation:ring-pulse 3s ease-in-out infinite;
+}
+@keyframes ring-pulse{
+  0%,100%{box-shadow:0 0 6px var(--rouge-glow),0 0 14px rgba(232,19,46,.2),inset 0 0 4px rgba(232,19,46,.15)}
+  50%{box-shadow:0 0 10px var(--rouge-glow),0 0 24px rgba(232,19,46,.35),inset 0 0 6px rgba(232,19,46,.25)}
+}
+.logo-sub{
+  font-family:var(--ft-mono);font-size:8px;letter-spacing:.1em;
+  color:var(--b30);text-transform:uppercase;margin-top:-2px;
+  display:block;
+}
+.nav-logo-wrap{display:flex;flex-direction:column;gap:1px}
+
+.nav-links{
+  display:flex;flex:1;overflow-x:auto;scrollbar-width:none;
+}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-link{
+  font-family:var(--ft-sans);font-size:12px;font-weight:500;
+  color:var(--b30);padding:0 13px;height:58px;
+  display:flex;align-items:center;gap:4px;
+  cursor:pointer;border-bottom:2px solid transparent;
+  transition:var(--tr);white-space:nowrap;letter-spacing:.01em;
+}
+.nav-link:hover{color:var(--b55)}
+.nav-link.active{color:var(--blanc);border-bottom-color:var(--rouge-v)}
+.nav-lock{font-size:9px;color:var(--or);opacity:.6}
+
+.nav-actions{display:flex;gap:8px;margin-left:auto;padding-left:14px;flex-shrink:0}
+.btn-ghost{
+  padding:6px 14px;border:1px solid var(--rule2);background:transparent;
+  color:var(--b55);font-family:var(--ft-sans);font-size:12px;font-weight:500;
+  cursor:pointer;transition:var(--tr);white-space:nowrap;
+}
+.btn-ghost:hover{border-color:var(--b30);color:var(--blanc)}
+.btn-filled{
+  padding:6px 16px;border:none;background:var(--bleu-v);color:#fff;
+  font-family:var(--ft-sans);font-size:12px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:var(--tr);
+}
+.btn-filled:hover{background:#1d40a8}
+.btn-gold{
+  padding:6px 16px;border:none;background:var(--or);color:#06090e;
+  font-family:var(--ft-sans);font-size:12px;font-weight:700;
+  cursor:pointer;white-space:nowrap;
+}
+.nav-user{
+  display:flex;align-items:center;gap:8px;
+  padding:4px 12px;border:1px solid var(--rule);
+  cursor:pointer;transition:var(--tr);
+}
+.nav-user:hover{border-color:var(--rule2)}
+.nav-avatar{
+  width:22px;height:22px;border-radius:50%;background:var(--bleu-v);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;font-weight:700;color:#fff;
+}
+.nav-uname{font-size:12px;font-weight:500;color:var(--b55)}
+.nav-ubadge{
+  font-family:var(--ft-mono);font-size:9px;color:var(--or);
+  border:1px solid var(--or-b);padding:1px 5px;letter-spacing:.06em;
+}
+.nav-ham{
+  display:none;flex-direction:column;gap:5px;
+  cursor:pointer;padding:6px;margin-left:8px;
+}
+.nav-ham span{display:block;width:20px;height:1px;background:var(--b55)}
+
+/* ── HERO ── */
+.hero{
+  max-width:var(--max);margin:0 auto;
+  padding:44px 20px 36px;
+  display:grid;grid-template-columns:1fr 290px;gap:48px;
+  border-bottom:1px solid var(--rule);
+}
+.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.ey-cat{
+  font-family:var(--ft-mono);font-size:9px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--rouge-v);
+}
+.ey-sep{color:var(--rule2)}
+.ey-time{font-family:var(--ft-mono);font-size:9px;color:var(--b30)}
+.hero-title{
+  font-family:var(--ft-serif);
+  font-size:clamp(26px,3.5vw,44px);
+  font-weight:700;line-height:1.1;margin-bottom:14px;
+}
+.hero-title em{color:var(--rouge-v);font-style:italic}
+.hero-desc{font-size:14px;color:var(--b55);max-width:520px;line-height:1.7;margin-bottom:18px}
+.hero-footer{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.hero-by{font-size:12px;color:var(--b30)}
+.hero-by strong{color:var(--b55)}
+.hero-lock{
+  font-family:var(--ft-mono);font-size:9px;letter-spacing:.1em;
+  color:var(--or);border:1px solid var(--or-b);padding:2px 8px;
+}
+.hero-side-lbl{
+  font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--b30);margin-bottom:12px;
+}
+.conf-card{padding:13px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.conf-card:first-of-type{border-top:1px solid var(--rule)}
+.conf-zone{font-family:var(--ft-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--b30);margin-bottom:3px}
+.conf-title{font-family:var(--ft-serif);font-size:14px;font-weight:700;line-height:1.3;margin-bottom:5px}
+.conf-meta{display:flex;justify-content:space-between;align-items:center}
+.conf-upd{font-family:var(--ft-mono);font-size:9px;color:var(--b30)}
+.conf-lvl{font-family:var(--ft-mono);font-size:9px;padding:1px 6px;border:1px solid currentColor}
+.lv-h{color:var(--rouge-v)}.lv-m{color:var(--or)}.lv-l{color:var(--bleu-v)}
+
+/* ── PAGE WRAP ── */
+.page-wrap{
+  max-width:var(--max);margin:0 auto;
+  padding:0 20px;display:grid;grid-template-columns:1fr 268px;
+}
+.main-col{border-right:1px solid var(--rule);padding-right:40px}
+.side-col{padding-left:30px}
+
+/* ── SECTION HEADERS ── */
+.sec-hdr{
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:30px 0 12px;border-bottom:1px solid var(--rule2);
+}
+.sec-title{
+  font-family:var(--ft-logo);font-size:14px;font-weight:600;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--blanc);
+  display:flex;align-items:center;gap:10px;
+}
+.sec-badge{
+  font-family:var(--ft-mono);font-size:9px;color:var(--or);
+  border:1px solid var(--or-b);padding:1px 6px;letter-spacing:.08em;
+}
+.sec-more{font-family:var(--ft-mono);font-size:10px;color:var(--b30);cursor:pointer;transition:var(--tr)}
+.sec-more:hover{color:var(--blanc)}
+
+/* ── ARTICLE LIST ── */
+.art-list{display:flex;flex-direction:column}
+.art-item{
+  display:grid;grid-template-columns:1fr 76px;gap:16px;
+  padding:20px 0;border-bottom:1px solid var(--rule);
+  cursor:pointer;transition:var(--tr);position:relative;
+}
+.art-item:hover .art-title{color:var(--bleu-v)}
+.art-item:last-child{border-bottom:none}
+.art-meta{
+  font-family:var(--ft-mono);font-size:9px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--b30);margin-bottom:6px;
+  display:flex;align-items:center;gap:8px;
+}
+.art-cat{color:var(--rouge-v);font-weight:500}
+.art-prem{color:var(--or)}
+.art-title{
+  font-family:var(--ft-serif);font-size:17px;font-weight:700;
+  line-height:1.3;margin-bottom:6px;transition:var(--tr);
+}
+.art-expt{font-size:13px;color:var(--b55);line-height:1.6}
+.art-thumb{
+  width:76px;height:58px;background:var(--s3);
+  border:1px solid var(--rule);
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;margin-top:2px;
+}
+.art-lock{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent 18%,rgba(5,12,26,.95) 68%);
+  display:flex;align-items:center;justify-content:flex-end;
+}
+.art-lock-box{
+  background:var(--s2);border:1px solid var(--rule2);
+  padding:11px 14px;max-width:192px;text-align:center;
+}
+.art-lock-txt{font-size:11px;font-weight:500;color:var(--b55);margin-bottom:8px;line-height:1.4}
+.art-lock-btn{
+  padding:5px 12px;border:none;font-family:var(--ft-sans);
+  font-size:11px;font-weight:600;cursor:pointer;
+}
+.alb-c{background:var(--bleu-v);color:#fff}
+.alb-u{background:var(--or);color:#06090e}
+
+/* ── PREMIUM GATE ── */
+.prem-gate{position:relative}
+.prem-prev{filter:blur(4px);user-select:none;pointer-events:none;max-height:158px;overflow:hidden}
+.prem-wall{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent,rgba(5,12,26,.97) 46%);
+  display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px;
+}
+.prem-box{
+  background:var(--s2);border:1px solid var(--rule2);
+  border-top:2px solid var(--bleu-v);
+  padding:18px 22px;text-align:center;max-width:340px;width:100%;
+}
+.prem-lbl{font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--bleu-v);margin-bottom:6px}
+.prem-title{font-family:var(--ft-serif);font-size:17px;font-weight:700;margin-bottom:5px}
+.prem-sub{font-size:12px;color:var(--b55);line-height:1.55;margin-bottom:10px}
+.prem-price{font-family:var(--ft-serif);font-size:22px;font-weight:700;color:var(--or);margin-bottom:10px}
+.prem-price small{font-size:12px;color:var(--b30);font-family:var(--ft-sans);font-weight:400}
+.prem-feats{list-style:none;text-align:left;display:flex;flex-direction:column;gap:4px;margin-top:8px}
+.prem-feats li{font-size:11px;color:var(--b55);display:flex;align-items:center;gap:6px}
+.prem-feats li::before{content:'→';color:var(--bleu-v);font-size:10px}
+
+/* ── CONFLICT ROWS ── */
+.conflict-row{
+  display:grid;grid-template-columns:36px 1fr auto;gap:13px;
+  padding:13px 0;border-bottom:1px solid var(--rule);
+  cursor:pointer;transition:var(--tr);
+}
+.conflict-row:hover{opacity:.68}
+.cr-flag{font-size:22px}
+.cr-zone{font-family:var(--ft-mono);font-size:9px;letter-spacing:.08em;color:var(--b30);margin-bottom:2px}
+.cr-name{font-family:var(--ft-serif);font-size:14px;font-weight:700;line-height:1.3}
+.cr-badge{font-family:var(--ft-mono);font-size:9px;padding:2px 7px;border:1px solid currentColor;white-space:nowrap}
+
+/* ── BLOG CARDS ── */
+.blog-card{padding:14px 0;border-bottom:1px solid var(--rule);cursor:pointer}
+.bc-hdr{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.bc-av{
+  width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:600;color:#fff;flex-shrink:0;
+}
+.bc-name{font-size:13px;font-weight:600}
+.bc-loc{font-family:var(--ft-mono);font-size:9px;color:var(--b30);letter-spacing:.06em}
+.bc-badge{
+  font-family:var(--ft-mono);font-size:8px;letter-spacing:.1em;
+  color:var(--or);border:1px solid var(--or-b);padding:1px 5px;margin-left:auto;
+}
+.bc-content{font-size:13px;color:var(--b55);line-height:1.6;margin-bottom:7px}
+.bc-foot{display:flex;gap:14px;font-family:var(--ft-mono);font-size:10px;color:var(--b30)}
+.bc-like{color:var(--rouge-v)}
+
+/* ── SIDEBAR ── */
+.widget{padding:24px 0;border-bottom:1px solid var(--rule)}
+.widget:last-child{border-bottom:none}
+.wgt-lbl{
+  font-family:var(--ft-logo);font-size:11px;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--b30);
+  margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--rule);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.wgt-badge{font-family:var(--ft-mono);font-size:9px;color:var(--or);border:1px solid var(--or-b);padding:1px 5px;letter-spacing:.06em}
+
+/* Upgrade inline */
+.upg{border:1px solid var(--rule2);border-top:2px solid var(--or);padding:17px}
+.upg-lbl{font-family:var(--ft-logo);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--or);margin-bottom:7px}
+.upg-title{font-family:var(--ft-serif);font-size:16px;font-weight:700;margin-bottom:5px}
+.upg-sub{font-size:12px;color:var(--b55);line-height:1.5;margin-bottom:10px}
+.upg-price{font-family:var(--ft-serif);font-size:19px;font-weight:700;color:var(--or);margin-bottom:10px}
+.upg-price small{font-size:12px;color:var(--b30);font-family:var(--ft-sans);font-weight:400}
+
+/* Cabinet */
+.cab-card{border-left:2px solid var(--bleu-v);padding-left:14px}
+.cab-name{
+  font-family:var(--ft-logo);font-size:15px;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bleu-v);margin-bottom:4px;
+}
+.cab-desc{font-size:12px;color:var(--b55);line-height:1.6;margin-bottom:10px}
+.cab-links{display:flex;gap:7px;flex-wrap:wrap}
+.cab-link{
+  font-family:var(--ft-mono);font-size:10px;padding:4px 10px;
+  border:1px solid var(--rule2);color:var(--b55);
+  cursor:pointer;transition:var(--tr);
+}
+.cab-link:hover{border-color:var(--bleu-v);color:var(--bleu-v)}
+.cab-link-h{border-color:var(--bleu-v);color:var(--bleu-v)}
+
+/* Think tanks */
+.tt-row{
+  display:flex;align-items:flex-start;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:var(--tr);
+}
+.tt-row:last-child{border-bottom:none;padding-bottom:0}
+.tt-row:hover{opacity:.62}
+.tt-num{font-family:var(--ft-serif);font-size:14px;font-weight:700;color:var(--rule2);width:18px;flex-shrink:0;padding-top:1px}
+.tt-name{font-size:12px;font-weight:600;margin-bottom:2px}
+.tt-desc{font-size:11px;color:var(--b30);line-height:1.4}
+
+/* Polls */
+.poll-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule)}
+.poll-row:last-child{border-bottom:none}
+.pr-num{font-family:var(--ft-serif);font-size:15px;font-weight:700;width:16px;color:var(--rule2);flex-shrink:0}
+.pr-num.f{color:var(--blanc)}
+.pr-wrap{flex:1}
+.pr-party{font-size:12px;font-weight:500;margin-bottom:3px}
+.pr-bar{height:2px;background:var(--b12);overflow:hidden}
+.pr-fill{height:100%}
+.pr-pct{font-family:var(--ft-serif);font-size:15px;font-weight:700;width:36px;text-align:right;flex-shrink:0}
+.pr-tr{font-family:var(--ft-mono);font-size:10px;width:28px;text-align:right;flex-shrink:0}
+.t-u{color:#3dba6f}.t-d{color:var(--rouge-v)}.t-f{color:var(--b30)}
+
+/* Social */
+.soc-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:var(--tr)}
+.soc-row:last-child{border-bottom:none;padding-bottom:0}
+.soc-row:hover{opacity:.62}
+.soc-name{font-size:12px;font-weight:500}
+.soc-desc{font-family:var(--ft-mono);font-size:10px;color:var(--b30)}
+
+/* Calendar */
+.cal-item{display:flex;gap:13px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--rule)}
+.cal-item:last-child{border-bottom:none;padding-bottom:0}
+.cal-date{text-align:center;min-width:26px}
+.cal-day{font-family:var(--ft-serif);font-size:18px;font-weight:700;line-height:1;color:var(--bleu-v)}
+.cal-mon{font-family:var(--ft-mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--b30)}
+.cal-ev{font-size:12px;font-weight:500;line-height:1.35}
+.cal-wh{font-family:var(--ft-mono);font-size:10px;color:var(--b30);margin-top:2px}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--s1);border-top:1px solid var(--rule);
+  padding:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.footer-logo{
+  font-family:var(--ft-logo);font-size:15px;font-weight:700;
+  letter-spacing:.2em;color:var(--b55);flex-shrink:0;text-transform:uppercase;
+  display:flex;align-items:center;gap:0;
+}
+.footer-logo-o{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:14px;height:14px;position:relative;
+  font-family:var(--ft-logo);font-size:15px;font-weight:700;letter-spacing:.2em;color:var(--b55);
+}
+.footer-logo-o::before{
+  content:'';position:absolute;
+  width:12px;height:12px;border-radius:50%;
+  border:1px solid var(--rouge-v);
+  box-shadow:0 0 4px rgba(232,19,46,.4);
+}
+.footer-links{display:flex;gap:14px;flex-wrap:wrap}
+.footer-link{font-family:var(--ft-mono);font-size:10px;color:var(--b30);cursor:pointer;transition:var(--tr)}
+.footer-link:hover{color:var(--blanc)}
+.footer-legal{margin-left:auto;font-family:var(--ft-mono);font-size:10px;color:var(--b30)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;gap:22px}
+  .hero-side{display:none}
+  .page-wrap{grid-template-columns:1fr}
+  .main-col{border-right:none;padding-right:0;border-bottom:1px solid var(--rule);padding-bottom:24px}
+  .side-col{padding-left:0;padding-top:24px}
+  .nav-links{display:none}
+  .nav-ham{display:flex}
+  .btn-ghost{display:none}
+}
+@media(max-width:600px){
+  .topbar{display:none}
+  .hero{padding:24px 16px 24px}
+  .page-wrap{padding:0 16px}
+  .hero-title{font-size:24px}
+  .art-item{grid-template-columns:1fr}
+  .art-thumb{display:none}
+  #upgrade-popup{bottom:10px;right:10px;left:10px;max-width:none}
+  .demo-bar{gap:5px}
+  .d-btn{padding:3px 7px;font-size:9px}
+  .footer{flex-direction:column;align-items:flex-start;gap:10px}
+  .footer-legal{margin-left:0}
+}
+</style>
+</head>
+<body>
+
+<!-- COOKIE WALL -->
+<div id="cookie-wall">
+  <div class="cw-box">
+    <div class="cw-logo-wrap">
+      <div class="cw-logo-svg">
+        <span class="cw-logo-text">STRAT</span>
+        <span class="cw-logo-o"><span style="font-family:var(--ft-logo);font-size:22px;font-weight:700;color:var(--blanc);position:relative;z-index:2">O</span><span class="cw-logo-o" style="position:absolute;width:20px;height:20px;border-radius:50%;border:2px solid var(--rouge-v);box-shadow:0 0 8px var(--rouge-glow);top:50%;left:50%;transform:translate(-50%,-50%)"></span></span>
+        <span class="cw-logo-text">S</span>
+      </div>
+      <div class="cw-tagline">Géopolitique & Analyse Stratégique</div>
+    </div>
+    <div class="cw-title">Choisissez votre accès</div>
+    <div class="cw-desc">Stratos est un média indépendant. Aucune opinion politique n'est collectée ni stockée — conformément à l'article 9 du RGPD.</div>
+    <div class="cw-options">
+      <div class="cw-opt" onclick="setAccess('visitor-cookies')">
+        <div style="font-size:18px;flex-shrink:0">📢</div>
+        <div class="cw-opt-body">
+          <div class="cw-opt-title">Continuer avec publicité <span class="cw-tag cw-tag-b">Gratuit</span></div>
+          <div class="cw-opt-desc">J'accepte les cookies publicitaires et consulte le site avec des annonces.</div>
+        </div>
+      </div>
+      <div class="cw-opt" onclick="setAccess('free')">
+        <div style="font-size:18px;flex-shrink:0">👤</div>
+        <div class="cw-opt-body">
+          <div class="cw-opt-title">Compte gratuit <span class="cw-tag cw-tag-b">Sans pub</span></div>
+          <div class="cw-opt-desc">Accès aux articles, aucune publicité, aucun cookie de tracking.</div>
+        </div>
+      </div>
+      <div class="cw-opt featured" onclick="setAccess('premium')">
+        <div style="font-size:18px;flex-shrink:0">→</div>
+        <div class="cw-opt-body">
+          <div class="cw-opt-title">Premium <span class="cw-tag cw-tag-o">Tout débloquer</span></div>
+          <div class="cw-opt-desc">Analyses exclusives, armées & conflits, sondages, blog communauté.</div>
+        </div>
+        <div class="cw-opt-price">5€ <small>/ mois</small></div>
+      </div>
+    </div>
+    <div class="cw-footer">En acceptant la publicité, vous consentez aux cookies publicitaires. Aucune opinion politique collectée. <a>Politique de confidentialité</a></div>
+  </div>
+</div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" style="display:none;">
+  <div class="cb-text">Stratos utilise uniquement des cookies techniques. Aucun tracking politique. <a>Politique RGPD</a></div>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button class="btn-sm" onclick="this.parentElement.parentElement.style.display='none'">Refuser les optionnels</button>
+    <button class="btn-sm-f" onclick="this.parentElement.parentElement.style.display='none'">Accepter</button>
+  </div>
+</div>
+
+<!-- UPGRADE POPUP -->
+<div id="upgrade-popup" style="display:none;">
+  <button class="up-close" onclick="document.getElementById('upgrade-popup').style.display='none'">×</button>
+  <div class="up-lbl">Stratos Premium</div>
+  <div class="up-title">Débloquez l'accès complet</div>
+  <div class="up-sub">Analyses exclusives, tracker conflits, sondages et blog communauté.</div>
+  <div class="up-price">5€ <small>/ mois · sans engagement</small></div>
+  <a href="https://buy.stripe.com/9B614mdpg6Wi5lYdQ85J609" target="_blank" style="text-decoration:none;display:block;">
+    <button class="btn-primary">S'abonner maintenant</button>
+  </a>
+  <ul class="up-list">
+    <li>Analyses géopolitiques exclusives</li>
+    <li>Armées & Conflits — tracker live</li>
+    <li>Sondages IFOP · BVA · OpinionWay</li>
+    <li>Blog communauté Premium</li>
+  </ul>
+</div>
+
+<!-- DEMO BAR -->
+<div class="demo-bar">
+  <strong>[ DÉMO ]</strong>
+  <button class="d-btn on" id="db-cw" onclick="showCookieWall()">Cookie Wall</button>
+  <button class="d-btn" id="db-vc" onclick="setAccess('visitor-cookies')">Visiteur + pub</button>
+  <button class="d-btn" id="db-fr" onclick="setAccess('free')">Compte gratuit</button>
+  <button class="d-btn" id="db-pr" onclick="setAccess('premium')">Premium</button>
+  <span id="demo-status"></span>
+</div>
+
+<div id="site-root">
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <div class="tb-live">En direct</div>
+    <span>Jeudi 19 mars 2026</span>
+    <span>·</span>
+    <strong>Ukraine</strong> — Jour 767
+    <span>·</span>
+    <strong>Conseil européen</strong> · Bruxelles
+  </div>
+  <div>Géopolitique & Analyse Stratégique · Paris</div>
+</div>
+
+<!-- FLASH BAR -->
+<div class="flash-bar">
+  <div class="flash-inner">
+    <div class="flash-label">⚡ Flash</div>
+    <div class="flash-scroll">
+      <div class="flash-items" id="flash-items">
+        <div class="flash-item"><span class="flash-time">09:14</span>Zelensky à Paris — Macron annonce 2 Mds € d'aide militaire supplémentaire</div>
+        <div class="flash-item"><span class="flash-time">08:47</span>OTAN : réunion d'urgence des chefs d'état-major convoquée à Bruxelles vendredi</div>
+        <div class="flash-item"><span class="flash-time">08:12</span>Pékin annonce de nouveaux exercices militaires dans le détroit de Taïwan</div>
+        <div class="flash-item"><span class="flash-time">07:55</span>Sahel : le Niger suspend officiellement la coopération militaire avec l'UE</div>
+        <div class="flash-item"><span class="flash-time">07:30</span>IFOP : le RN à 33% — record historique aux intentions de vote législatives 2027</div>
+        <div class="flash-item"><span class="flash-time">06:58</span>Géorgie : 12e semaine de manifestations pro-UE à Tbilissi, tension maximale</div>
+        <div class="flash-item"><span class="flash-time">09:14</span>Zelensky à Paris — Macron annonce 2 Mds € d'aide militaire supplémentaire</div>
+        <div class="flash-item"><span class="flash-time">08:47</span>OTAN : réunion d'urgence des chefs d'état-major convoquée à Bruxelles vendredi</div>
+        <div class="flash-item"><span class="flash-time">08:12</span>Pékin annonce de nouveaux exercices militaires dans le détroit de Taïwan</div>
+        <div class="flash-item"><span class="flash-time">07:55</span>Sahel : le Niger suspend officiellement la coopération militaire avec l'UE</div>
+        <div class="flash-item"><span class="flash-time">07:30</span>IFOP : le RN à 33% — record historique aux intentions de vote législatives 2027</div>
+        <div class="flash-item"><span class="flash-time">06:58</span>Géorgie : 12e semaine de manifestations pro-UE à Tbilissi, tension maximale</div>
+      </div>
+    </div>
+    <div class="flash-ctrls">
+      <button class="flash-btn" onclick="document.getElementById('flash-items').style.animationPlayState='paused'">⏸</button>
+      <button class="flash-btn" onclick="document.getElementById('flash-items').style.animationPlayState='running'">▶</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-wrap">
+      <div class="logo-container">
+        <span class="logo-letter">STRAT</span>
+        <span class="logo-O-wrap">
+          <span class="logo-letter" style="position:relative;z-index:2">O</span>
+          <span class="logo-O-ring"></span>
+        </span>
+        <span class="logo-letter">S</span>
+      </div>
+      <span class="logo-sub">Géopolitique & Stratégie</span>
+    </div>
+  </div>
+  <div class="nav-links">
+    <div class="nav-link active">Accueil</div>
+    <div class="nav-link">Géopolitique</div>
+    <div class="nav-link">Europe</div>
+    <div class="nav-link">France</div>
+    <div class="nav-link">Armées & Conflits <span class="nav-lock">🔒</span></div>
+    <div class="nav-link">Sondages <span class="nav-lock">🔒</span></div>
+    <div class="nav-link">Communauté <span class="nav-lock">🔒</span></div>
+  </div>
+  <div class="nav-actions" id="nav-actions">
+    <button class="btn-ghost" onclick="setAccess('free')">Se connecter</button>
+    <button class="btn-filled" onclick="setAccess('premium')">Premium — 5€/mois</button>
+  </div>
+  <div class="nav-ham"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-lbl">Stratos</div>
+  <div class="ticker-fade"></div>
+  <div class="ticker-inner">
+    Conseil européen · Défense et Ukraine · Bruxelles 21 mars
+    <span class="sep">·</span>Présidentielle 2027 · Premières analyses exclusives sur Stratos
+    <span class="sep">·</span>OTAN · Budget défense · L'Europe accélère son autonomie stratégique
+    <span class="sep">·</span>Sahel · Post-Barkhane · Analyse des nouvelles alliances régionales
+    <span class="sep">·</span>Chine · Indo-Pacifique · Les scénarios d'escalade décryptés
+    <span class="sep">·</span>Conseil européen · Défense et Ukraine · Bruxelles 21 mars
+    <span class="sep">·</span>Présidentielle 2027 · Premières analyses exclusives sur Stratos
+    <span class="sep">·</span>OTAN · Budget défense · L'Europe accélère son autonomie stratégique
+    <span class="sep">·</span>Sahel · Post-Barkhane · Analyse des nouvelles alliances régionales
+    <span class="sep">·</span>Chine · Indo-Pacifique · Les scénarios d'escalade décryptés
+    <span class="sep">·</span>
+  </div>
+</div>
+
+<!-- AD TOP -->
+<div id="ad-top" style="padding:10px 20px;border-bottom:1px solid var(--rule);display:none;">
+  <div class="ad-slot ad-leader">Emplacement publicitaire 728×90 — Google AdSense</div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">
+      <span class="ey-cat">Géopolitique</span><span class="ey-sep">·</span>
+      <span class="ey-cat">Analyse exclusive</span><span class="ey-sep">·</span>
+      <span class="ey-time">Il y a 3 heures</span>
+    </div>
+    <div class="hero-title">L'axe Moscou–Pékin–Téhéran :<br>vers une <em>alliance stratégique</em> durable ?</div>
+    <div class="hero-desc">Les trois puissances révisionnistes intensifient leurs coopérations militaires, économiques et diplomatiques. Notre analyse décrypte les architectures de cette convergence et ses implications directes pour l'Europe.</div>
+    <div class="hero-footer">
+      <div class="hero-by">Par <strong>Bureau d'analyse Stratos</strong> · 16 min</div>
+      <div class="hero-lock" id="hero-lock">🔒 Compte requis</div>
+    </div>
+  </div>
+  <div id="hero-side">
+    <div class="hero-side-lbl">Zones de tension actives</div>
+    <div class="conf-card"><div class="conf-zone">🇺🇦 Ukraine — Europe de l'Est</div><div class="conf-title">Guerre russo-ukrainienne · Jour 767</div><div class="conf-meta"><div class="conf-upd">Mis à jour · 2h</div><div class="conf-lvl lv-h">Critique</div></div></div>
+    <div class="conf-card"><div class="conf-zone">🇮🇱 Gaza — Moyen-Orient</div><div class="conf-title">Conflit Israël–Hamas · Phase 3</div><div class="conf-meta"><div class="conf-upd">Mis à jour · 5h</div><div class="conf-lvl lv-m">Élevé</div></div></div>
+    <div class="conf-card"><div class="conf-zone">🇹🇼 Détroit de Taïwan</div><div class="conf-title">Pression militaire chinoise · Surveillance</div><div class="conf-meta"><div class="conf-upd">Mis à jour · 12h</div><div class="conf-lvl lv-l">Modéré</div></div></div>
+  </div>
+</div>
+
+<!-- PAGE WRAP -->
+<div class="page-wrap">
+<div class="main-col">
+
+  <div class="sec-hdr"><div class="sec-title">À la une</div><div class="sec-more">Tout voir →</div></div>
+
+  <div class="art-list">
+    <div class="art-item" id="art-0" style="position:relative;">
+      <div><div class="art-meta"><span class="art-cat">Géopolitique</span><span>·</span><span>14 mar</span><span>·</span><span>9 min</span></div><div class="art-title">OTAN 2026 : l'Europe prend-elle enfin ses responsabilités ?</div><div class="art-expt">Après des années de dépendance stratégique, les États membres accélèrent leurs budgets de défense. Analyse des engagements réels et des lacunes persistantes.</div></div>
+      <div class="art-thumb">🌍</div>
+      <div class="art-lock" id="lo-0"><div class="art-lock-box"><div class="art-lock-txt">Créez un compte gratuit pour lire</div><button class="art-lock-btn alb-c" onclick="setAccess('free')">Créer un compte</button></div></div>
+    </div>
+    <div class="art-item" id="art-1" style="position:relative;">
+      <div><div class="art-meta"><span class="art-cat">France</span><span>·</span><span>12 mar</span><span>·</span><span>11 min</span></div><div class="art-title">Recomposition de la droite française avant 2027</div><div class="art-expt">LR, RN, dissidents macronistes — les tractations qui redessinant le paysage partisan. Analyse des dynamiques électorales et des scénarios possibles.</div></div>
+      <div class="art-thumb">🇫🇷</div>
+      <div class="art-lock" id="lo-1"><div class="art-lock-box"><div class="art-lock-txt">Créez un compte gratuit pour lire</div><button class="art-lock-btn alb-c" onclick="setAccess('free')">Créer un compte</button></div></div>
+    </div>
+    <div class="art-item" id="art-2" style="position:relative;">
+      <div><div class="art-meta"><span class="art-cat">Armées & Conflits</span><span>·</span><span>10 mar</span><span>·</span><span>14 min</span><span>·</span><span class="art-prem">Premium</span></div><div class="art-title">Budgets militaires européens : comparatif exclusif des 27</div><div class="art-expt">Capacités réelles, lacunes critiques, dépendance américaine. Données SIPRI analysées par notre bureau stratégique.</div></div>
+      <div class="art-thumb">⚔️</div>
+      <div class="art-lock" id="lo-2a"><div class="art-lock-box"><div class="art-lock-txt">Créez un compte pour accéder</div><button class="art-lock-btn alb-c" onclick="setAccess('free')">Créer un compte</button></div></div>
+      <div class="art-lock" id="lo-2b" style="display:none;"><div class="art-lock-box"><div class="art-lock-txt">Contenu réservé aux abonnés</div><button class="art-lock-btn alb-u" onclick="window.open('https://buy.stripe.com/9B614mdpg6Wi5lYdQ85J609','_blank')">Premium — 5€/mois</button></div></div>
+    </div>
+    <div class="art-item" id="art-3" style="position:relative;">
+      <div><div class="art-meta"><span class="art-cat">Europe</span><span>·</span><span>8 mar</span><span>·</span><span>12 min</span><span>·</span><span class="art-prem">Premium</span></div><div class="art-title">Européennes 2029 : les scénarios qui inquiètent Bruxelles</div><div class="art-expt">Montée des droites nationales, fragmentation du centre — modélisation à partir de 14 sondages pour anticiper les équilibres post-2027.</div></div>
+      <div class="art-thumb">🇪🇺</div>
+      <div class="art-lock" id="lo-3a"><div class="art-lock-box"><div class="art-lock-txt">Créez un compte pour accéder</div><button class="art-lock-btn alb-c" onclick="setAccess('free')">Créer un compte</button></div></div>
+      <div class="art-lock" id="lo-3b" style="display:none;"><div class="art-lock-box"><div class="art-lock-txt">Contenu réservé aux abonnés</div><button class="art-lock-btn alb-u" onclick="window.open('https://buy.stripe.com/9B614mdpg6Wi5lYdQ85J609','_blank')">Premium — 5€/mois</button></div></div>
+    </div>
+  </div>
+
+  <div id="ad-infeed" style="padding:18px 0;border-bottom:1px solid var(--rule);display:none;"><div class="ad-slot ad-rect">Emplacement publicitaire In-feed · AdSense</div></div>
+
+  <!-- ARMÉES & CONFLITS -->
+  <div class="sec-hdr"><div class="sec-title">Armées & Conflits <span class="sec-badge">Premium</span></div><div class="sec-more">Voir tout →</div></div>
+  <div class="prem-gate" id="sg-conf">
+    <div class="prem-prev" id="pp-conf">
+      <div class="conflict-row"><div class="cr-flag">🇺🇦</div><div><div class="cr-zone">Ukraine — Front Est</div><div class="cr-name">Analyse des lignes de front et scénarios logistiques</div></div><span class="cr-badge lv-h">Critique</span></div>
+      <div class="conflict-row"><div class="cr-flag">🇸🇩</div><div><div class="cr-zone">Soudan — Guerre civile</div><div class="cr-name">Crise humanitaire et enjeux géostratégiques</div></div><span class="cr-badge lv-h">Élevé</span></div>
+      <div class="conflict-row"><div class="cr-flag">🇲🇱</div><div><div class="cr-zone">Sahel — Alliance des États du Sahel</div><div class="cr-name">Post-Barkhane, Wagner, repositionnement français</div></div><span class="cr-badge lv-m">Modéré</span></div>
+    </div>
+    <div class="prem-wall" id="pw-conf">
+      <div class="prem-box">
+        <div class="prem-lbl" id="pl-conf">Accès Premium requis</div>
+        <div class="prem-title" id="pt-conf">Tracker Armées & Conflits</div>
+        <div class="prem-sub" id="ps-conf">Suivi des zones de tension, analyses militaires, données SIPRI & OTAN.</div>
+        <div class="prem-price" id="pp2-conf" style="display:none">5€ <small>/ mois</small></div>
+        <button class="btn-primary" id="pb-conf" onclick="setAccess('free')">Créer un compte gratuit</button>
+        <ul class="prem-feats" id="pf-conf" style="display:none"><li>Tracker conflits en temps réel</li><li>Analyses militaires exclusives</li><li>Données SIPRI & OTAN</li></ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- BLOG COMMUNAUTÉ -->
+  <div class="sec-hdr"><div class="sec-title">Blog Communauté <span class="sec-badge">Premium</span></div><div class="sec-more">Tous les posts →</div></div>
+  <div class="prem-gate" id="sg-blog" style="position:relative;min-height:240px;">
+    <div class="prem-prev" id="pp-blog" style="padding:8px 0;">
+      <div class="blog-card"><div class="bc-hdr"><div class="bc-av" style="background:linear-gradient(135deg,#1a3a8f,#c8102e)">JD</div><div><div class="bc-name">Jean Dubois</div><div class="bc-loc">📍 Lyon</div></div><div class="bc-badge">Premium</div></div><div class="bc-content">La stratégie russe en mer Noire reste sous-estimée dans les analyses occidentales. Le contrôle des flux maritimes est autant un levier économique que militaire...</div><div class="bc-foot"><span>Il y a 2h</span><span class="bc-like">♥ 24</span><span>8 réponses</span></div></div>
+      <div class="blog-card"><div class="bc-hdr"><div class="bc-av" style="background:linear-gradient(135deg,#1a6b4a,#0d4a2f)">SM</div><div><div class="bc-name">Sophie Martin</div><div class="bc-loc">📍 Paris</div></div><div class="bc-badge">Premium</div></div><div class="bc-content">Le rapport ECFR sur l'autonomie stratégique européenne est éclairant mais passe à côté des réalités industrielles de la défense française...</div><div class="bc-foot"><span>Il y a 5h</span><span class="bc-like">♥ 41</span><span>17 réponses</span></div></div>
+    </div>
+    <div class="prem-wall" id="pw-blog" style="position:absolute;inset:0;">
+      <div class="prem-box">
+        <div class="prem-lbl" id="pl-blog">Communauté Premium</div>
+        <div class="prem-title" id="pt-blog">Rejoignez le débat</div>
+        <div class="prem-sub" id="ps-blog">Profil personnel, publications d'analyses, discussions avec des experts.</div>
+        <div class="prem-price" id="pp2-blog" style="display:none">5€ <small>/ mois</small></div>
+        <button class="btn-primary" id="pb-blog" onclick="setAccess('free')">Créer un compte gratuit</button>
+        <ul class="prem-feats" id="pf-blog" style="display:none"><li>Profil avec photo & ville</li><li>Publier vos analyses</li><li>Discussions & réponses</li></ul>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main-col -->
+
+<div class="side-col">
+
+  <div class="widget" id="w-upgrade" style="display:none;">
+    <div class="upg">
+      <div class="upg-lbl">Stratos Premium</div>
+      <div class="upg-title">Accès complet</div>
+      <div class="upg-sub">Analyses exclusives, armées & conflits, sondages, blog communauté.</div>
+      <div class="upg-price">5€ <small>/ mois · sans engagement</small></div>
+      <a href="https://buy.stripe.com/9B614mdpg6Wi5lYdQ85J609" target="_blank" style="text-decoration:none;display:block;">
+        <button class="btn-primary" style="width:100%">S'abonner</button>
+      </a>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="wgt-lbl">Sondages <span class="wgt-badge">Premium</span></div>
+    <div style="position:relative;">
+      <div id="poll-c" style="filter:blur(4px);user-select:none;">
+        <div class="poll-row"><div class="pr-num f">1</div><div class="pr-wrap"><div class="pr-party">Rassemblement National</div><div class="pr-bar"><div class="pr-fill" style="width:33%;background:#1a3a8f;"></div></div></div><div class="pr-pct">33%</div><div class="pr-tr t-u">▲1.2</div></div>
+        <div class="poll-row"><div class="pr-num">2</div><div class="pr-wrap"><div class="pr-party">La France Insoumise</div><div class="pr-bar"><div class="pr-fill" style="width:22%;background:#c8102e;"></div></div></div><div class="pr-pct">22%</div><div class="pr-tr t-d">▼0.8</div></div>
+        <div class="poll-row"><div class="pr-num">3</div><div class="pr-wrap"><div class="pr-party">Renaissance</div><div class="pr-bar"><div class="pr-fill" style="width:19%;background:#ff6600;"></div></div></div><div class="pr-pct">19%</div><div class="pr-tr t-f">—</div></div>
+        <div class="poll-row"><div class="pr-num">4</div><div class="pr-wrap"><div class="pr-party">Parti Socialiste</div><div class="pr-bar"><div class="pr-fill" style="width:12%;background:#e75480;"></div></div></div><div class="pr-pct">12%</div><div class="pr-tr t-u">▲0.5</div></div>
+      </div>
+      <div id="poll-ov" style="position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(5,12,26,.97) 50%);display:flex;align-items:flex-end;padding-bottom:2px;">
+        <div style="width:100%;text-align:center;">
+          <div id="poll-ov-t" style="font-family:var(--ft-mono);font-size:10px;color:var(--b30);margin-bottom:7px;">IFOP · BVA · OpinionWay</div>
+          <button id="poll-ov-b" style="width:100%;padding:8px;" class="btn-filled" onclick="setAccess('free')">Créer un compte</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="wgt-lbl">Cabinet Conseil</div>
+    <div class="cab-card">
+      <div class="cab-name">Stratos</div>
+      <div class="cab-desc">Conseil en stratégie politique, gestion de crise et conduite de campagnes électorales.</div>
+      <div class="cab-links">
+        <div class="cab-link" onclick="window.open('https://www.instagram.com/stratosconseils?igsh=MW40dDJxenpndjlkeg%3D%3D&utm_source=qr','_blank')">Instagram</div>
+        <div class="cab-link" onclick="window.open('https://x.com/stratosconseils','_blank')">Twitter / X</div>
+        <div class="cab-link">TikTok</div>
+        <div class="cab-link cab-link-h">Contact →</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="widget">
+    <div class="wgt-lbl">Think tanks partenaires</div>
+    <div class="tt-row"><div class="tt-num">01</div><div><div class="tt-name">Institut Montaigne</div><div class="tt-desc">Politiques publiques, économie, sécurité</div></div></div>
+    <div class="tt-row"><div class="tt-num">02</div><div><div class="tt-name">IRIS</div><div class="tt-desc">Relations internationales, défense</div></div></div>
+    <div class="tt-row"><div class="tt-num">03</div><div><div class="tt-name">Fondapol</div><div class="tt-desc">Démocratie & idées politiques</div></div></div>
+    <div class="tt-row"><div class="tt-num">04</div><div><div class="tt-name">Le Grand Continent</div><div class="tt-desc">Revue européenne de géopolitique</div></div></div>
+  </div>
+
+  <div id="ad-sidebar" style="padding:20px 0;border-bottom:1px solid var(--rule);display:none;"><div class="ad-slot ad-half">Emplacement 300×600 · Sidebar · AdSense</div></div>
+
+  <div class="widget">
+    <div class="wgt-lbl">Stratos sur</div>
+    <div class="soc-row" onclick="window.open('https://www.instagram.com/stratosconseils?igsh=MW40dDJxenpndjlkeg%3D%3D&utm_source=qr','_blank')"><div>📷</div><div><div class="soc-name">@stratosconseils</div><div class="soc-desc">Instagram · Infographies & analyses</div></div></div>
+    <div class="soc-row" onclick="window.open('https://x.com/stratosconseils','_blank')"><div>𝕏</div><div><div class="soc-name">@stratosconseils</div><div class="soc-desc">Twitter / X · Veille stratégique</div></div></div>
+    <div class="soc-row" style="cursor:pointer"><div>▶</div><div><div class="soc-name">@stratosconseils</div><div class="soc-desc">TikTok · Géopolitique en 60 secondes — lien à venir</div></div></div>
+  </div>
+
+  <div class="widget">
+    <div class="wgt-lbl">Agenda stratégique</div>
+    <div class="cal-item"><div class="cal-date"><div class="cal-day">21</div><div class="cal-mon">Mar</div></div><div><div class="cal-ev">Conseil européen — Défense & Ukraine</div><div class="cal-wh">Bruxelles</div></div></div>
+    <div class="cal-item"><div class="cal-date"><div class="cal-day">28</div><div class="cal-mon">Mar</div></div><div><div class="cal-ev">G7 Sécurité — Rome</div><div class="cal-wh">Italie</div></div></div>
+    <div class="cal-item"><div class="cal-date"><div class="cal-day">15</div><div class="cal-mon">Avr</div></div><div><div class="cal-ev">AN — Vote budget défense</div><div class="cal-wh">Paris</div></div></div>
+    <div class="cal-item"><div class="cal-date"><div class="cal-day">Avr</div><div class="cal-mon">2027</div></div><div><div class="cal-ev">Présidentielle — Tour 1</div><div class="cal-wh">France</div></div></div>
+  </div>
+
+</div><!-- /side-col -->
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-logo">
+    STRAT<span class="footer-logo-o"><span style="font-family:var(--ft-logo);font-size:15px;font-weight:700;letter-spacing:.2em;color:var(--b55);position:relative;z-index:2">O</span></span>S
+  </div>
+  <div class="footer-links">
+    <span class="footer-link">Mentions légales</span>
+    <span class="footer-link">CGU / CGV</span>
+    <span class="footer-link">Confidentialité & RGPD</span>
+    <span class="footer-link">Sources</span>
+    <span class="footer-link">Contact</span>
+  </div>
+  <div class="footer-legal">© Stratos 2026 · Paris</div>
+</div>
+
+</div><!-- /site-root -->
+
+<script>
+let upgradeTimer=null;
+
+function showCookieWall(){
+  document.getElementById('cookie-wall').style.display='flex';
+  document.getElementById('cookie-banner').style.display='none';
+  document.getElementById('upgrade-popup').style.display='none';
+  document.getElementById('demo-status').textContent='';
+  setBtn('db-cw');
+}
+function setBtn(id){
+  ['db-cw','db-vc','db-fr','db-pr'].forEach(i=>document.getElementById(i).classList.toggle('on',i===id));
+}
+
+function setAccess(level){
+  document.getElementById('cookie-wall').style.display='none';
+  document.getElementById('upgrade-popup').style.display='none';
+  if(upgradeTimer)clearTimeout(upgradeTimer);
+  const labels={'visitor-cookies':'Visiteur + publicités',free:'Compte gratuit — sans pub',premium:'Abonné Premium ✓'};
+  document.getElementById('demo-status').textContent=labels[level]||'';
+  setBtn({'visitor-cookies':'db-vc',free:'db-fr',premium:'db-pr'}[level]);
+
+  // ADS
+  ['ad-top','ad-infeed','ad-sidebar'].forEach(id=>document.getElementById(id).style.display=(level==='visitor-cookies'?'block':'none'));
+
+  // COOKIE BANNER
+  document.getElementById('cookie-banner').style.display=(level==='free'||level==='premium')?'flex':'none';
+
+  // NAV
+  const nav=document.getElementById('nav-actions');
+  if(level==='visitor-cookies'){
+    nav.innerHTML=`<button class="btn-ghost" onclick="setAccess('free')">Se connecter</button><button class="btn-filled" onclick="setAccess('premium')">Premium — 5€/mois</button>`;
+  }else if(level==='free'){
+    nav.innerHTML=`<div class="nav-user"><div class="nav-avatar">JD</div><div class="nav-uname">Jean D.</div></div><button class="btn-gold" onclick="window.open('https://buy.stripe.com/9B614mdpg6Wi5lYdQ85J609','_blank')">Premium ↗</button>`;
+  }else{
+    nav.innerHTML=`<div class="nav-user"><div class="nav-avatar">JD</div><div class="nav-uname">Jean D.</div><div class="nav-ubadge">PREMIUM</div></div>`;
+  }
+
+  // HERO LOCK
+  const hl=document.getElementById('hero-lock');
+  if(level==='premium')hl.style.display='none';
+  else if(level==='free'){hl.textContent='⚡ Analyses exclusives — Premium';hl.style.display='';}
+  else{hl.textContent='🔒 Compte requis';hl.style.display='';}
+
+  // ARTICLES 0-1 (libres avec compte)
+  [0,1].forEach(i=>{
+    const body=document.getElementById('art-'+i),ov=document.getElementById('lo-'+i);
+    if(!body||!ov)return;
+    if(level==='visitor-cookies'){body.style.opacity='.4';body.style.pointerEvents='none';ov.style.display='flex';}
+    else{body.style.opacity='';body.style.pointerEvents='';ov.style.display='none';}
+  });
+
+  // ARTICLES 2-3 (premium)
+  [2,3].forEach(i=>{
+    const body=document.getElementById('art-'+i);
+    const ovA=document.getElementById('lo-'+i+'a'),ovB=document.getElementById('lo-'+i+'b');
+    if(!body)return;
+    if(level==='visitor-cookies'){body.style.opacity='.4';body.style.pointerEvents='none';if(ovA)ovA.style.display='flex';if(ovB)ovB.style.display='none';}
+    else if(level==='free'){body.style.opacity='.45';body.style.pointerEvents='none';if(ovA)ovA.style.display='none';if(ovB)ovB.style.display='flex';}
+    else{body.style.opacity='';body.style.pointerEvents='';if(ovA)ovA.style.display='none';if(ovB)ovB.style.display='none';}
+  });
+
+  // SONDAGES
+  const pc=document.getElementById('poll-c'),po=document.getElementById('poll-ov');
+  const pb=document.getElementById('poll-ov-b'),pt=document.getElementById('poll-ov-t');
+  if(level==='premium'){pc.style.filter='none';pc.style.userSelect='';po.style.display='none';}
+  else if(level==='free'){
+    pc.style.filter='blur(4px)';pc.style.userSelect='none';po.style.display='flex';
+    pt.textContent='Réservé aux abonnés Premium';
+    pb.textContent="S'abonner — 5€/mois";pb.className='btn-gold';pb.style.width='100%';pb.style.padding='8px';
+    pb.onclick=()=>window.open('https://buy.stripe.com/9B614mdpg6Wi5lYdQ85J609','_blank');
+  }else{
+    pc.style.filter='blur(4px)';pc.style.userSelect='none';po.style.display='flex';
+    pt.textContent='IFOP · BVA · OpinionWay';
+    pb.textContent='Créer un compte';pb.className='btn-filled';pb.style.width='100%';pb.style.padding='8px';
+    pb.onclick=()=>setAccess('free');
+  }
+
+  // PREMIUM SECTIONS
+  setPrem('pp-conf','pw-conf','pl-conf','pt-conf','ps-conf','pp2-conf','pb-conf','pf-conf',level,'Tracker conflits · Analyses militaires · SIPRI');
+  setPrem('pp-blog','pw-blog','pl-blog','pt-blog','ps-blog','pp2-blog','pb-blog','pf-blog',level,'Profil · Publications · Discussions');
+
+  // SIDEBAR UPGRADE
+  const wu=document.getElementById('w-upgrade');
+  if(wu)wu.style.display=level==='free'?'block':'none';
+
+  // POPUP 8s
+  if(level==='free')upgradeTimer=setTimeout(()=>{document.getElementById('upgrade-popup').style.display='block';},8000);
+}
+
+function setPrem(ppId,pwId,plId,ptId,psId,pp2Id,pbId,pfId,level,features){
+  const pp=document.getElementById(ppId),pw=document.getElementById(pwId);
+  if(!pp)return;
+  if(level==='premium'){pp.style.filter='none';pp.style.maxHeight='none';pp.style.pointerEvents='auto';if(pw)pw.style.display='none';return;}
+  pp.style.filter='blur(4px)';pp.style.maxHeight='158px';pp.style.pointerEvents='none';
+  if(pw)pw.style.display='flex';
+  const e=id=>document.getElementById(id);
+  if(level==='free'){
+    e(plId)&&(e(plId).textContent='Section Premium');
+    e(ptId)&&(e(ptId).textContent='Abonnez-vous pour accéder');
+    e(psId)&&(e(psId).textContent=features);
+    e(pp2Id)&&(e(pp2Id).style.display='');e(pp2Id)&&(e(pp2Id).innerHTML='5€ <small>/ mois</small>');
+    if(e(pbId)){e(pbId).textContent="S'abonner — 5€/mois";e(pbId).className='btn-gold';e(pbId).onclick=()=>window.open('https://buy.stripe.com/9B614mdpg6Wi5lYdQ85J609','_blank');}
+    e(pfId)&&(e(pfId).style.display='flex');
+  }else{
+    e(plId)&&(e(plId).textContent='Accès Premium requis');
+    e(ptId)&&(e(ptId).textContent='Créez un compte pour commencer');
+    e(psId)&&(e(psId).textContent='Compte gratuit = articles. Premium = accès complet.');
+    e(pp2Id)&&(e(pp2Id).style.display='none');
+    if(e(pbId)){e(pbId).textContent='Créer un compte gratuit';e(pbId).className='btn-primary';e(pbId).onclick=()=>setAccess('free');}
+    e(pfId)&&(e(pfId).style.display='none');
+  }
+}
+
+document.querySelectorAll('.nav-link').forEach(l=>{
+  l.addEventListener('click',()=>{document.querySelectorAll('.nav-link').forEach(x=>x.classList.remove('active'));l.classList.add('active');});
+});
+</script>
+</body>
+</html>
