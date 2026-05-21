@@ -3,1600 +3,1688 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>STRATOS — Géopolitique & Analyse Stratégique</title>
+<title>Premier Round — Association Sportive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,300;0,400;0,600;0,700;0,900;1,400&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --bg:#06080f;--s1:#090c18;--s2:#0d1120;--s3:#111628;--s4:#161c32;
-  --rule:rgba(255,255,255,.07);--rule2:rgba(255,255,255,.12);
-  --blanc:#e8e4dc;--b70:rgba(232,228,220,.7);--b45:rgba(232,228,220,.45);
-  --b25:rgba(232,228,220,.25);--b10:rgba(232,228,220,.07);
-  --rouge:#c8102e;--rouge-v:#e8132e;--rouge-g:rgba(232,19,46,.28);
-  --bleu:#1a3a8f;--bleu-v:#2550c0;--bleu-p:rgba(37,80,192,.15);
-  --or:#c9a44a;--or-b:rgba(201,164,74,.4);--or-p:rgba(201,164,74,.12);
-  --vert:#2ecc71;--vert-p:rgba(46,204,113,.12);
-  --violet:#7c3aed;--violet-p:rgba(124,58,237,.15);
-  --ft-logo:'Rajdhani',sans-serif;
-  --ft-serif:'Libre Baskerville',Georgia,serif;
-  --ft-sans:'DM Sans',sans-serif;
-  --ft-mono:'DM Mono',monospace;
-  --max:1120px;--tr:.16s ease;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--blanc);font-family:var(--ft-sans);font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-dark: #8B6914;
+    --black: #080808;
+    --dark: #111111;
+    --dark2: #181818;
+    --dark3: #222222;
+    --white: #F5F0E8;
+    --gray: #888880;
+    --red: #8B1A1A;
+  }
 
-/* ═══ DEMO BAR ═══ */
-.demo-bar{background:#020308;border-bottom:1px solid var(--rule);padding:6px 16px;display:flex;align-items:center;gap:8px;font-family:var(--ft-mono);font-size:11px;color:var(--b25);flex-wrap:wrap}
-.demo-bar strong{color:var(--or)}
-.d-btn{padding:3px 10px;border:1px solid var(--rule2);background:transparent;color:var(--b25);font-family:var(--ft-mono);font-size:10px;cursor:pointer;transition:var(--tr)}
-.d-btn:hover{border-color:var(--b25);color:var(--blanc)}
-.d-btn.on{background:var(--bleu-v);border-color:var(--bleu-v);color:#fff}
-#demo-status{color:var(--or);margin-left:4px}
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* ═══ OVERLAYS ═══ */
-.overlay{position:fixed;inset:0;z-index:9000;background:rgba(6,8,15,.97);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
-.overlay.hidden{display:none}
+  html { scroll-behavior: smooth; }
 
-/* ═══ COOKIE WALL ═══ */
-.cw-box{background:var(--s2);border:1px solid var(--rule2);border-top:3px solid var(--rouge-v);max-width:900px;width:100%;padding:32px 28px}
-.cw-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
-.cw-logo{font-family:var(--ft-logo);font-size:22px;font-weight:700;letter-spacing:.18em;color:var(--blanc)}
-.cw-logo em{color:var(--rouge-v);font-style:normal;position:relative}
-.cw-logo em::after{content:'';position:absolute;width:18px;height:18px;border-radius:50%;border:1.5px solid var(--rouge-v);box-shadow:0 0 8px var(--rouge-g);top:50%;left:50%;transform:translate(-50%,-50%)}
-.cw-title{font-family:var(--ft-serif);font-size:20px;font-weight:700;margin-bottom:6px}
-.cw-sub{font-size:13px;color:var(--b45);line-height:1.6;margin-bottom:24px}
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: none;
+  }
 
-/* Tableau comparatif */
-.compare-table{width:100%;border-collapse:collapse;margin-bottom:24px;font-size:12px}
-.compare-table th{padding:10px 8px;font-family:var(--ft-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--b25);border-bottom:1px solid var(--rule2);text-align:center;vertical-align:bottom}
-.compare-table th.tier-header{background:var(--s3);border-radius:4px 4px 0 0;padding:12px 8px}
-.compare-table th.tier-header.active{background:var(--bleu-v)}
-.compare-table th.tier-header.gold{background:linear-gradient(135deg,#b8920e,var(--or))}
-.compare-table th.tier-header.violet{background:var(--violet)}
-.compare-table th.tier-header.corp{background:linear-gradient(135deg,#1a1a2e,#16213e);border:1px solid var(--or-b)}
-.tier-name{font-family:var(--ft-logo);font-size:14px;font-weight:700;letter-spacing:.1em;color:#fff;display:block;margin-bottom:4px}
-.tier-price{font-family:var(--ft-serif);font-size:16px;font-weight:700;color:#fff;display:block}
-.tier-price small{font-size:10px;font-family:var(--ft-sans);font-weight:400;opacity:.7}
-.tier-annual{font-size:9px;opacity:.6;display:block;margin-top:2px}
-.compare-table td{padding:8px;border-bottom:1px solid var(--rule);text-align:center;color:var(--b45)}
-.compare-table td:first-child{text-align:left;color:var(--b70);font-size:12px;padding-left:0}
-.compare-table tr:hover td{background:var(--b10)}
-.check{color:var(--vert);font-size:13px}
-.cross{color:rgba(255,255,255,.2);font-size:11px}
-.partial{color:var(--or);font-size:11px;font-family:var(--ft-mono)}
+  /* CUSTOM CURSOR */
+  .cursor {
+    width: 12px; height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: transform 0.1s;
+    mix-blend-mode: difference;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    position: fixed;
+    top: 0; left: 0;
+    pointer-events: none;
+    z-index: 9998;
+    transition: all 0.15s ease;
+    opacity: 0.6;
+  }
 
-/* CW Buttons */
-.cw-actions{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
-.cw-btn{padding:10px 8px;border:1px solid var(--rule);background:var(--s3);cursor:pointer;text-align:center;transition:var(--tr);display:flex;flex-direction:column;align-items:center;gap:4px}
-.cw-btn:hover{border-color:var(--rule2);background:var(--s4)}
-.cw-btn.featured{border-color:var(--bleu-v)}
-.cw-btn.gold-btn{border-color:var(--or-b);background:linear-gradient(135deg,var(--s3),var(--s4))}
-.cw-btn.violet-btn{border-color:rgba(124,58,237,.4)}
-.cw-btn.corp-btn{border-color:var(--or-b);background:linear-gradient(135deg,#0d0d1a,var(--s3))}
-.cw-btn-label{font-family:var(--ft-logo);font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blanc)}
-.cw-btn-price{font-family:var(--ft-serif);font-size:14px;font-weight:700;color:var(--or)}
-.cw-btn-price.free-c{color:var(--vert)}
-.cw-btn-price.bleu-c{color:var(--bleu-v)}
-.cw-footer-note{font-size:11px;color:var(--b25);text-align:center;margin-top:12px;line-height:1.6}
-.cw-footer-note a{color:var(--bleu-v);cursor:pointer}
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.35;
+  }
 
-/* ═══ POPUP UPGRADE ═══ */
-.popup{position:fixed;bottom:22px;right:22px;z-index:8000;background:var(--s2);border:1px solid var(--rule2);border-top:3px solid var(--or);max-width:300px;width:100%;padding:20px;box-shadow:0 8px 40px rgba(0,0,0,.6);animation:slideup .25s ease;display:none}
-.popup.show{display:block}
-@keyframes slideup{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
-.popup-close{position:absolute;top:10px;right:12px;background:transparent;border:none;color:var(--b25);font-size:15px;cursor:pointer}
-.popup-close:hover{color:var(--blanc)}
-.popup-tier{font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
-.popup-title{font-family:var(--ft-serif);font-size:16px;font-weight:700;margin-bottom:5px;line-height:1.2}
-.popup-sub{font-size:12px;color:var(--b55);line-height:1.5;margin-bottom:10px}
-.popup-price{font-family:var(--ft-serif);font-size:20px;font-weight:700;color:var(--or);margin-bottom:10px}
-.popup-price small{font-size:11px;color:var(--b25);font-family:var(--ft-sans);font-weight:400}
-.popup-btn{width:100%;padding:9px;border:none;font-family:var(--ft-sans);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.04em;margin-bottom:6px}
-.popup-btn.bleu{background:var(--bleu-v);color:#fff}
-.popup-btn.gold{background:linear-gradient(135deg,#b8920e,var(--or));color:#0a0800}
-.popup-btn.violet{background:var(--violet);color:#fff}
-.popup-feats{list-style:none;display:flex;flex-direction:column;gap:4px;margin-top:8px}
-.popup-feats li{font-size:11px;color:var(--b55);display:flex;align-items:center;gap:5px}
-.popup-feats li::before{content:'→';color:var(--or);font-size:10px}
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 60px;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.98), transparent);
+  }
 
-/* LIMIT POPUP */
-.limit-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);z-index:8500;background:var(--s2);border:1px solid var(--rule2);border-top:3px solid var(--rouge-v);max-width:400px;width:calc(100% - 32px);padding:28px;box-shadow:0 12px 60px rgba(0,0,0,.7);display:none;text-align:center}
-.limit-popup.show{display:block}
-.limit-bg{position:fixed;inset:0;z-index:8400;background:rgba(6,8,15,.6);display:none}
-.limit-bg.show{display:block}
-.limit-icon{font-size:36px;margin-bottom:12px}
-.limit-title{font-family:var(--ft-serif);font-size:20px;font-weight:700;margin-bottom:8px}
-.limit-sub{font-size:13px;color:var(--b55);line-height:1.6;margin-bottom:18px}
-.limit-btn{display:block;width:100%;padding:11px;border:none;font-family:var(--ft-sans);font-size:13px;font-weight:700;cursor:pointer;margin-bottom:8px}
-.limit-close{font-size:12px;color:var(--b25);cursor:pointer;background:none;border:none;display:block;width:100%;text-align:center;margin-top:4px}
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-decoration: none;
+  }
 
-/* ═══ TOPBAR ═══ */
-.topbar{background:linear-gradient(90deg,var(--bleu),#1a2f6a);padding:5px 20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--ft-mono);font-size:11px;color:rgba(255,255,255,.5);gap:10px;flex-wrap:wrap}
-.topbar-left{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.topbar strong{color:rgba(255,255,255,.85)}
-.tb-live{display:flex;align-items:center;gap:5px;background:var(--rouge-v);color:#fff;padding:2px 8px;font-size:9px;font-weight:500;letter-spacing:.12em}
-.tb-live::before{content:'';width:5px;height:5px;background:#fff;border-radius:50%;animation:blink 1.4s infinite;display:inline-block}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
 
-/* ═══ FLASH BAR ═══ */
-.flash-bar{background:var(--rouge-v);position:relative;overflow:hidden}
-.flash-inner{display:flex;align-items:center;height:36px}
-.flash-label{background:rgba(0,0,0,.28);height:100%;display:flex;align-items:center;padding:0 16px;font-family:var(--ft-logo);font-size:13px;font-weight:700;letter-spacing:.2em;color:#fff;white-space:nowrap;flex-shrink:0;gap:6px;border-right:1px solid rgba(255,255,255,.2)}
-.flash-label::before{content:'';width:6px;height:6px;background:#fff;border-radius:50%;animation:blink 1s infinite;flex-shrink:0}
-.flash-scroll{flex:1;overflow:hidden;position:relative}
-.flash-scroll::before{content:'';position:absolute;left:0;top:0;bottom:0;width:20px;background:linear-gradient(90deg,var(--rouge-v),transparent);z-index:2}
-.flash-scroll::after{content:'';position:absolute;right:36px;top:0;bottom:0;width:40px;background:linear-gradient(-90deg,var(--rouge-v),transparent);z-index:2}
-.flash-items{display:inline-flex;align-items:center;animation:flashroll 70s linear infinite;white-space:nowrap;padding-left:24px}
-.flash-item{display:inline-flex;align-items:center;gap:10px;padding:0 26px;font-family:var(--ft-sans);font-size:12px;font-weight:500;color:#fff;border-right:1px solid rgba(255,255,255,.18);cursor:pointer}
-.flash-time{font-family:var(--ft-mono);font-size:9px;color:rgba(255,255,255,.6);flex-shrink:0}
-.flash-ctrls{display:flex}
-.flash-ctrl-btn{width:36px;height:36px;border:none;background:rgba(0,0,0,.22);color:rgba(255,255,255,.8);cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;border-left:1px solid rgba(255,255,255,.15)}
-.flash-ctrl-btn:hover{background:rgba(0,0,0,.4)}
-@keyframes flashroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .nav-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -4px; left: 0;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
 
-/* ═══ NAV ═══ */
-.nav{background:var(--s1);border-bottom:1px solid var(--rule);padding:0 20px;display:flex;align-items:center;height:58px;position:sticky;top:0;z-index:200}
-.nav-logo{display:flex;align-items:center;gap:0;padding-right:22px;border-right:1px solid var(--rule);margin-right:18px;flex-shrink:0;cursor:pointer;text-decoration:none}
-.logo-l{font-family:var(--ft-logo);font-size:20px;font-weight:700;letter-spacing:.06em;color:var(--blanc);text-transform:uppercase;text-shadow:0 1px 3px rgba(0,0,0,.6)}
-.logo-O{position:relative;display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;margin:0 1px}
-.logo-O .logo-l{position:relative;z-index:2}
-.logo-ring{position:absolute;width:20px;height:20px;border-radius:50%;border:1.5px solid var(--rouge-v);box-shadow:0 0 6px var(--rouge-g),0 0 14px rgba(232,19,46,.2);animation:rp 3s ease-in-out infinite}
-@keyframes rp{0%,100%{box-shadow:0 0 6px var(--rouge-g),0 0 14px rgba(232,19,46,.2)}50%{box-shadow:0 0 10px var(--rouge-g),0 0 22px rgba(232,19,46,.35)}}
-.logo-sub{font-family:var(--ft-mono);font-size:8px;letter-spacing:.1em;color:var(--b25);text-transform:uppercase;margin-top:-2px;display:block}
-.nav-logo-w{display:flex;flex-direction:column;gap:0}
+  .nav-cta {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 10px 24px;
+    text-decoration: none;
+    transition: background 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold-light); }
 
-/* NAV LINKS avec sous-menus */
-.nav-links{display:flex;flex:1;overflow-x:auto;scrollbar-width:none}
-.nav-links::-webkit-scrollbar{display:none}
-.nav-item{position:relative}
-.nav-link{font-family:var(--ft-sans);font-size:12px;font-weight:500;color:var(--b45);padding:0 13px;height:58px;display:flex;align-items:center;gap:4px;cursor:pointer;border-bottom:2px solid transparent;transition:var(--tr);white-space:nowrap;text-decoration:none}
-.nav-link:hover{color:var(--b70)}
-.nav-link.active{color:var(--blanc);border-bottom-color:var(--rouge-v)}
-.nav-lock{font-size:9px;color:var(--or);opacity:.6}
-.nav-arrow{font-size:9px;color:var(--b25);margin-left:2px;transition:var(--tr)}
-.nav-item:hover .nav-arrow{transform:rotate(180deg)}
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 120px 60px 80px;
+  }
 
-/* Dropdown */
-.nav-dropdown{position:absolute;top:58px;left:0;background:var(--s2);border:1px solid var(--rule2);border-top:2px solid var(--rouge-v);min-width:200px;z-index:300;display:none;flex-direction:column;box-shadow:0 8px 30px rgba(0,0,0,.5)}
-.nav-item:hover .nav-dropdown{display:flex}
-.nav-dd-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;font-size:12px;color:var(--b45);cursor:pointer;transition:var(--tr);text-decoration:none;border-bottom:1px solid var(--rule)}
-.nav-dd-item:last-child{border-bottom:none}
-.nav-dd-item:hover{background:var(--s3);color:var(--blanc)}
-.nav-dd-lock{font-family:var(--ft-mono);font-size:8px;padding:1px 5px;border:1px solid;border-radius:2px}
-.dd-lock-prem{color:var(--bleu-v);border-color:var(--bleu-v)}
-.dd-lock-pro{color:var(--or);border-color:var(--or-b)}
-.dd-lock-corp{color:var(--violet);border-color:rgba(124,58,237,.4)}
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 50% 60%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 80% 20%, rgba(139,26,26,0.08) 0%, transparent 60%),
+      var(--black);
+  }
 
-.nav-actions{display:flex;gap:8px;margin-left:auto;padding-left:14px;flex-shrink:0}
-.btn-ghost{padding:6px 14px;border:1px solid var(--rule2);background:transparent;color:var(--b55);font-family:var(--ft-sans);font-size:12px;font-weight:500;cursor:pointer;transition:var(--tr);white-space:nowrap;text-decoration:none;display:flex;align-items:center}
-.btn-ghost:hover{border-color:var(--b25);color:var(--blanc)}
-.btn-filled{padding:6px 16px;border:none;background:var(--bleu-v);color:#fff;font-family:var(--ft-sans);font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;text-decoration:none;display:flex;align-items:center}
-.btn-gold{padding:6px 16px;border:none;background:linear-gradient(135deg,#b8920e,var(--or));color:#0a0800;font-family:var(--ft-sans);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
-.nav-user{display:flex;align-items:center;gap:8px;padding:4px 12px;border:1px solid var(--rule);cursor:pointer;transition:var(--tr)}
-.nav-user:hover{border-color:var(--rule2)}
-.nav-avatar{width:22px;height:22px;border-radius:50%;background:var(--bleu-v);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:#fff}
-.nav-uname{font-size:12px;font-weight:500;color:var(--b55)}
-.nav-ubadge{font-family:var(--ft-mono);font-size:8px;padding:1px 5px;letter-spacing:.06em}
-.badge-prem{color:var(--bleu-v);border:1px solid var(--bleu-v)}
-.badge-pro{color:var(--or);border:1px solid var(--or-b)}
-.badge-corp{color:var(--violet);border:1px solid rgba(124,58,237,.4)}
+  /* RING ROPES DECORATION */
+  .ring-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .ring-line {
+    position: absolute;
+    left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
+  }
+  .ring-line:nth-child(1) { top: 30%; }
+  .ring-line:nth-child(2) { top: 50%; }
+  .ring-line:nth-child(3) { top: 70%; }
 
-/* ═══ TICKER ═══ */
-.ticker{background:var(--s1);border-bottom:1px solid var(--rule);padding:6px 0;overflow:hidden;white-space:nowrap;position:relative}
-.ticker-lbl{position:absolute;left:0;top:0;bottom:0;z-index:3;background:var(--s3);display:flex;align-items:center;padding:0 14px;font-family:var(--ft-logo);font-size:11px;font-weight:600;letter-spacing:.2em;color:var(--b25)}
-.ticker-lbl::after{content:'';position:absolute;right:-10px;top:0;bottom:0;width:10px;background:linear-gradient(90deg,var(--s3),transparent)}
-.ticker-fade{position:absolute;right:0;top:0;bottom:0;width:50px;background:linear-gradient(-90deg,var(--s1),transparent);z-index:2}
-.ticker-inner{display:inline-block;padding-left:110px;animation:tscroll 60s linear infinite;font-family:var(--ft-mono);font-size:11px;color:var(--b25);letter-spacing:.03em}
-.ticker-inner .sep{color:var(--rule2);margin:0 12px}
-@keyframes tscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .ring-post {
+    position: absolute;
+    top: 20%; bottom: 20%;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.2), rgba(201,168,76,0.2), transparent);
+  }
+  .ring-post.left { left: 10%; }
+  .ring-post.right { right: 10%; }
 
-/* ═══ HERO ═══ */
-.hero{max-width:var(--max);margin:0 auto;padding:44px 20px 36px;display:grid;grid-template-columns:1fr 290px;gap:48px;border-bottom:1px solid var(--rule)}
-.hero-eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap}
-.ey-cat{font-family:var(--ft-mono);font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--rouge-v)}
-.ey-sep{color:var(--rule2)}
-.ey-time{font-family:var(--ft-mono);font-size:9px;color:var(--b25)}
-.hero-title{font-family:var(--ft-serif);font-size:clamp(26px,3.5vw,44px);font-weight:700;line-height:1.1;margin-bottom:14px}
-.hero-title em{color:var(--rouge-v);font-style:italic}
-.hero-desc{font-size:14px;color:var(--b55);max-width:520px;line-height:1.7;margin-bottom:18px}
-.hero-footer{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.hero-by{font-size:12px;color:var(--b25)}
-.hero-by strong{color:var(--b55)}
-.hero-lock{font-family:var(--ft-mono);font-size:9px;letter-spacing:.1em;color:var(--or);border:1px solid var(--or-b);padding:2px 8px}
-.conf-card{padding:13px 0;border-bottom:1px solid var(--rule);cursor:pointer}
-.conf-card:first-of-type{border-top:1px solid var(--rule)}
-.conf-zone{font-family:var(--ft-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--b25);margin-bottom:3px}
-.conf-title{font-family:var(--ft-serif);font-size:14px;font-weight:700;line-height:1.3;margin-bottom:5px}
-.conf-meta{display:flex;justify-content:space-between;align-items:center}
-.conf-upd{font-family:var(--ft-mono);font-size:9px;color:var(--b25)}
-.conf-lvl{font-family:var(--ft-mono);font-size:9px;padding:1px 6px;border:1px solid currentColor}
-.lv-h{color:var(--rouge-v)}.lv-m{color:var(--or)}.lv-l{color:var(--bleu-v)}
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 900px;
+  }
 
-/* ═══ PAGE WRAP ═══ */
-.page-wrap{max-width:var(--max);margin:0 auto;padding:0 20px;display:grid;grid-template-columns:1fr 268px}
-.main-col{border-right:1px solid var(--rule);padding-right:40px}
-.side-col{padding-left:30px}
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
 
-/* ═══ SECTION HEADERS ═══ */
-.sec-hdr{display:flex;align-items:baseline;justify-content:space-between;padding:28px 0 12px;border-bottom:1px solid var(--rule2)}
-.sec-title{font-family:var(--ft-logo);font-size:14px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--blanc);display:flex;align-items:center;gap:10px}
-.sec-badge{font-family:var(--ft-mono);font-size:9px;padding:1px 6px;border:1px solid}
-.badge-b{color:var(--bleu-v);border-color:var(--bleu-v)}
-.badge-g{color:var(--or);border-color:var(--or-b)}
-.badge-v{color:var(--violet);border-color:rgba(124,58,237,.4)}
-.sec-more{font-family:var(--ft-mono);font-size:10px;color:var(--b25);cursor:pointer;transition:var(--tr)}
-.sec-more:hover{color:var(--blanc)}
+  .hero-logo-img {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.1s forwards;
+    filter: drop-shadow(0 0 30px rgba(201,168,76,0.3));
+  }
 
-/* ═══ ARTICLES ═══ */
-.art-list{display:flex;flex-direction:column}
-.art-item{display:grid;grid-template-columns:1fr 76px;gap:16px;padding:18px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:var(--tr);position:relative}
-.art-item:hover .art-title{color:var(--bleu-v)}
-.art-item:last-child{border-bottom:none}
-.art-meta{font-family:var(--ft-mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--b25);margin-bottom:5px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
-.art-cat{color:var(--rouge-v);font-weight:500}
-.art-prem{color:var(--bleu-v)}.art-pro{color:var(--or)}.art-corp{color:var(--violet)}
-.art-title{font-family:var(--ft-serif);font-size:17px;font-weight:700;line-height:1.3;margin-bottom:5px;transition:var(--tr)}
-.art-expt{font-size:13px;color:var(--b55);line-height:1.6}
-.art-thumb{width:76px;height:58px;background:var(--s3);border:1px solid var(--rule);display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0;margin-top:2px}
-.art-count{font-family:var(--ft-mono);font-size:9px;color:var(--b25);margin-top:6px}
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(72px, 12vw, 160px);
+    line-height: 0.9;
+    letter-spacing: 4px;
+    color: var(--white);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.5s forwards;
+  }
 
-/* Article counter bar */
-.art-counter-bar{background:var(--s2);border:1px solid var(--rule2);padding:10px 14px;margin-bottom:0;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.acb-text{font-size:12px;color:var(--b55)}
-.acb-dots{display:flex;gap:4px}
-.acb-dot{width:8px;height:8px;border-radius:50%;background:var(--rule2)}
-.acb-dot.used{background:var(--rouge-v)}
-.acb-dot.available{background:var(--vert)}
-.acb-cta{font-family:var(--ft-mono);font-size:10px;color:var(--bleu-v);cursor:pointer}
-.acb-cta:hover{color:var(--blanc)}
+  .hero-title span {
+    display: block;
+    color: var(--gold);
+    font-size: clamp(40px, 7vw, 90px);
+    letter-spacing: 12px;
+  }
 
-/* Lock overlay */
-.art-lock{position:absolute;inset:0;background:linear-gradient(90deg,transparent 18%,rgba(6,8,15,.94) 65%);display:flex;align-items:center;justify-content:flex-end}
-.art-lock-box{background:var(--s2);border:1px solid var(--rule2);padding:11px 14px;max-width:196px;text-align:center}
-.art-lock-txt{font-size:11px;font-weight:500;color:var(--b55);margin-bottom:7px;line-height:1.4}
-.art-lock-btn{padding:5px 12px;border:none;font-family:var(--ft-sans);font-size:11px;font-weight:600;cursor:pointer;display:block;width:100%;margin-bottom:5px}
-.alb-signup{background:var(--bleu-v);color:#fff}
-.alb-prem{background:var(--bleu-v);color:#fff}
-.alb-pro{background:linear-gradient(135deg,#b8920e,var(--or));color:#0a0800}
-.alb-corp{background:var(--violet);color:#fff}
-.alb-secondary{background:transparent;border:1px solid var(--rule2);color:var(--b45);font-size:10px}
-.alb-secondary:hover{border-color:var(--b25);color:var(--blanc)}
+  .hero-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--gray);
+    max-width: 520px;
+    margin: 32px auto 48px;
+    line-height: 1.8;
+    letter-spacing: 0.5px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.7s forwards;
+  }
 
-/* ═══ PREMIUM GATES ═══ */
-.prem-gate{position:relative}
-.prem-prev{filter:blur(5px);user-select:none;pointer-events:none;max-height:160px;overflow:hidden}
-.prem-wall{position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(6,8,15,.97) 45%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:18px}
-.prem-box{background:var(--s2);border:1px solid var(--rule2);padding:18px 22px;text-align:center;max-width:360px;width:100%}
-.prem-box.bleu-top{border-top:2px solid var(--bleu-v)}
-.prem-box.gold-top{border-top:2px solid var(--or)}
-.prem-box.violet-top{border-top:2px solid var(--violet)}
-.prem-lbl{font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
-.prem-title{font-family:var(--ft-serif);font-size:18px;font-weight:700;margin-bottom:5px}
-.prem-sub{font-size:12px;color:var(--b55);line-height:1.55;margin-bottom:10px}
-.prem-price{font-family:var(--ft-serif);font-size:22px;font-weight:700;color:var(--or);margin-bottom:10px}
-.prem-price small{font-size:12px;color:var(--b25);font-family:var(--ft-sans);font-weight:400}
-.prem-btn{width:100%;padding:9px;border:none;font-family:var(--ft-sans);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.04em;margin-bottom:5px}
-.pb-bleu{background:var(--bleu-v);color:#fff}
-.pb-gold{background:linear-gradient(135deg,#b8920e,var(--or));color:#0a0800}
-.pb-violet{background:var(--violet);color:#fff}
-.prem-feats{list-style:none;text-align:left;display:flex;flex-direction:column;gap:4px;margin-top:8px}
-.prem-feats li{font-size:11px;color:var(--b55);display:flex;align-items:center;gap:6px}
-.prem-feats li::before{content:'→';font-size:10px}
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.9s forwards;
+  }
 
-/* CTA inline dans contenu */
-.inline-cta{background:var(--s2);border:1px solid var(--rule2);border-left:3px solid var(--or);padding:14px 16px;margin:16px 0;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.inline-cta-text{font-size:12px;color:var(--b55);flex:1}
-.inline-cta-text strong{color:var(--blanc)}
-.inline-cta-btn{padding:6px 14px;border:none;font-family:var(--ft-sans);font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap}
+  .btn-primary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    padding: 16px 40px;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--gold-light);
+    transform: translateX(-100%);
+    transition: transform 0.3s;
+  }
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
 
-/* ═══ CALENDRIER ═══ */
-.cal-section{background:var(--s2);border:1px solid var(--rule2);margin-bottom:0}
-.cal-hdr{padding:12px 16px;border-bottom:1px solid var(--rule);display:flex;align-items:center;justify-content:space-between}
-.cal-hdr-title{font-family:var(--ft-logo);font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blanc)}
-.cal-body{padding:0}
-.cal-item{display:flex;gap:12px;align-items:flex-start;padding:11px 16px;border-bottom:1px solid var(--rule);cursor:pointer;transition:var(--tr)}
-.cal-item:hover{background:var(--b10)}
-.cal-item:last-child{border-bottom:none}
-.cal-date{text-align:center;min-width:28px;flex-shrink:0}
-.cal-day{font-family:var(--ft-serif);font-size:18px;font-weight:700;line-height:1;color:var(--bleu-v)}
-.cal-mon{font-family:var(--ft-mono);font-size:8px;letter-spacing:.1em;text-transform:uppercase;color:var(--b25)}
-.cal-ev{font-size:12px;font-weight:500;line-height:1.35}
-.cal-wh{font-family:var(--ft-mono);font-size:10px;color:var(--b25);margin-top:2px}
-.cal-type{font-family:var(--ft-mono);font-size:8px;padding:2px 6px;border:1px solid;white-space:nowrap;margin-top:3px;display:inline-block}
-.ct-eu{color:var(--bleu-v);border-color:var(--bleu-v)}.ct-fr{color:var(--or);border-color:var(--or-b)}.ct-int{color:var(--rouge-v);border-color:var(--rouge-v)}
+  .btn-secondary {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,168,76,0.4);
+    padding: 16px 40px;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover {
+    border-color: var(--gold);
+    background: rgba(201,168,76,0.07);
+  }
 
-/* ═══ SIDEBAR WIDGETS ═══ */
-.widget{padding:22px 0;border-bottom:1px solid var(--rule)}
-.widget:last-child{border-bottom:none}
-.wgt-lbl{font-family:var(--ft-logo);font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--b25);margin-bottom:14px;padding-bottom:9px;border-bottom:1px solid var(--rule);display:flex;justify-content:space-between;align-items:center}
-.wgt-badge{font-family:var(--ft-mono);font-size:9px;padding:1px 5px;border:1px solid}
+  .hero-scroll {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1.2s forwards;
+  }
+  .hero-scroll span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+    animation: scrollPulse 2s infinite;
+  }
 
-/* Sondages */
-.poll-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule)}
-.poll-row:last-child{border-bottom:none}
-.pr-num{font-family:var(--ft-serif);font-size:15px;font-weight:700;width:16px;color:var(--rule2);flex-shrink:0}
-.pr-num.f{color:var(--blanc)}
-.pr-wrap{flex:1}
-.pr-party{font-size:12px;font-weight:500;margin-bottom:3px}
-.pr-bar{height:2px;background:var(--b10);overflow:hidden}
-.pr-fill{height:100%}
-.pr-pct{font-family:var(--ft-serif);font-size:15px;font-weight:700;width:36px;text-align:right;flex-shrink:0}
-.pr-tr{font-family:var(--ft-mono);font-size:10px;width:28px;text-align:right;flex-shrink:0}
-.t-u{color:#3dba6f}.t-d{color:var(--rouge-v)}.t-f{color:var(--b25)}
+  /* SECTION BASES */
+  section { padding: 120px 60px; }
 
-/* Stratos Conseils */
-.conseil-card{background:linear-gradient(135deg,var(--s3),var(--s4));border:1px solid var(--or-b);padding:16px;cursor:pointer;transition:var(--tr)}
-.conseil-card:hover{border-color:var(--or)}
-.conseil-tag{font-family:var(--ft-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--or);margin-bottom:6px}
-.conseil-name{font-family:var(--ft-logo);font-size:16px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blanc);margin-bottom:4px}
-.conseil-desc{font-size:12px;color:var(--b55);line-height:1.55;margin-bottom:10px}
-.conseil-services{display:flex;flex-direction:column;gap:4px;margin-bottom:10px}
-.conseil-service{font-size:11px;color:var(--b55);display:flex;align-items:center;gap:6px}
-.conseil-service::before{content:'⚜';font-size:9px;color:var(--or)}
-.conseil-links{display:flex;gap:6px;flex-wrap:wrap}
-.conseil-link{font-family:var(--ft-mono);font-size:10px;padding:4px 10px;border:1px solid var(--rule2);color:var(--b55);cursor:pointer;transition:var(--tr);text-decoration:none}
-.conseil-link:hover{border-color:var(--or);color:var(--or)}
-.conseil-link.cta{border-color:var(--bleu-v);color:var(--bleu-v)}
-.conseil-link.cta:hover{background:var(--bleu-v);color:#fff}
+  .section-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
 
-/* Think Tanks */
-.tt-row{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:var(--tr)}
-.tt-row:last-child{border-bottom:none;padding-bottom:0}
-.tt-row:hover{opacity:.65}
-.tt-num{font-family:var(--ft-serif);font-size:14px;font-weight:700;color:var(--rule2);width:18px;flex-shrink:0;padding-top:1px}
-.tt-name{font-size:12px;font-weight:600;margin-bottom:2px}
-.tt-desc{font-size:11px;color:var(--b25);line-height:1.4}
-.tt-partner-note{font-family:var(--ft-mono);font-size:9px;color:var(--or);margin-top:2px}
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(48px, 6vw, 80px);
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
 
-/* Social */
-.soc-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--rule);cursor:pointer;transition:var(--tr);text-decoration:none}
-.soc-row:last-child{border-bottom:none;padding-bottom:0}
-.soc-row:hover{opacity:.65}
-.soc-ico{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;font-family:var(--ft-sans);flex-shrink:0}
-.s-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
-.s-tw{background:#000;border:1px solid #333}
-.s-yt{background:#ff0000}
-.soc-name{font-size:12px;font-weight:500}
-.soc-desc{font-family:var(--ft-mono);font-size:10px;color:var(--b25)}
+  .gold-line {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 48px;
+  }
 
-/* ═══ ABONNEMENTS PAGE ═══ */
-#page-abonnements{display:none}
-.abo-hero{background:linear-gradient(180deg,var(--s2),var(--bg));padding:60px 20px 40px;text-align:center;border-bottom:1px solid var(--rule)}
-.abo-tag{font-family:var(--ft-mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--rouge-v);margin-bottom:12px}
-.abo-title{font-family:var(--ft-serif);font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:12px;line-height:1.15}
-.abo-sub{font-size:15px;color:var(--b55);max-width:560px;margin:0 auto 28px;line-height:1.65}
-.abo-toggle{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:0}
-.toggle-label{font-family:var(--ft-sans);font-size:13px;color:var(--b55)}
-.toggle-label.active{color:var(--blanc);font-weight:600}
-.toggle-switch{width:44px;height:24px;background:var(--s3);border:1px solid var(--rule2);border-radius:12px;position:relative;cursor:pointer;transition:var(--tr)}
-.toggle-switch.on{background:var(--bleu-v);border-color:var(--bleu-v)}
-.toggle-knob{width:18px;height:18px;background:#fff;border-radius:50%;position:absolute;top:2px;left:3px;transition:var(--tr)}
-.toggle-switch.on .toggle-knob{left:22px}
-.toggle-save{background:var(--rouge-v);color:#fff;font-family:var(--ft-mono);font-size:9px;padding:2px 7px;letter-spacing:.08em}
+  /* MISSION */
+  .mission {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
 
-.plans-grid{max-width:var(--max);margin:0 auto;padding:40px 20px;display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-.plan-card{background:var(--s2);border:1px solid var(--rule);padding:20px 16px;display:flex;flex-direction:column;position:relative;transition:var(--tr)}
-.plan-card:hover{border-color:var(--rule2)}
-.plan-card.featured{border-color:var(--bleu-v);border-top:3px solid var(--bleu-v)}
-.plan-card.gold-c{border-color:var(--or-b);border-top:3px solid var(--or)}
-.plan-card.violet-c{border-color:rgba(124,58,237,.4);border-top:3px solid var(--violet)}
-.plan-card.corp-c{border:1px solid var(--or-b);border-top:3px solid var(--or);background:linear-gradient(180deg,var(--s3),var(--s2))}
-.plan-popular{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--bleu-v);font-family:var(--ft-mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:#fff;padding:3px 10px;white-space:nowrap}
-.plan-name{font-family:var(--ft-logo);font-size:14px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px}
-.plan-price-wrap{margin-bottom:14px}
-.plan-price{font-family:var(--ft-serif);font-size:28px;font-weight:700;line-height:1;margin-bottom:3px}
-.plan-period{font-family:var(--ft-mono);font-size:10px;color:var(--b25);letter-spacing:.06em}
-.plan-annual{font-size:11px;color:var(--or);margin-top:4px;font-family:var(--ft-mono)}
-.plan-btn{width:100%;padding:10px;border:none;font-family:var(--ft-sans);font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.04em;margin-bottom:16px;transition:var(--tr)}
-.pb-free-btn{background:var(--s4);color:var(--b55);border:1px solid var(--rule2)}
-.pb-free-btn:hover{border-color:var(--b25);color:var(--blanc)}
-.pb-prem-btn{background:var(--bleu-v);color:#fff}
-.pb-prem-btn:hover{background:#1d40a8}
-.pb-pro-btn{background:linear-gradient(135deg,#b8920e,var(--or));color:#0a0800}
-.pb-corp-btn{background:var(--violet);color:#fff}
-.plan-feats{list-style:none;display:flex;flex-direction:column;gap:7px;flex:1}
-.plan-feat{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--b55);line-height:1.4}
-.plan-feat.yes::before{content:'✓';color:var(--vert);font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px}
-.plan-feat.no::before{content:'—';color:var(--rule2);font-size:11px;flex-shrink:0;margin-top:1px}
-.plan-feat.partial::before{content:'◐';color:var(--or);font-size:11px;flex-shrink:0;margin-top:1px}
-.plan-divider{height:1px;background:var(--rule);margin:10px 0}
+  .mission::before {
+    content: 'FIGHT';
+    position: absolute;
+    right: -40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 280px;
+    color: rgba(201,168,76,0.03);
+    letter-spacing: -10px;
+    pointer-events: none;
+    white-space: nowrap;
+  }
 
-/* ═══ FOOTER ═══ */
-.footer{background:var(--s1);border-top:1px solid var(--rule);padding:20px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
-.footer-logo{font-family:var(--ft-logo);font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--b55);flex-shrink:0;text-transform:uppercase;display:flex;align-items:center;gap:0}
-.footer-links{display:flex;gap:14px;flex-wrap:wrap}
-.footer-link{font-family:var(--ft-mono);font-size:10px;color:var(--b25);cursor:pointer;transition:var(--tr);text-decoration:none}
-.footer-link:hover{color:var(--blanc)}
-.footer-legal{margin-left:auto;font-family:var(--ft-mono);font-size:10px;color:var(--b25)}
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:900px){
-  .hero{grid-template-columns:1fr;gap:22px}
-  .hero-side-wrap{display:none}
-  .page-wrap{grid-template-columns:1fr}
-  .main-col{border-right:none;padding-right:0;border-bottom:1px solid var(--rule);padding-bottom:24px}
-  .side-col{padding-left:0;padding-top:24px}
-  .nav-links{display:none}
-  .plans-grid{grid-template-columns:1fr 1fr;gap:10px}
-  .cw-actions{grid-template-columns:1fr 1fr}
-}
-@media(max-width:600px){
-  .topbar{display:none}
-  .hero{padding:24px 16px}
-  .page-wrap{padding:0 16px}
-  .hero-title{font-size:24px}
-  .art-item{grid-template-columns:1fr}
-  .art-thumb{display:none}
-  .plans-grid{grid-template-columns:1fr;padding:20px 16px}
-  .cw-box{padding:20px 16px}
-  .cw-actions{grid-template-columns:1fr}
-  .popup{bottom:10px;right:10px;left:10px;max-width:none}
-}
+  .mission-text p {
+    font-size: 16px;
+    line-height: 1.9;
+    color: rgba(245,240,232,0.7);
+    margin-bottom: 20px;
+  }
+
+  .mission-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+
+  .stat-card {
+    background: var(--dark2);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .stat-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 0;
+    background: var(--gold);
+    transition: height 0.4s;
+  }
+  .stat-card:hover::before { height: 100%; }
+  .stat-card:hover { background: var(--dark3); }
+
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 64px;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .stat-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  /* BOXEURS */
+  .boxeurs {
+    background: var(--black);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .boxeurs-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 60px;
+  }
+
+  .boxeurs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  .boxeur-card {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    cursor: pointer;
+  }
+
+  .boxeur-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(8,8,8,0.95) 0%, rgba(8,8,8,0.3) 50%, transparent 100%);
+    z-index: 1;
+  }
+
+  .boxeur-bg {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .boxeur-silhouette {
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .boxeur-card:hover .boxeur-silhouette {
+    opacity: 0.22;
+    transform: scale(1.03);
+  }
+
+  .boxeur-number {
+    position: absolute;
+    top: 30px; right: 30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 120px;
+    color: rgba(201,168,76,0.06);
+    line-height: 1;
+    z-index: 1;
+  }
+
+  .boxeur-info {
+    position: relative;
+    z-index: 2;
+  }
+
+  .boxeur-cat {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .boxeur-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    letter-spacing: 2px;
+    margin-bottom: 4px;
+  }
+
+  .boxeur-record {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    color: var(--gray);
+    letter-spacing: 2px;
+  }
+
+  .boxeur-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+    z-index: 2;
+  }
+  .boxeur-card:hover .boxeur-bar { transform: scaleX(1); }
+
+  /* MERCH */
+  .merch {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .merch::after {
+    content: 'MERCH';
+    position: absolute;
+    left: -20px;
+    bottom: -40px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 200px;
+    color: rgba(201,168,76,0.03);
+    pointer-events: none;
+  }
+
+  .merch-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .merch-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin-top: 60px;
+  }
+
+  .merch-card {
+    background: var(--dark2);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .merch-card:hover { background: var(--dark3); }
+
+  .merch-img {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 80px;
+    background: var(--black);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .merch-img::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(201,168,76,0.08), transparent 70%);
+  }
+
+  .merch-img svg {
+    width: 80px;
+    height: 80px;
+    opacity: 0.7;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .merch-card:hover .merch-img svg {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .merch-body {
+    padding: 28px 28px 32px;
+  }
+
+  .merch-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .merch-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+  }
+
+  .merch-desc {
+    font-size: 13px;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .merch-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .merch-price {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .merch-btn {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .merch-btn:hover { background: var(--gold-light); }
+
+  .merch-notice {
+    text-align: center;
+    margin-top: 40px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    color: var(--gray);
+    text-transform: uppercase;
+  }
+
+  /* SOUTENIR */
+  .soutenir {
+    background: var(--black);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .soutenir-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    margin-top: 60px;
+  }
+
+  .soutenir-card {
+    background: var(--dark);
+    padding: 48px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .soutenir-card:hover { background: var(--dark2); }
+
+  .soutenir-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s;
+  }
+  .soutenir-card:hover::after { transform: scaleX(1); }
+
+  .soutenir-icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 28px;
+    opacity: 0.8;
+  }
+
+  .soutenir-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+
+  .soutenir-text {
+    font-size: 14px;
+    color: rgba(245,240,232,0.6);
+    line-height: 1.8;
+    margin-bottom: 28px;
+  }
+
+  .soutenir-link {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    transition: letter-spacing 0.3s;
+  }
+  .soutenir-link:hover { letter-spacing: 5px; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+  }
+
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+
+  .contact-info-block {
+    margin-bottom: 48px;
+  }
+
+  .contact-info-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .contact-info-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    color: var(--white);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .contact-info-value:hover { color: var(--gold); }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+
+  .form-input, .form-textarea, .form-select {
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.15);
+    color: var(--white);
+    padding: 14px 18px;
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-appearance: none;
+  }
+  .form-input:focus, .form-textarea:focus, .form-select:focus {
+    border-color: var(--gold);
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 140px;
+  }
+  .form-select option {
+    background: var(--dark2);
+  }
+
+  .form-submit {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--black);
+    background: var(--gold);
+    border: none;
+    padding: 18px 40px;
+    cursor: pointer;
+    transition: background 0.3s;
+    align-self: flex-start;
+  }
+  .form-submit:hover { background: var(--gold-light); }
+
+  /* MODAL - docs légaux */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.9);
+    z-index: 500;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    backdrop-filter: blur(4px);
+  }
+  .modal-overlay.active { display: flex; }
+
+  .modal-box {
+    background: var(--dark);
+    max-width: 800px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border: 1px solid rgba(201,168,76,0.2);
+    position: relative;
+  }
+
+  .modal-header {
+    position: sticky;
+    top: 0;
+    background: var(--dark);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    padding: 28px 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+  }
+
+  .modal-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--gold);
+  }
+
+  .modal-close {
+    background: none;
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold);
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background 0.3s;
+  }
+  .modal-close:hover { background: rgba(201,168,76,0.1); }
+
+  .modal-content {
+    padding: 36px;
+  }
+
+  .modal-content h3 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  .modal-content h3:first-child { margin-top: 0; }
+
+  .modal-content p {
+    font-size: 14px;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.8;
+    margin-bottom: 12px;
+  }
+
+  .modal-content ul {
+    padding-left: 20px;
+    margin-bottom: 12px;
+  }
+  .modal-content ul li {
+    font-size: 14px;
+    color: rgba(245,240,232,0.7);
+    line-height: 1.8;
+    margin-bottom: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 60px;
+  }
+
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 4px;
+    color: var(--gold);
+  }
+
+  .footer-meta {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 28px;
+  }
+
+  .footer-links a {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    text-decoration: none;
+    transition: color 0.3s;
+    cursor: pointer;
+  }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* DIVIDER */
+  .divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent);
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.3);
+    color: var(--white);
+    padding: 16px 24px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 14px;
+    letter-spacing: 2px;
+    z-index: 800;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast span { color: var(--gold); }
+
+  /* WHATSAPP FLOAT */
+  .wa-float {
+    position: fixed;
+    bottom: 32px;
+    left: 32px;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    background: var(--dark2);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 12px 20px;
+    transition: all 0.3s;
+  }
+  .wa-float:hover {
+    border-color: var(--gold);
+    background: var(--dark3);
+  }
+  .wa-float svg { width: 20px; height: 20px; fill: #25D366; }
+  .wa-float span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 </head>
 <body>
 
-<!-- ════════════════════════════════════════
-     COOKIE WALL
-════════════════════════════════════════ -->
-<div class="overlay" id="cookie-wall">
-  <div class="cw-box">
-    <div class="cw-header">
-      <div>
-        <div class="cw-logo">STRAT<em>O</em>S</div>
-        <div style="font-family:var(--ft-mono);font-size:9px;color:var(--b25);letter-spacing:.1em;margin-top:2px">GÉOPOLITIQUE & STRATÉGIE</div>
-      </div>
-      <div style="text-align:right">
-        <div style="font-family:var(--ft-mono);font-size:10px;color:var(--b25)">Aucune opinion politique collectée</div>
-        <div style="font-family:var(--ft-mono);font-size:9px;color:var(--b25);margin-top:2px">Conformément à l'art. 9 RGPD</div>
-      </div>
-    </div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-    <div class="cw-title">Choisissez votre accès à Stratos</div>
-    <div class="cw-sub">Stratos est un média géopolitique indépendant. Sélectionnez l'offre qui vous convient — vous pouvez changer à tout moment.</div>
-
-    <!-- Tableau comparatif -->
-    <div style="overflow-x:auto;margin-bottom:20px">
-      <table class="compare-table">
-        <thead>
-          <tr>
-            <th style="text-align:left;width:160px">Fonctionnalité</th>
-            <th class="tier-header">
-              <span class="tier-name">Free</span>
-              <span class="tier-price" style="color:var(--vert)">Gratuit <small></small></span>
-              <span class="tier-annual">Avec pub</span>
-            </th>
-            <th class="tier-header">
-              <span class="tier-name">Free+</span>
-              <span class="tier-price" style="color:var(--vert)">Gratuit <small></small></span>
-              <span class="tier-annual">Sans pub</span>
-            </th>
-            <th class="tier-header active">
-              <span class="tier-name">Premium</span>
-              <span class="tier-price">5€ <small>/mois</small></span>
-              <span class="tier-annual">ou 50€/an</span>
-            </th>
-            <th class="tier-header gold">
-              <span class="tier-name">Pro</span>
-              <span class="tier-price">49€ <small>/mois</small></span>
-              <span class="tier-annual">ou 550€/an</span>
-            </th>
-            <th class="tier-header corp">
-              <span class="tier-name">Corporate</span>
-              <span class="tier-price">199€ <small>/mois</small></span>
-              <span class="tier-annual">ou 2 000€/an</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>Publicités</td><td><span class="check">✓ Oui</span></td><td><span class="cross">✗ Non</span></td><td><span class="cross">✗ Non</span></td><td><span class="cross">✗ Non</span></td><td><span class="cross">✗ Non</span></td></tr>
-          <tr><td>Articles / jour</td><td><span class="partial">3 max</span></td><td><span class="partial">3 max</span></td><td><span class="partial">5 max</span></td><td><span class="check">Illimité</span></td><td><span class="check">Illimité</span></td></tr>
-          <tr><td>Calendrier géopolitique</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Rapport géopo (résumé)</td><td><span class="partial">Court</span></td><td><span class="partial">Court</span></td><td><span class="partial">Étendu</span></td><td><span class="check">Complet 20p+</span></td><td><span class="check">Complet 20p+</span></td></tr>
-          <tr><td>Analyses approfondies</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Sondages</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Armées & Conflits</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="partial">Réduit</span></td><td><span class="check">Complet</span></td></tr>
-          <tr><td>Cartes interactives</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Blog Communauté</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Demandes sur mesure</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="partial">Tarif réduit</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- Boutons d'action -->
-    <div class="cw-actions">
-      <div class="cw-btn" onclick="setAccess('visitor')">
-        <span class="cw-btn-label">Free</span>
-        <span class="cw-btn-price free-c">Gratuit</span>
-        <span style="font-size:10px;color:var(--b25)">Avec publicités</span>
-      </div>
-      <div class="cw-btn" onclick="setAccess('free')">
-        <span class="cw-btn-label">Free+</span>
-        <span class="cw-btn-price free-c">Gratuit</span>
-        <span style="font-size:10px;color:var(--b25)">Créer un compte</span>
-      </div>
-      <div class="cw-btn featured" onclick="setAccess('premium')">
-        <span style="background:var(--bleu-v);font-family:var(--ft-mono);font-size:8px;color:#fff;padding:2px 8px;letter-spacing:.1em;margin-bottom:2px">POPULAIRE</span>
-        <span class="cw-btn-label">Premium</span>
-        <span class="cw-btn-price bleu-c">5€/mois</span>
-        <span style="font-size:10px;color:var(--b25)">ou 50€/an</span>
-      </div>
-      <div class="cw-btn gold-btn" onclick="setAccess('pro')">
-        <span class="cw-btn-label">Pro</span>
-        <span class="cw-btn-price">49€/mois</span>
-        <span style="font-size:10px;color:var(--b25)">ou 550€/an</span>
-      </div>
-      <div class="cw-btn corp-btn" onclick="setAccess('corporate')">
-        <span class="cw-btn-label">Corporate</span>
-        <span class="cw-btn-price">199€/mois</span>
-        <span style="font-size:10px;color:var(--b25)">ou 2 000€/an</span>
-      </div>
-    </div>
-
-    <div class="cw-footer-note">
-      En continuant, vous acceptez nos <a onclick="showPage('abonnements')">CGU</a> et notre <a>politique de confidentialité</a>.
-      Aucune donnée politique collectée · <a onclick="showPage('abonnements')">Voir le détail complet des offres →</a>
-    </div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     UPGRADE POPUP (15s + limite articles)
-════════════════════════════════════════ -->
-<div class="popup" id="upgrade-popup">
-  <button class="popup-close" onclick="document.getElementById('upgrade-popup').classList.remove('show')">×</button>
-  <div class="popup-tier" id="popup-tier">Passez à Premium</div>
-  <div class="popup-title" id="popup-title">Débloquez l'accès complet</div>
-  <div class="popup-sub" id="popup-sub">Analyses exclusives, sondages, tracker armées & conflits, blog communauté.</div>
-  <div class="popup-price" id="popup-price">5€ <small>/mois · sans engagement</small></div>
-  <button class="popup-btn" id="popup-btn" onclick="setAccess('premium')">S'abonner maintenant</button>
-  <ul class="popup-feats" id="popup-feats">
-    <li>5 articles/jour au lieu de 3</li>
-    <li>Sondages politiques en temps réel</li>
-    <li>Blog communauté Premium</li>
-    <li>Rapports géopo étendus</li>
-  </ul>
-</div>
-
-<!-- Limit Popup (quand limite atteinte) -->
-<div class="limit-bg" id="limit-bg" onclick="closeLimitPopup()"></div>
-<div class="limit-popup" id="limit-popup">
-  <div class="limit-icon">🔒</div>
-  <div class="limit-title" id="limit-title">Limite quotidienne atteinte</div>
-  <div class="limit-sub" id="limit-sub">Vous avez lu vos 3 articles gratuits pour aujourd'hui. Passez à l'offre supérieure pour continuer.</div>
-  <button class="limit-btn" id="limit-btn" style="background:var(--bleu-v);color:#fff" onclick="setAccess('premium');closeLimitPopup()">
-    Passer à Premium — 5€/mois
-  </button>
-  <button class="limit-btn alb-secondary" style="background:transparent;border:1px solid var(--rule2);color:var(--b45)" onclick="closeLimitPopup();setAccess('pro')">
-    Voir l'offre Pro — 49€/mois
-  </button>
-  <button class="limit-close" onclick="closeLimitPopup()">Revenir plus tard</button>
-</div>
-
-<!-- ════════════════════════════════════════
-     DEMO BAR
-════════════════════════════════════════ -->
-<div class="demo-bar">
-  <strong>[ DÉMO ]</strong>
-  <button class="d-btn on" id="db-cw" onclick="showCookieWall()">Cookie Wall</button>
-  <button class="d-btn" id="db-v" onclick="setAccess('visitor')">Free (pub)</button>
-  <button class="d-btn" id="db-f" onclick="setAccess('free')">Free+ (compte)</button>
-  <button class="d-btn" id="db-p" onclick="setAccess('premium')">Premium</button>
-  <button class="d-btn" id="db-pr" onclick="setAccess('pro')">Pro</button>
-  <button class="d-btn" id="db-c" onclick="setAccess('corporate')">Corporate</button>
-  <button class="d-btn" id="db-ab" onclick="showPage('abonnements')">Page Abonnements</button>
-  <span id="demo-status"></span>
-</div>
-
-<!-- ════════════════════════════════════════
-     SITE PRINCIPAL
-════════════════════════════════════════ -->
-<div id="site-root">
-
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="topbar-left">
-    <div class="tb-live">En direct</div>
-    <span id="topbar-date">Lundi 24 mars 2026</span>
-    <span>·</span><strong>Ukraine</strong> — Jour 767
-    <span>·</span><strong>Conseil européen</strong> · Bruxelles
-  </div>
-  <div>Think Tank Géopolitique · Paris</div>
-</div>
-
-<!-- PAGE ACCUEIL -->
-<div id="page-accueil">
-
-<!-- FLASH BAR -->
-<div class="flash-bar">
-  <div class="flash-inner">
-    <div class="flash-label">⚡ Flash</div>
-    <div class="flash-scroll">
-      <div class="flash-items" id="flash-items">
-        <div class="flash-item"><span class="flash-time">09:14</span>Zelensky à Paris — Macron annonce 2 Mds € d'aide militaire supplémentaire</div>
-        <div class="flash-item"><span class="flash-time">08:47</span>OTAN : réunion d'urgence des chefs d'état-major à Bruxelles vendredi</div>
-        <div class="flash-item"><span class="flash-time">08:12</span>Pékin annonce de nouveaux exercices militaires dans le détroit de Taïwan</div>
-        <div class="flash-item"><span class="flash-time">07:55</span>Sahel : le Niger suspend la coopération militaire avec l'UE</div>
-        <div class="flash-item"><span class="flash-time">07:30</span>IFOP : RN à 33% — record historique aux intentions de vote législatives 2027</div>
-        <div class="flash-item"><span class="flash-time">09:14</span>Zelensky à Paris — Macron annonce 2 Mds € d'aide militaire supplémentaire</div>
-        <div class="flash-item"><span class="flash-time">08:47</span>OTAN : réunion d'urgence des chefs d'état-major à Bruxelles vendredi</div>
-        <div class="flash-item"><span class="flash-time">08:12</span>Pékin annonce de nouveaux exercices militaires dans le détroit de Taïwan</div>
-        <div class="flash-item"><span class="flash-time">07:55</span>Sahel : le Niger suspend la coopération militaire avec l'UE</div>
-        <div class="flash-item"><span class="flash-time">07:30</span>IFOP : RN à 33% — record historique aux intentions de vote législatives 2027</div>
-      </div>
-    </div>
-    <div class="flash-ctrls">
-      <button class="flash-ctrl-btn" onclick="document.getElementById('flash-items').style.animationPlayState='paused'">⏸</button>
-      <button class="flash-ctrl-btn" onclick="document.getElementById('flash-items').style.animationPlayState='running'">▶</button>
-    </div>
-  </div>
-</div>
+<!-- WHATSAPP -->
+<a href="https://wa.me/33651771858" target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  <span>WhatsApp</span>
+</a>
 
 <!-- NAV -->
-<nav class="nav">
-  <a href="#" class="nav-logo" onclick="showPage('accueil')">
-    <div class="nav-logo-w">
-      <span style="display:flex;align-items:center;gap:0">
-        <span class="logo-l">STRAT</span>
-        <span class="logo-O"><span class="logo-l" style="position:relative;z-index:2">O</span><span class="logo-ring"></span></span>
-        <span class="logo-l">S</span>
-      </span>
-      <span class="logo-sub">Géopolitique & Stratégie</span>
-    </div>
-  </a>
-
-  <div class="nav-links">
-    <!-- Accueil -->
-    <div class="nav-item">
-      <a class="nav-link active" onclick="showPage('accueil')">Accueil</a>
-    </div>
-
-    <!-- Géopolitique -->
-    <div class="nav-item">
-      <span class="nav-link">Géopolitique <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item">Europe</a>
-        <a class="nav-dd-item">France</a>
-        <a class="nav-dd-item">Rapports <span class="nav-dd-lock dd-lock-pro">PRO</span></a>
-        <a class="nav-dd-item">Analyses <span class="nav-dd-lock dd-lock-pro">PRO</span></a>
-      </div>
-    </div>
-
-    <!-- Politique nationale -->
-    <div class="nav-item">
-      <span class="nav-link">Politique nationale <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item">Actualité</a>
-        <a class="nav-dd-item">Rapports <span class="nav-dd-lock dd-lock-pro">PRO</span></a>
-        <a class="nav-dd-item">Analyses <span class="nav-dd-lock dd-lock-pro">PRO</span></a>
-      </div>
-    </div>
-
-    <!-- Armées & Conflits -->
-    <div class="nav-item">
-      <span class="nav-link">Armées & Conflits <span class="nav-lock">🔒</span> <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item">Rapports <span class="nav-dd-lock dd-lock-pro">PRO</span></a>
-        <a class="nav-dd-item">Analyses <span class="nav-dd-lock dd-lock-pro">PRO</span></a>
-        <a class="nav-dd-item">Cartes interactives <span class="nav-dd-lock dd-lock-pro">PRO</span></a>
-      </div>
-    </div>
-
-    <!-- Sondages -->
-    <div class="nav-item">
-      <span class="nav-link">Sondages <span class="nav-lock">🔒</span> <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item">Élections <span class="nav-dd-lock dd-lock-prem">PREMIUM</span></a>
-        <a class="nav-dd-item">Présidentielle <span class="nav-dd-lock dd-lock-prem">PREMIUM</span></a>
-        <a class="nav-dd-item">Internationale <span class="nav-dd-lock dd-lock-prem">PREMIUM</span></a>
-        <a class="nav-dd-item">Europe <span class="nav-dd-lock dd-lock-prem">PREMIUM</span></a>
-      </div>
-    </div>
-
-    <!-- Communauté -->
-    <div class="nav-item">
-      <span class="nav-link">Communauté <span class="nav-lock">🔒</span> <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item">Blog <span class="nav-dd-lock dd-lock-prem">PREMIUM</span></a>
-        <a class="nav-dd-item">Discussions <span class="nav-dd-lock dd-lock-prem">PREMIUM</span></a>
-      </div>
-    </div>
-
-    <!-- Sur mesure -->
-    <div class="nav-item">
-      <span class="nav-link">Demande sur mesure <span class="nav-arrow">▾</span></span>
-      <div class="nav-dropdown">
-        <a class="nav-dd-item" href="https://stratosconseils.fr" target="_blank">Stratos Conseils ↗</a>
-        <a class="nav-dd-item">Rapport personnalisé <span class="nav-dd-lock dd-lock-corp">CORPORATE</span></a>
-        <a class="nav-dd-item">Gestion de crise <span class="nav-dd-lock dd-lock-corp">CORPORATE</span></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="nav-actions" id="nav-actions">
-    <a class="btn-ghost" href="#">Se connecter</a>
-    <button class="btn-filled" onclick="showCookieWall()">Voir les offres</button>
-  </div>
+<nav>
+  <a href="#hero" class="nav-logo">PREMIER ROUND</a>
+  <ul class="nav-links">
+    <li><a href="#mission">L'Association</a></li>
+    <li><a href="#boxeurs">Les Boxeurs</a></li>
+    <li><a href="#merch">Merch</a></li>
+    <li><a href="#soutenir">Soutenir</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta"><span>Nous rejoindre</span></a>
 </nav>
 
-<!-- TICKER -->
-<div class="ticker">
-  <div class="ticker-lbl">Stratos</div>
-  <div class="ticker-fade"></div>
-  <div class="ticker-inner">
-    Conseil européen · Défense et Ukraine · Bruxelles 21 mars
-    <span class="sep">·</span>Présidentielle 2027 · Premières analyses exclusives sur Stratos
-    <span class="sep">·</span>OTAN · Budget défense · L'Europe accélère son autonomie stratégique
-    <span class="sep">·</span>Sahel · Post-Barkhane · Nouvelles alliances régionales
-    <span class="sep">·</span>Stratos Conseils · Conseil politique, gestion de crise, rapports sur mesure
-    <span class="sep">·</span>Conseil européen · Défense et Ukraine · Bruxelles 21 mars
-    <span class="sep">·</span>Présidentielle 2027 · Premières analyses exclusives sur Stratos
-    <span class="sep">·</span>OTAN · Budget défense · L'Europe accélère son autonomie stratégique
-    <span class="sep">·</span>Sahel · Post-Barkhane · Nouvelles alliances régionales
-    <span class="sep">·</span>Stratos Conseils · Conseil politique, gestion de crise, rapports sur mesure
-    <span class="sep">·</span>
-  </div>
-</div>
-
 <!-- HERO -->
-<div class="hero">
-  <div>
-    <div class="hero-eyebrow">
-      <span class="ey-cat">Géopolitique</span><span class="ey-sep">·</span>
-      <span class="ey-cat">Analyse exclusive</span><span class="ey-sep">·</span>
-      <span class="ey-time">Il y a 3 heures</span>
-    </div>
-    <div class="hero-title">L'axe Moscou–Pékin–Téhéran :<br>vers une <em>alliance stratégique</em> durable ?</div>
-    <div class="hero-desc">Les trois puissances révisionnistes intensifient leurs coopérations militaires, économiques et diplomatiques. Notre analyse décrypte les implications directes pour l'Europe.</div>
-    <div class="hero-footer">
-      <div class="hero-by">Par <strong>Bureau d'analyse Stratos</strong> · 16 min</div>
-      <div class="hero-lock" id="hero-lock">🔒 Compte requis</div>
-    </div>
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="ring-lines">
+    <div class="ring-line"></div>
+    <div class="ring-line"></div>
+    <div class="ring-line"></div>
+    <div class="ring-post left"></div>
+    <div class="ring-post right"></div>
   </div>
-  <div class="hero-side-wrap">
-    <div style="font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--b25);margin-bottom:12px">Zones de tension actives</div>
-    <div class="conf-card"><div class="conf-zone">🇺🇦 Ukraine — Europe de l'Est</div><div class="conf-title">Guerre russo-ukrainienne · Jour 767</div><div class="conf-meta"><div class="conf-upd">Mis à jour · 2h</div><div class="conf-lvl lv-h">Critique</div></div></div>
-    <div class="conf-card"><div class="conf-zone">🇮🇱 Gaza — Moyen-Orient</div><div class="conf-title">Conflit Israël–Hamas · Phase 3</div><div class="conf-meta"><div class="conf-upd">Mis à jour · 5h</div><div class="conf-lvl lv-m">Élevé</div></div></div>
-    <div class="conf-card"><div class="conf-zone">🇹🇼 Détroit de Taïwan</div><div class="conf-title">Pression militaire chinoise</div><div class="conf-meta"><div class="conf-upd">Mis à jour · 12h</div><div class="conf-lvl lv-l">Modéré</div></div></div>
-  </div>
-</div>
 
-<!-- MAIN -->
-<div class="page-wrap">
-<div class="main-col">
+  <div class="hero-content">
+    <div class="hero-eyebrow">Association Sportive Loi 1901</div>
 
-  <!-- Compteur articles -->
-  <div class="art-counter-bar" id="art-counter-bar" style="margin-top:20px">
-    <div>
-      <div class="acb-text" id="acb-text">Articles lus aujourd'hui : <strong id="art-count-num">0</strong> / <strong id="art-count-max">3</strong></div>
-      <div style="font-family:var(--ft-mono);font-size:9px;color:var(--b25);margin-top:3px" id="acb-sub">Passez à Premium pour lire 5 articles/jour — Pro & Corporate pour un accès illimité</div>
+    <!-- LOGO SVG inline inspiré du logo fourni -->
+    <div class="hero-logo-img">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="width:140px;height:140px;">
+        <!-- Étoile géométrique -->
+        <polygon points="100,10 118,70 180,70 130,108 148,168 100,132 52,168 70,108 20,70 82,70" fill="none" stroke="#C9A84C" stroke-width="2" opacity="0.9"/>
+        <polygon points="100,30 113,72 158,72 122,96 135,138 100,115 65,138 78,96 42,72 87,72" fill="#C9A84C" opacity="0.12"/>
+        <!-- Initiales PR au centre -->
+        <text x="100" y="108" font-family="Bebas Neue, sans-serif" font-size="36" fill="#C9A84C" text-anchor="middle" letter-spacing="2">PR</text>
+      </svg>
     </div>
-    <div style="display:flex;align-items:center;gap:8px">
-      <div class="acb-dots" id="acb-dots"></div>
-      <span class="acb-cta" onclick="showPage('abonnements')">Changer d'offre →</span>
+
+    <h1 class="hero-title">
+      Premier
+      <span>Round</span>
+    </h1>
+    <p class="hero-sub">Derrière chaque champion, il y a une équipe. Nous sommes la structure qui permet à nos boxeurs de se concentrer sur l'essentiel — le combat.</p>
+    <div class="hero-actions">
+      <a href="#soutenir" class="btn-primary"><span>Soutenir l'association</span></a>
+      <a href="#mission" class="btn-secondary">Découvrir</a>
     </div>
   </div>
 
-  <!-- Articles à la une -->
-  <div class="sec-hdr" style="margin-top:4px">
-    <div class="sec-title">À la une</div>
-    <span class="sec-more" onclick="showPage('abonnements')">Voir les offres →</span>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
   </div>
+</section>
 
-  <div class="art-list" id="art-list">
+<div class="divider"></div>
 
-    <!-- Article 1 : public -->
-    <div class="art-item" id="a1" onclick="readArticle(1)">
-      <div>
-        <div class="art-meta"><span class="art-cat">Géopolitique</span><span>·</span><span>24 mar</span><span>·</span><span>9 min</span></div>
-        <div class="art-title">OTAN 2026 : l'Europe prend-elle enfin ses responsabilités ?</div>
-        <div class="art-expt">Après des années de dépendance stratégique, les États membres accélèrent leurs budgets de défense. Analyse des engagements réels et des lacunes persistantes.</div>
+<!-- MISSION -->
+<section class="mission" id="mission">
+  <div class="mission-grid">
+    <div class="mission-text reveal">
+      <div class="section-label">Notre mission</div>
+      <h2 class="section-title">Créés pour<br>Combattre</h2>
+      <div class="gold-line"></div>
+      <p>Premier Round est une association loi 1901 fondée pour soutenir des boxeurs professionnels dans leur ascension. Nous finançons leur préparation, leurs camps d'entraînement, leur encadrement médical et sportif.</p>
+      <p>Grâce à nos partenaires, sponsors et à la communauté qui nous soutient, nous construisons les conditions nécessaires à la performance de haut niveau.</p>
+      <p>Chaque don, chaque partenariat, chaque achat de merch contribue directement à la réussite de nos boxeurs sur le ring.</p>
+    </div>
+    <div class="mission-stats reveal">
+      <div class="stat-card">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Boxeurs Professionnels</div>
       </div>
-      <div class="art-thumb">🌍</div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Financement Terrain</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">Loi</div>
+        <div class="stat-label">1901 — Association</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Détermination</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BOXEURS -->
+<section style="padding: 120px 60px; background: var(--black);" id="boxeurs">
+  <div class="boxeurs" style="max-width:1200px; margin: 0 auto;">
+    <div class="boxeurs-header reveal">
+      <div>
+        <div class="section-label">Dans le coin</div>
+        <h2 class="section-title">Nos Boxeurs</h2>
+      </div>
+      <p style="max-width:320px; font-size:14px; color:var(--gray); line-height:1.7; text-align:right;">Deux combattants. Une même ambition. Portés par Premier Round.</p>
+    </div>
+    <div class="boxeurs-grid reveal">
+      <div class="boxeur-card">
+        <div class="boxeur-bg">
+          <svg class="boxeur-silhouette" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="150" cy="60" rx="40" ry="45" fill="#C9A84C"/>
+            <path d="M110 105 Q80 140 70 200 Q60 260 80 310 L100 380 L150 370 L200 380 L220 310 Q240 260 230 200 Q220 140 190 105 Z" fill="#C9A84C"/>
+            <path d="M110 120 Q60 110 40 150 Q20 190 50 220 Q70 240 90 220 L100 180 Z" fill="#C9A84C"/>
+            <path d="M190 120 Q240 110 260 150 Q280 190 250 220 Q230 240 210 220 L200 180 Z" fill="#C9A84C"/>
+          </svg>
+        </div>
+        <div class="boxeur-number">01</div>
+        <div class="boxeur-info">
+          <div class="boxeur-cat">Poids Super-Léger</div>
+          <div class="boxeur-name">BOXEUR 1</div>
+          <div class="boxeur-record">Palmarès à venir</div>
+        </div>
+        <div class="boxeur-bar"></div>
+      </div>
+      <div class="boxeur-card">
+        <div class="boxeur-bg">
+          <svg class="boxeur-silhouette" viewBox="0 0 300 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="150" cy="60" rx="40" ry="45" fill="#C9A84C"/>
+            <path d="M115 105 Q85 140 75 200 Q65 260 85 310 L105 380 L150 370 L195 380 L215 310 Q235 260 225 200 Q215 140 185 105 Z" fill="#C9A84C"/>
+            <path d="M115 115 Q65 105 45 145 Q25 185 55 215 Q75 235 95 215 L105 175 Z" fill="#C9A84C"/>
+            <path d="M185 115 Q235 105 255 145 Q275 185 245 215 Q225 235 205 215 L195 175 Z" fill="#C9A84C"/>
+          </svg>
+        </div>
+        <div class="boxeur-number">02</div>
+        <div class="boxeur-info">
+          <div class="boxeur-cat">Poids Welter</div>
+          <div class="boxeur-name">BOXEUR 2</div>
+          <div class="boxeur-record">Palmarès à venir</div>
+        </div>
+        <div class="boxeur-bar"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- MERCH -->
+<section class="merch" id="merch">
+  <div class="merch-inner">
+    <div class="reveal">
+      <div class="section-label">Collection officielle</div>
+      <h2 class="section-title">Merch</h2>
+      <div class="gold-line"></div>
+      <p style="font-size:15px; color:rgba(245,240,232,0.6); max-width:500px; line-height:1.8;">Porter Premier Round, c'est faire partie de l'équipe. Chaque achat finance directement la préparation de nos boxeurs.</p>
     </div>
 
-    <!-- Article 2 : free+ -->
-    <div class="art-item" id="a2" onclick="readArticle(2)" style="position:relative">
-      <div>
-        <div class="art-meta"><span class="art-cat">France</span><span>·</span><span>23 mar</span><span>·</span><span>11 min</span></div>
-        <div class="art-title">Recomposition de la droite française avant 2027</div>
-        <div class="art-expt" id="a2-expt">LR, RN, dissidents macronistes — les tractations qui redessinant le paysage. Analyse des dynamiques électorales et des scénarios possibles.</div>
+    <div class="merch-grid reveal">
+      <!-- T-Shirt -->
+      <div class="merch-card">
+        <div class="merch-img">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 15 L5 35 L20 40 L20 85 L80 85 L80 40 L95 35 L80 15 L65 25 Q50 30 35 25 Z" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,0.08)"/>
+            <text x="50" y="58" font-family="Bebas Neue, sans-serif" font-size="10" fill="#C9A84C" text-anchor="middle" letter-spacing="1">PREMIER</text>
+            <text x="50" y="70" font-family="Bebas Neue, sans-serif" font-size="10" fill="#C9A84C" text-anchor="middle" letter-spacing="1">ROUND</text>
+          </svg>
+        </div>
+        <div class="merch-body">
+          <div class="merch-tag">Vêtement</div>
+          <div class="merch-name">T-SHIRT OFFICIEL</div>
+          <div class="merch-desc">100% coton bio. Logo brodé Premier Round. Coupe unisexe. Coloris noir/or.</div>
+          <div class="merch-footer">
+            <div class="merch-price">35 €</div>
+            <button class="merch-btn" onclick="showToast('T-Shirt')">Contactez-nous</button>
+          </div>
+        </div>
       </div>
-      <div class="art-thumb">🇫🇷</div>
-      <div class="art-lock" id="lock-a2" style="display:none">
-        <div class="art-lock-box">
-          <div class="art-lock-txt">Créez un compte gratuit pour lire</div>
-          <button class="art-lock-btn alb-signup" onclick="event.stopPropagation();setAccess('free')">Compte gratuit →</button>
+
+      <!-- Casquette -->
+      <div class="merch-card">
+        <div class="merch-img">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M15 55 Q15 30 50 28 Q85 30 85 55 L85 62 L15 62 Z" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,0.08)"/>
+            <path d="M15 62 Q5 65 8 72 L92 72 L85 62 Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+            <line x1="50" y1="28" x2="50" y2="62" stroke="rgba(201,168,76,0.3)" stroke-width="1"/>
+            <text x="50" y="50" font-family="Bebas Neue, sans-serif" font-size="12" fill="#C9A84C" text-anchor="middle" letter-spacing="1">PR</text>
+          </svg>
+        </div>
+        <div class="merch-body">
+          <div class="merch-tag">Accessoire</div>
+          <div class="merch-name">CASQUETTE SNAPBACK</div>
+          <div class="merch-desc">Snapback réglable. Broderie dorée. Taille universelle. Coloris noir mat.</div>
+          <div class="merch-footer">
+            <div class="merch-price">28 €</div>
+            <button class="merch-btn" onclick="showToast('Casquette')">Contactez-nous</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hoodie -->
+      <div class="merch-card">
+        <div class="merch-img">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 20 Q50 10 70 20 L80 30 L95 40 L88 48 L78 42 L78 88 L22 88 L22 42 L12 48 L5 40 L20 30 Z" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,0.08)"/>
+            <path d="M38 18 Q50 24 62 18 L58 28 Q50 32 42 28 Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+            <text x="50" y="62" font-family="Bebas Neue, sans-serif" font-size="9" fill="#C9A84C" text-anchor="middle" letter-spacing="1">PREMIER</text>
+            <text x="50" y="73" font-family="Bebas Neue, sans-serif" font-size="9" fill="#C9A84C" text-anchor="middle" letter-spacing="1">ROUND</text>
+          </svg>
+        </div>
+        <div class="merch-body">
+          <div class="merch-tag">Vêtement</div>
+          <div class="merch-name">HOODIE PREMIUM</div>
+          <div class="merch-desc">Molleton 380g. Broderie sur poitrine et dos. Coupe oversized. Noir/or.</div>
+          <div class="merch-footer">
+            <div class="merch-price">65 €</div>
+            <button class="merch-btn" onclick="showToast('Hoodie')">Contactez-nous</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tote bag -->
+      <div class="merch-card">
+        <div class="merch-img">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="20" y="35" width="60" height="55" rx="2" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,0.08)"/>
+            <path d="M35 35 Q35 15 50 15 Q65 15 65 35" stroke="#C9A84C" stroke-width="2" fill="none"/>
+            <text x="50" y="65" font-family="Bebas Neue, sans-serif" font-size="10" fill="#C9A84C" text-anchor="middle" letter-spacing="1">PR</text>
+          </svg>
+        </div>
+        <div class="merch-body">
+          <div class="merch-tag">Accessoire</div>
+          <div class="merch-name">TOTE BAG</div>
+          <div class="merch-desc">Toile épaisse 350g. Impression sérigraphie. Anses longues. Noir.</div>
+          <div class="merch-footer">
+            <div class="merch-price">18 €</div>
+            <button class="merch-btn" onclick="showToast('Tote Bag')">Contactez-nous</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Gants de sac -->
+      <div class="merch-card">
+        <div class="merch-img">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M30 75 Q20 65 20 45 Q20 25 38 22 Q50 20 55 30 L60 20 Q70 15 78 25 Q85 35 80 50 L75 75 Z" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,0.08)"/>
+            <path d="M30 75 L75 75 Q75 85 52 88 Q30 86 30 75 Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.05)"/>
+            <text x="52" y="52" font-family="Bebas Neue, sans-serif" font-size="9" fill="#C9A84C" text-anchor="middle" letter-spacing="1">PR</text>
+          </svg>
+        </div>
+        <div class="merch-body">
+          <div class="merch-tag">Équipement</div>
+          <div class="merch-name">GANTS DE SAC</div>
+          <div class="merch-desc">Vinyle renforcé. Logo Premier Round. 10 oz. Idéaux pour l'entraînement.</div>
+          <div class="merch-footer">
+            <div class="merch-price">45 €</div>
+            <button class="merch-btn" onclick="showToast('Gants')">Contactez-nous</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pack supporter -->
+      <div class="merch-card" style="background: linear-gradient(135deg, var(--dark2), rgba(201,168,76,0.05));">
+        <div class="merch-img">
+          <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="50,10 55,35 80,35 60,50 67,75 50,60 33,75 40,50 20,35 45,35" stroke="#C9A84C" stroke-width="2" fill="rgba(201,168,76,0.15)"/>
+            <text x="50" y="52" font-family="Bebas Neue, sans-serif" font-size="9" fill="#C9A84C" text-anchor="middle">PACK</text>
+          </svg>
+        </div>
+        <div class="merch-body">
+          <div class="merch-tag" style="color: var(--gold-light);">⭐ Best Deal</div>
+          <div class="merch-name">PACK SUPPORTER</div>
+          <div class="merch-desc">T-shirt + Casquette + Tote Bag. Le pack complet pour soutenir l'équipe.</div>
+          <div class="merch-footer">
+            <div class="merch-price">70 €</div>
+            <button class="merch-btn" onclick="showToast('Pack Supporter')">Contactez-nous</button>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- Article 3 : premium -->
-    <div class="art-item" id="a3" onclick="readArticle(3)" style="position:relative">
-      <div>
-        <div class="art-meta"><span class="art-cat">Europe</span><span>·</span><span>22 mar</span><span>·</span><span>12 min</span><span>·</span><span class="art-prem">Premium</span></div>
-        <div class="art-title">Européennes 2029 : les scénarios qui inquiètent Bruxelles</div>
-        <div class="art-expt" id="a3-expt">Montée des droites nationales, fragmentation du centre — modélisation à partir de 14 sondages pour anticiper les équilibres post-2027.</div>
-      </div>
-      <div class="art-thumb">🇪🇺</div>
-      <div class="art-lock" id="lock-a3" style="display:none">
-        <div class="art-lock-box">
-          <div class="art-lock-txt" id="lock-a3-txt">Accès Premium requis</div>
-          <button class="art-lock-btn alb-prem" id="lock-a3-btn" onclick="event.stopPropagation();setAccess('premium')">Premium — 5€/mois</button>
-          <button class="art-lock-btn alb-secondary" onclick="event.stopPropagation();setAccess('free')">Compte gratuit d'abord</button>
-        </div>
-      </div>
+    <div class="merch-notice reveal">
+      <p>Pour commander : contactez-nous via WhatsApp ou email — <a href="mailto:premier.round@gmail.com" style="color:var(--gold); text-decoration:none;">premier.round@gmail.com</a></p>
     </div>
-
-    <!-- Article 4 : Pro -->
-    <div class="art-item" id="a4" onclick="readArticle(4)" style="position:relative">
-      <div>
-        <div class="art-meta"><span class="art-cat">Armées & Conflits</span><span>·</span><span>21 mar</span><span>·</span><span>14 min</span><span>·</span><span class="art-pro">Pro</span></div>
-        <div class="art-title">Budgets militaires européens : analyse complète des 27</div>
-        <div class="art-expt" id="a4-expt">Capacités réelles, lacunes critiques, trajectoires à 5 ans. Données SIPRI complètes analysées par notre bureau stratégique.</div>
-      </div>
-      <div class="art-thumb">⚔️</div>
-      <div class="art-lock" id="lock-a4" style="display:none">
-        <div class="art-lock-box">
-          <div class="art-lock-txt" id="lock-a4-txt">Accès Pro requis</div>
-          <button class="art-lock-btn alb-pro" id="lock-a4-btn" onclick="event.stopPropagation();setAccess('pro')">Pro — 49€/mois</button>
-          <button class="art-lock-btn alb-secondary" onclick="event.stopPropagation();setAccess('premium')">Voir Premium d'abord</button>
-        </div>
-      </div>
-    </div>
-
   </div>
+</section>
 
-  <!-- CTA inline Premium -->
-  <div class="inline-cta" id="cta-premium" style="display:none">
-    <div class="inline-cta-text">
-      <strong>⚡ Vous avez atteint votre limite quotidienne.</strong> Passez à Premium pour lire 5 articles/jour, accéder aux sondages et au blog communauté.
+<div class="divider"></div>
+
+<!-- SOUTENIR -->
+<section style="padding: 120px 60px; background: var(--black);" id="soutenir">
+  <div class="soutenir" style="max-width:1200px; margin: 0 auto;">
+    <div class="reveal">
+      <div class="section-label">Rejoindre l'aventure</div>
+      <h2 class="section-title">Nous Soutenir</h2>
+      <div class="gold-line"></div>
     </div>
-    <button class="inline-cta-btn" style="background:var(--bleu-v);color:#fff" onclick="setAccess('premium')">Premium — 5€/mois →</button>
-  </div>
-
-  <!-- Rapport géopolitique -->
-  <div class="sec-hdr">
-    <div class="sec-title">Rapport Géopolitique <span class="sec-badge badge-g">Pro 20 pages</span></div>
-    <span class="sec-more">Archives →</span>
-  </div>
-  <div class="prem-gate" id="gate-rapport">
-    <div class="prem-prev">
-      <div style="padding:20px 0">
-        <div style="font-family:var(--ft-mono);font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-v);margin-bottom:8px">Mars 2026 · 24 pages</div>
-        <div style="font-family:var(--ft-serif);font-size:20px;font-weight:700;margin-bottom:10px">Rapport mensuel : Recomposition des alliances en Europe de l'Est</div>
-        <div style="font-size:13px;color:var(--b55);line-height:1.7;margin-bottom:14px">Ce rapport de 24 pages analyse en profondeur les dynamiques d'alliance en Europe de l'Est depuis le début du conflit ukrainien. Il couvre les repositionnements polonais, baltes et roumains, l'évolution de la posture OTAN, et les scénarios de sortie de crise.</div>
-        <div style="font-family:var(--ft-mono);font-size:10px;color:var(--b25)">Sommaire : Introduction · Cartographie des alliances · Analyse par pays · Scénarios 2026-2027 · Recommandations stratégiques</div>
+    <div class="soutenir-grid reveal">
+      <div class="soutenir-card">
+        <svg class="soutenir-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4 L28 16 L42 16 L30 24 L34 36 L24 28 L14 36 L18 24 L6 16 L20 16 Z" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.1)"/>
+        </svg>
+        <div class="soutenir-title">Sponsoring</div>
+        <div class="soutenir-text">Associez votre marque à des boxeurs professionnels en devenir. Visibilité sur les réseaux, équipements, événements et communications officielles.</div>
+        <a href="#contact" class="soutenir-link">Devenir sponsor →</a>
       </div>
-    </div>
-    <div class="prem-wall" id="wall-rapport">
-      <div class="prem-box" id="box-rapport">
-        <div class="prem-lbl" id="lbl-rapport" style="color:var(--or)">Accès Pro</div>
-        <div class="prem-title" id="title-rapport">Rapports géopolitiques complets</div>
-        <div class="prem-sub" id="sub-rapport">Les rapports complets (20+ pages) sont réservés aux abonnés Pro et Corporate. Premium donne accès aux résumés étendus.</div>
-        <div class="prem-price" id="price-rapport" style="display:none">49€ <small>/mois</small></div>
-        <button class="prem-btn pb-gold" id="btn-rapport" onclick="setAccess('pro')">Pro — 49€/mois</button>
-        <button class="prem-btn" style="background:var(--bleu-v);color:#fff" onclick="setAccess('premium')">Premium — Résumé étendu</button>
-        <ul class="prem-feats">
-          <li style="color:var(--b55)">Rapports mensuels 20+ pages</li>
-          <li style="color:var(--b55)">Analyses armées & conflits</li>
-          <li style="color:var(--b55)">Cartes interactives</li>
-        </ul>
+      <div class="soutenir-card">
+        <svg class="soutenir-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" r="18" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.1)"/>
+          <path d="M24 14 L24 24 L32 28" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div class="soutenir-title">Don Libre</div>
+        <div class="soutenir-text">Faites un don à l'association. Chaque euro est directement investi dans la préparation de nos boxeurs : nutrition, kiné, camps d'entraînement.</div>
+        <a href="mailto:premier.round@gmail.com" class="soutenir-link">Faire un don →</a>
+      </div>
+      <div class="soutenir-card">
+        <svg class="soutenir-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="8" width="32" height="32" rx="2" stroke="#C9A84C" stroke-width="1.5" fill="rgba(201,168,76,0.1)"/>
+          <path d="M16 24 L22 30 L32 18" stroke="#C9A84C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="soutenir-title">Partenariat</div>
+        <div class="soutenir-text">Prestataires sport, nutrition, équipementiers — construisons ensemble un accord sur-mesure qui bénéficie aux deux parties sur la durée.</div>
+        <a href="#contact" class="soutenir-link">Nous contacter →</a>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- Armées & Conflits -->
-  <div class="sec-hdr">
-    <div class="sec-title">Armées & Conflits <span class="sec-badge badge-g">Pro</span></div>
-    <span class="sec-more">Voir tout →</span>
-  </div>
-  <div class="prem-gate" id="gate-conflits">
-    <div class="prem-prev">
-      <div style="display:grid;grid-template-columns:36px 1fr auto;gap:13px;padding:13px 0;border-bottom:1px solid var(--rule)"><div style="font-size:22px">🇺🇦</div><div><div style="font-family:var(--ft-mono);font-size:9px;color:var(--b25);margin-bottom:2px">Ukraine — Front Est</div><div style="font-family:var(--ft-serif);font-size:14px;font-weight:700">Analyse des lignes de front et scénarios logistiques</div></div><span style="font-family:var(--ft-mono);font-size:9px;padding:2px 7px;border:1px solid var(--rouge-v);color:var(--rouge-v);align-self:center">CRITIQUE</span></div>
-      <div style="display:grid;grid-template-columns:36px 1fr auto;gap:13px;padding:13px 0;border-bottom:1px solid var(--rule)"><div style="font-size:22px">🇸🇩</div><div><div style="font-family:var(--ft-mono);font-size:9px;color:var(--b25);margin-bottom:2px">Soudan — Guerre civile</div><div style="font-family:var(--ft-serif);font-size:14px;font-weight:700">Crise humanitaire et enjeux géostratégiques</div></div><span style="font-family:var(--ft-mono);font-size:9px;padding:2px 7px;border:1px solid var(--or);color:var(--or);align-self:center">ÉLEVÉ</span></div>
-    </div>
-    <div class="prem-wall" id="wall-conflits">
-      <div class="prem-box gold-top" id="box-conflits">
-        <div class="prem-lbl" id="lbl-conflits" style="color:var(--or)">Accès Pro requis</div>
-        <div class="prem-title">Tracker Armées & Conflits</div>
-        <div class="prem-sub" id="sub-conflits">Suivi des zones de tension, analyses militaires, données SIPRI & OTAN. Disponible dès l'offre Pro.</div>
-        <div class="prem-price" id="price-conflits" style="display:none">49€ <small>/mois</small></div>
-        <button class="prem-btn pb-gold" id="btn-conflits" onclick="setAccess('pro')">Pro — 49€/mois</button>
-        <button class="prem-btn" style="background:transparent;border:1px solid var(--rule2);color:var(--b45)" onclick="showPage('abonnements')">Voir toutes les offres</button>
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="reveal">
+      <div class="section-label">Prenons contact</div>
+      <h2 class="section-title">Parlons-<br>nous</h2>
+      <div class="gold-line"></div>
+
+      <div class="contact-info-block">
+        <div class="contact-info-label">Email</div>
+        <a href="mailto:premier.round@gmail.com" class="contact-info-value">premier.round@gmail.com</a>
       </div>
-    </div>
-  </div>
 
-  <!-- Sondages -->
-  <div class="sec-hdr">
-    <div class="sec-title">Sondages <span class="sec-badge badge-b">Premium</span></div>
-    <span class="sec-more">Tous les sondages →</span>
-  </div>
-  <div class="prem-gate" id="gate-sondages">
-    <div class="prem-prev">
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule)"><div style="font-family:var(--ft-serif);font-size:15px;font-weight:700;width:16px;color:var(--blanc)">1</div><div style="flex:1"><div style="font-size:12px;font-weight:500;margin-bottom:3px">Rassemblement National</div><div style="height:2px;background:var(--b10);overflow:hidden"><div style="height:100%;width:33%;background:#1a3a8f"></div></div></div><div style="font-family:var(--ft-serif);font-size:15px;font-weight:700;width:36px;text-align:right">33%</div><div style="font-family:var(--ft-mono);font-size:10px;width:28px;text-align:right;color:#3dba6f">▲1.2</div></div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--rule)"><div style="font-family:var(--ft-serif);font-size:15px;font-weight:700;width:16px;color:var(--rule2)">2</div><div style="flex:1"><div style="font-size:12px;font-weight:500;margin-bottom:3px">La France Insoumise</div><div style="height:2px;background:var(--b10);overflow:hidden"><div style="height:100%;width:22%;background:#c8102e"></div></div></div><div style="font-family:var(--ft-serif);font-size:15px;font-weight:700;width:36px;text-align:right">22%</div><div style="font-family:var(--ft-mono);font-size:10px;width:28px;text-align:right;color:var(--rouge-v)">▼0.8</div></div>
-      <div style="display:flex;align-items:center;gap:10px;padding:10px 0"><div style="font-family:var(--ft-serif);font-size:15px;font-weight:700;width:16px;color:var(--rule2)">3</div><div style="flex:1"><div style="font-size:12px;font-weight:500;margin-bottom:3px">Renaissance</div><div style="height:2px;background:var(--b10);overflow:hidden"><div style="height:100%;width:19%;background:#ff6600"></div></div></div><div style="font-family:var(--ft-serif);font-size:15px;font-weight:700;width:36px;text-align:right">19%</div><div style="font-family:var(--ft-mono);font-size:10px;width:28px;text-align:right;color:var(--b25)">—</div></div>
-    </div>
-    <div class="prem-wall" id="wall-sondages">
-      <div class="prem-box" style="border-top:2px solid var(--bleu-v)" id="box-sondages">
-        <div class="prem-lbl" id="lbl-sondages" style="color:var(--bleu-v)">Accès Premium requis</div>
-        <div class="prem-title">Sondages en temps réel</div>
-        <div class="prem-sub" id="sub-sondages">IFOP · BVA · OpinionWay · Harris Interactive. Disponible dès l'offre Premium.</div>
-        <div class="prem-price" id="price-sondages" style="display:none">5€ <small>/mois</small></div>
-        <button class="prem-btn pb-bleu" id="btn-sondages" onclick="setAccess('premium')">Premium — 5€/mois</button>
-        <button class="prem-btn" style="background:transparent;border:1px solid var(--rule2);color:var(--b45)" onclick="setAccess('free')">Compte gratuit d'abord</button>
+      <div class="contact-info-block">
+        <div class="contact-info-label">WhatsApp</div>
+        <a href="https://wa.me/33651771858" class="contact-info-value">+33 6 51 77 18 58</a>
       </div>
-    </div>
-  </div>
 
-  <!-- Blog Communauté -->
-  <div class="sec-hdr">
-    <div class="sec-title">Blog Communauté <span class="sec-badge badge-b">Premium</span></div>
-    <span class="sec-more">Tous les posts →</span>
-  </div>
-  <div class="prem-gate" id="gate-blog" style="position:relative;min-height:200px">
-    <div class="prem-prev" style="padding:8px 0">
-      <div style="padding:14px 0;border-bottom:1px solid var(--rule)"><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1a3a8f,#c8102e);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0">JD</div><div><div style="font-size:13px;font-weight:600">Jean Dubois</div><div style="font-family:var(--ft-mono);font-size:9px;color:var(--b25)">📍 Lyon</div></div><span style="font-family:var(--ft-mono);font-size:8px;color:var(--or);border:1px solid var(--or-b);padding:1px 5px;margin-left:auto">Premium</span></div><div style="font-size:13px;color:var(--b55);line-height:1.6">La stratégie russe en mer Noire reste sous-estimée dans les analyses occidentales...</div></div>
-      <div style="padding:14px 0"><div style="display:flex;align-items:center;gap:10px;margin-bottom:8px"><div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1a6b4a,#0d4a2f);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;flex-shrink:0">SM</div><div><div style="font-size:13px;font-weight:600">Sophie Martin</div><div style="font-family:var(--ft-mono);font-size:9px;color:var(--b25)">📍 Paris</div></div><span style="font-family:var(--ft-mono);font-size:8px;color:var(--or);border:1px solid var(--or-b);padding:1px 5px;margin-left:auto">Premium</span></div><div style="font-size:13px;color:var(--b55);line-height:1.6">Le rapport ECFR sur l'autonomie stratégique européenne passe à côté des réalités industrielles...</div></div>
-    </div>
-    <div class="prem-wall" id="wall-blog" style="position:absolute;inset:0">
-      <div class="prem-box" style="border-top:2px solid var(--bleu-v)" id="box-blog">
-        <div class="prem-lbl" id="lbl-blog" style="color:var(--bleu-v)">Communauté Premium</div>
-        <div class="prem-title">Rejoignez le débat</div>
-        <div class="prem-sub" id="sub-blog">Publiez vos analyses, réagissez, commentez. Disponible dès Premium.</div>
-        <div class="prem-price" id="price-blog" style="display:none">5€ <small>/mois</small></div>
-        <button class="prem-btn pb-bleu" id="btn-blog" onclick="setAccess('premium')">Premium — 5€/mois</button>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /main-col -->
-
-<!-- SIDEBAR -->
-<div class="side-col">
-
-  <!-- Calendrier (visible par tous) -->
-  <div class="widget">
-    <div class="wgt-lbl">Agenda Stratégique <span style="font-family:var(--ft-mono);font-size:8px;color:var(--vert);border:1px solid rgba(46,204,113,.4);padding:1px 5px;letter-spacing:.06em">Tous</span></div>
-    <div class="cal-section">
-      <div class="cal-body">
-        <div class="cal-item"><div class="cal-date"><div class="cal-day">21</div><div class="cal-mon">Mar</div></div><div><div class="cal-ev">Conseil européen — Défense & Ukraine</div><div class="cal-wh">Bruxelles</div><div class="cal-type ct-eu">EU</div></div></div>
-        <div class="cal-item"><div class="cal-date"><div class="cal-day">28</div><div class="cal-mon">Mar</div></div><div><div class="cal-ev">G7 Sécurité — Rome</div><div class="cal-wh">Italie</div><div class="cal-type ct-int">INTL</div></div></div>
-        <div class="cal-item"><div class="cal-date"><div class="cal-day">15</div><div class="cal-mon">Avr</div></div><div><div class="cal-ev">AN — Vote budget défense</div><div class="cal-wh">Paris</div><div class="cal-type ct-fr">FR</div></div></div>
-        <div class="cal-item"><div class="cal-date"><div class="cal-day">Avr</div><div class="cal-mon">2027</div></div><div><div class="cal-ev">Présidentielle — Tour 1</div><div class="cal-wh">France</div><div class="cal-type ct-fr">FR</div></div></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Upgrade sidebar -->
-  <div class="widget" id="sidebar-upgrade">
-    <div class="wgt-lbl">Votre offre</div>
-    <div id="sidebar-upgrade-content"></div>
-  </div>
-
-  <!-- Stratos Conseils -->
-  <div class="widget">
-    <div class="wgt-lbl">Cabinet Conseil</div>
-    <div class="conseil-card" onclick="window.open('https://stratosconseils.fr','_blank')">
-      <div class="conseil-tag">⚜ Cabinet · Paris</div>
-      <div class="conseil-name">Stratos Conseils</div>
-      <div class="conseil-desc">Conseil politique, gestion de crise, campagnes électorales, contrats gouvernementaux et internationaux.</div>
-      <div class="conseil-services">
-        <div class="conseil-service">Stratégie politique</div>
-        <div class="conseil-service">Gestion de crise</div>
-        <div class="conseil-service">Rapports sur mesure</div>
-        <div class="conseil-service">Contrats gouvernementaux</div>
-      </div>
-      <div class="conseil-links">
-        <a href="https://www.instagram.com/stratosconseils" target="_blank" class="conseil-link">Instagram</a>
-        <a href="https://x.com/stratosconseils" target="_blank" class="conseil-link">Twitter / X</a>
-        <a href="#" class="conseil-link">YouTube</a>
-        <a href="https://stratosconseils.fr" target="_blank" class="conseil-link cta">Visiter →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Think Tanks -->
-  <div class="widget">
-    <div class="wgt-lbl">Think Tanks Partenaires</div>
-    <div class="tt-row"><div class="tt-num">01</div><div><div class="tt-name">Institut Montaigne</div><div class="tt-desc">Politiques publiques, économie, sécurité</div><div class="tt-partner-note">Partenaire éditorial</div></div></div>
-    <div class="tt-row"><div class="tt-num">02</div><div><div class="tt-name">IRIS</div><div class="tt-desc">Relations internationales, défense</div><div class="tt-partner-note">Partenaire éditorial</div></div></div>
-    <div class="tt-row"><div class="tt-num">03</div><div><div class="tt-name">Fondapol</div><div class="tt-desc">Démocratie & idées politiques</div></div></div>
-    <div class="tt-row"><div class="tt-num">04</div><div><div class="tt-name">Le Grand Continent</div><div class="tt-desc">Revue européenne de géopolitique</div></div></div>
-  </div>
-
-  <!-- Réseaux -->
-  <div class="widget">
-    <div class="wgt-lbl">Stratos sur</div>
-    <a href="https://www.instagram.com/stratosconseils" target="_blank" class="soc-row"><div class="soc-ico s-ig">IG</div><div><div class="soc-name">@stratosconseils</div><div class="soc-desc">Instagram · Infographies & analyses</div></div></a>
-    <a href="https://x.com/stratosconseils" target="_blank" class="soc-row"><div class="soc-ico s-tw">𝕏</div><div><div class="soc-name">@stratosconseils</div><div class="soc-desc">Twitter / X · Veille stratégique</div></div></a>
-    <a href="#" class="soc-row"><div class="soc-ico s-yt">▶</div><div><div class="soc-name">Stratos</div><div class="soc-desc">YouTube · Géopolitique & débats (à venir)</div></div></a>
-  </div>
-
-</div><!-- /side-col -->
-</div><!-- /page-wrap -->
-
-</div><!-- /page-accueil -->
-
-<!-- ════════════════════════════════════════
-     PAGE ABONNEMENTS
-════════════════════════════════════════ -->
-<div id="page-abonnements" style="display:none">
-
-  <!-- Flash bar aussi sur cette page -->
-  <div class="flash-bar">
-    <div class="flash-inner">
-      <div class="flash-label">⚡ Flash</div>
-      <div class="flash-scroll"><div class="flash-items"><div class="flash-item"><span class="flash-time">09:14</span>Zelensky à Paris — Macron annonce 2 Mds € d'aide militaire</div><div class="flash-item"><span class="flash-time">08:47</span>OTAN : réunion d'urgence à Bruxelles vendredi</div><div class="flash-item"><span class="flash-time">09:14</span>Zelensky à Paris — Macron annonce 2 Mds € d'aide militaire</div><div class="flash-item"><span class="flash-time">08:47</span>OTAN : réunion d'urgence à Bruxelles vendredi</div></div></div>
-    </div>
-  </div>
-
-  <nav class="nav">
-    <a href="#" class="nav-logo" onclick="showPage('accueil')">
-      <div class="nav-logo-w">
-        <span style="display:flex;align-items:center;gap:0"><span class="logo-l">STRAT</span><span class="logo-O"><span class="logo-l" style="position:relative;z-index:2">O</span><span class="logo-ring"></span></span><span class="logo-l">S</span></span>
-        <span class="logo-sub">Géopolitique & Stratégie</span>
-      </div>
-    </a>
-    <div style="font-family:var(--ft-mono);font-size:11px;color:var(--b25);margin-left:20px;letter-spacing:.08em">Nos offres</div>
-    <div class="nav-actions">
-      <button class="btn-ghost" onclick="showPage('accueil')">← Retour au site</button>
-    </div>
-  </nav>
-
-  <div class="abo-hero">
-    <div class="abo-tag">Abonnements Stratos</div>
-    <div class="abo-title">L'analyse géopolitique à votre niveau</div>
-    <div class="abo-sub">De l'actualité gratuite aux rapports confidentiels sur mesure — choisissez l'offre qui correspond à vos besoins.</div>
-    <div class="abo-toggle">
-      <span class="toggle-label active" id="toggle-monthly">Mensuel</span>
-      <div class="toggle-switch" id="billing-toggle" onclick="toggleBilling()"><div class="toggle-knob"></div></div>
-      <span class="toggle-label" id="toggle-annual">Annuel</span>
-      <span class="toggle-save">Économisez jusqu'à 17%</span>
-    </div>
-  </div>
-
-  <div class="plans-grid">
-
-    <!-- FREE -->
-    <div class="plan-card">
-      <div class="plan-name" style="color:var(--vert)">Free</div>
-      <div class="plan-price-wrap">
-        <div class="plan-price" style="color:var(--vert)">Gratuit</div>
-        <div class="plan-period">Toujours gratuit</div>
-        <div class="plan-annual" style="color:transparent">—</div>
-      </div>
-      <button class="plan-btn pb-free-btn" onclick="setAccess('visitor');showPage('accueil')">Continuer sans compte</button>
-      <ul class="plan-feats">
-        <li class="plan-feat yes">Calendrier géopolitique</li>
-        <li class="plan-feat partial">3 articles/jour</li>
-        <li class="plan-feat partial">Rapport géopo résumé court</li>
-        <li class="plan-feat no">Publicités affichées</li>
-        <li class="plan-feat no">Sondages</li>
-        <li class="plan-feat no">Analyses</li>
-        <li class="plan-feat no">Blog communauté</li>
-        <li class="plan-feat no">Cartes interactives</li>
-      </ul>
-    </div>
-
-    <!-- FREE+ -->
-    <div class="plan-card">
-      <div class="plan-name" style="color:var(--bleu-v)">Free+</div>
-      <div class="plan-price-wrap">
-        <div class="plan-price" style="color:var(--bleu-v)">Gratuit</div>
-        <div class="plan-period">Avec compte</div>
-        <div class="plan-annual" style="color:transparent">—</div>
-      </div>
-      <button class="plan-btn pb-free-btn" style="border-color:var(--bleu-v);color:var(--bleu-v)" onclick="setAccess('free');showPage('accueil')">Créer un compte</button>
-      <ul class="plan-feats">
-        <li class="plan-feat yes">Calendrier géopolitique</li>
-        <li class="plan-feat partial">3 articles/jour</li>
-        <li class="plan-feat partial">Rapport géopo résumé court</li>
-        <li class="plan-feat yes">Sans publicité</li>
-        <li class="plan-feat no">Sondages</li>
-        <li class="plan-feat no">Analyses</li>
-        <li class="plan-feat no">Blog communauté</li>
-        <li class="plan-feat no">Cartes interactives</li>
-      </ul>
-    </div>
-
-    <!-- PREMIUM -->
-    <div class="plan-card featured">
-      <div class="plan-popular">POPULAIRE</div>
-      <div class="plan-name" style="color:var(--bleu-v)">Premium</div>
-      <div class="plan-price-wrap">
-        <div class="plan-price monthly-price" style="color:var(--blanc)">5€</div>
-        <div class="plan-period monthly-label">/ mois</div>
-        <div class="plan-annual" id="prem-annual">ou 50€/an — économisez 10€</div>
-      </div>
-      <button class="plan-btn pb-prem-btn" onclick="setAccess('premium');showPage('accueil')">S'abonner — LIEN STRIPE</button>
-      <ul class="plan-feats">
-        <li class="plan-feat yes">Calendrier géopolitique</li>
-        <li class="plan-feat partial">5 articles/jour</li>
-        <li class="plan-feat partial">Rapport géopo résumé étendu</li>
-        <li class="plan-feat yes">Sans publicité</li>
-        <li class="plan-feat yes">Sondages complets</li>
-        <li class="plan-feat no">Analyses approfondies</li>
-        <li class="plan-feat yes">Blog communauté</li>
-        <li class="plan-feat no">Cartes interactives</li>
-        <li class="plan-feat no">Armées & Conflits</li>
-      </ul>
-    </div>
-
-    <!-- PRO -->
-    <div class="plan-card gold-c">
-      <div class="plan-name" style="color:var(--or)">Pro</div>
-      <div class="plan-price-wrap">
-        <div class="plan-price monthly-price" style="color:var(--blanc)">49€</div>
-        <div class="plan-period monthly-label">/ mois</div>
-        <div class="plan-annual" id="pro-annual">ou 550€/an — économisez 38€</div>
-      </div>
-      <button class="plan-btn pb-pro-btn" onclick="setAccess('pro');showPage('accueil')">S'abonner — LIEN STRIPE</button>
-      <ul class="plan-feats">
-        <li class="plan-feat yes">Calendrier géopolitique</li>
-        <li class="plan-feat yes">Articles illimités</li>
-        <li class="plan-feat yes">Rapports complets 20+ pages</li>
-        <li class="plan-feat yes">Sans publicité</li>
-        <li class="plan-feat yes">Sondages complets</li>
-        <li class="plan-feat yes">Analyses approfondies</li>
-        <li class="plan-feat yes">Blog communauté</li>
-        <li class="plan-feat yes">Cartes interactives</li>
-        <li class="plan-feat partial">Armées & Conflits (réduit)</li>
-        <div class="plan-divider"></div>
-        <li class="plan-feat no">Demandes sur mesure</li>
-      </ul>
-    </div>
-
-    <!-- CORPORATE -->
-    <div class="plan-card corp-c">
-      <div class="plan-name" style="color:var(--or)">Corporate</div>
-      <div class="plan-price-wrap">
-        <div class="plan-price monthly-price" style="color:var(--blanc)">199€</div>
-        <div class="plan-period monthly-label">/ mois</div>
-        <div class="plan-annual" id="corp-annual">ou 2 000€/an — économisez 388€</div>
-      </div>
-      <button class="plan-btn pb-corp-btn" onclick="setAccess('corporate');showPage('accueil')">S'abonner — LIEN STRIPE</button>
-      <ul class="plan-feats">
-        <li class="plan-feat yes">Tout le contenu Pro inclus</li>
-        <li class="plan-feat yes">Armées & Conflits complet</li>
-        <li class="plan-feat yes">Rapports sur mesure (tarif réduit)</li>
-        <li class="plan-feat yes">Demandes d'analyse Stratos Conseils</li>
-        <li class="plan-feat yes">Gestion de crise (tarif réduit)</li>
-        <li class="plan-feat yes">Contrats gouvernementaux</li>
-        <div class="plan-divider"></div>
-        <li class="plan-feat yes" style="color:var(--or)">Accès direct équipe Stratos Conseils</li>
-      </ul>
-      <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--rule)">
-        <div style="font-size:11px;color:var(--b25);text-align:center">Via <a href="https://stratosconseils.fr" target="_blank" style="color:var(--or);text-decoration:none">stratosconseils.fr</a></div>
+      <div class="contact-info-block">
+        <div class="contact-info-label">Association</div>
+        <div class="contact-info-value" style="cursor:default;">Premier Round — Loi 1901</div>
       </div>
     </div>
 
-  </div>
-
-  <!-- Tableau comparatif complet -->
-  <div style="max-width:var(--max);margin:0 auto;padding:0 20px 60px">
-    <div style="font-family:var(--ft-logo);font-size:14px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--blanc);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--rule2)">Comparatif détaillé</div>
-    <div style="overflow-x:auto">
-      <table class="compare-table" style="font-size:13px">
-        <thead>
-          <tr>
-            <th style="text-align:left;width:200px">Fonctionnalité</th>
-            <th class="tier-header">Free</th>
-            <th class="tier-header">Free+</th>
-            <th class="tier-header active">Premium</th>
-            <th class="tier-header gold">Pro</th>
-            <th class="tier-header corp">Corporate</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td colspan="6" style="font-family:var(--ft-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-v);padding:12px 0 6px;border-bottom:1px solid var(--rule2);text-align:left">Accès général</td></tr>
-          <tr><td>Publicités</td><td><span class="check">Oui</span></td><td><span class="cross">Non</span></td><td><span class="cross">Non</span></td><td><span class="cross">Non</span></td><td><span class="cross">Non</span></td></tr>
-          <tr><td>Articles par jour</td><td><span class="partial">3</span></td><td><span class="partial">3</span></td><td><span class="partial">5</span></td><td><span class="check">Illimité</span></td><td><span class="check">Illimité</span></td></tr>
-          <tr><td>Calendrier géopolitique</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Flash news en direct</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td colspan="6" style="font-family:var(--ft-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-v);padding:12px 0 6px;border-bottom:1px solid var(--rule2);text-align:left">Rapports & Analyses</td></tr>
-          <tr><td>Rapport géopolitique mensuel</td><td><span class="partial">Résumé court</span></td><td><span class="partial">Résumé court</span></td><td><span class="partial">Résumé étendu</span></td><td><span class="check">Complet (20p+)</span></td><td><span class="check">Complet (20p+)</span></td></tr>
-          <tr><td>Analyses géopolitiques</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Analyses politiques France/EU</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Armées & Conflits</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="partial">Réduit</span></td><td><span class="check">Complet</span></td></tr>
-          <tr><td colspan="6" style="font-family:var(--ft-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-v);padding:12px 0 6px;border-bottom:1px solid var(--rule2);text-align:left">Données & Outils</td></tr>
-          <tr><td>Sondages politiques</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Cartes interactives</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td colspan="6" style="font-family:var(--ft-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-v);padding:12px 0 6px;border-bottom:1px solid var(--rule2);text-align:left">Communauté</td></tr>
-          <tr><td>Blog & publications</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td>Likes & commentaires</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-          <tr><td colspan="6" style="font-family:var(--ft-mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--rouge-v);padding:12px 0 6px;border-bottom:1px solid var(--rule2);text-align:left">Stratos Conseils</td></tr>
-          <tr><td>Demandes sur mesure</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="partial">Tarif réduit</span></td></tr>
-          <tr><td>Rapports personnalisés</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="partial">Tarif réduit</span></td></tr>
-          <tr><td>Contrats gouvernementaux</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <!-- CTA Corporate -->
-    <div style="background:linear-gradient(135deg,var(--s3),var(--s4));border:1px solid var(--or-b);padding:28px;margin-top:24px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap">
-      <div>
-        <div style="font-family:var(--ft-mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--or);margin-bottom:6px">⚜ Offre Corporate</div>
-        <div style="font-family:var(--ft-serif);font-size:20px;font-weight:700;margin-bottom:6px">Besoin d'analyses sur mesure ?</div>
-        <div style="font-size:13px;color:var(--b55);line-height:1.6">Rapports confidentiels, gestion de crise, accompagnement stratégique. Notre équipe Stratos Conseils est à votre disposition.</div>
+    <div class="contact-form reveal">
+      <div class="form-group">
+        <label class="form-label">Nom complet</label>
+        <input type="text" class="form-input" placeholder="Votre nom" id="form-nom">
       </div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;flex-shrink:0">
-        <button onclick="setAccess('corporate');showPage('accueil')" style="padding:11px 20px;border:none;background:linear-gradient(135deg,#b8920e,var(--or));color:#0a0800;font-family:var(--ft-sans);font-size:13px;font-weight:700;cursor:pointer">Corporate — 199€/mois</button>
-        <a href="https://stratosconseils.fr" target="_blank" style="padding:11px 20px;border:1px solid var(--or-b);background:transparent;color:var(--or);font-family:var(--ft-sans);font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;display:flex;align-items:center">Stratos Conseils ↗</a>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-input" placeholder="votre@email.com" id="form-email">
       </div>
+      <div class="form-group">
+        <label class="form-label">Objet</label>
+        <select class="form-select" id="form-objet">
+          <option value="">Sélectionner...</option>
+          <option>Sponsoring / Partenariat</option>
+          <option>Don</option>
+          <option>Commande Merch</option>
+          <option>Organisation d'événement</option>
+          <option>Presse / Médias</option>
+          <option>Autre</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Message</label>
+        <textarea class="form-textarea" placeholder="Votre message..." id="form-message"></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Envoyer le message</button>
     </div>
   </div>
-
-</div><!-- /page-abonnements -->
+</section>
 
 <!-- FOOTER -->
-<div class="footer">
-  <div class="footer-logo">
-    STRAT<span style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;margin:0 1px"><span style="position:relative;z-index:2;font-family:var(--ft-logo);font-size:14px;font-weight:700;letter-spacing:.2em;color:var(--b55)">O</span><span style="position:absolute;width:12px;height:12px;border-radius:50%;border:1px solid var(--rouge-v);box-shadow:0 0 4px rgba(232,19,46,.4)"></span></span>S
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">PREMIER ROUND</div>
+    <div class="footer-meta">
+      © 2024 Association Premier Round — Loi 1901<br>
+      <span style="font-size:11px;">premier.round@gmail.com</span>
+    </div>
+    <div class="footer-links">
+      <a onclick="openModal('cgv')">CGU</a>
+      <a onclick="openModal('confidentialite')">Confidentialité</a>
+      <a onclick="openModal('mentions')">Mentions légales</a>
+    </div>
   </div>
-  <div class="footer-links">
-    <span class="footer-link">Mentions légales</span>
-    <span class="footer-link">CGU / CGV</span>
-    <span class="footer-link">Confidentialité & RGPD</span>
-    <span class="footer-link">Sources</span>
-    <a href="https://stratosconseils.fr" target="_blank" class="footer-link">Stratos Conseils ↗</a>
-    <span class="footer-link" onclick="showPage('abonnements')">Nos offres</span>
-  </div>
-  <div class="footer-legal">© Stratos 2026 · Paris · Géopolitique & Analyse Stratégique</div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span id="toast-text">Article ajouté</span> — Contactez-nous pour finaliser votre commande.
 </div>
 
-</div><!-- /site-root -->
+<!-- MODALS DOCS LÉGAUX -->
+
+<!-- MENTIONS LÉGALES -->
+<div class="modal-overlay" id="modal-mentions">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Mentions Légales</div>
+      <button class="modal-close" onclick="closeModal('mentions')">✕</button>
+    </div>
+    <div class="modal-content">
+      <h3>Éditeur du site</h3>
+      <p>Le présent site est édité par l'association <strong>Premier Round</strong>, association régie par la loi du 1er juillet 1901 et le décret du 16 août 1901.</p>
+      <p><strong>Dénomination :</strong> Association Premier Round</p>
+      <p><strong>Statut :</strong> Association loi 1901 à but non lucratif</p>
+      <p><strong>Email :</strong> premier.round@gmail.com</p>
+      <p><strong>Téléphone :</strong> +33 6 51 77 18 58</p>
+
+      <h3>Objet de l'association</h3>
+      <p>L'association Premier Round a pour objet le soutien financier et logistique de boxeurs professionnels, la promotion de la boxe anglaise, l'organisation d'événements sportifs et la collecte de fonds dans le cadre légal prévu par la loi 1901.</p>
+
+      <h3>Hébergement</h3>
+      <p>Ce site est un document statique HTML. Il est hébergé par la plateforme choisie par l'association. Pour toute question relative à l'hébergement, contacter premier.round@gmail.com.</p>
+
+      <h3>Propriété intellectuelle</h3>
+      <p>L'ensemble des éléments constituant ce site (textes, images, logo, graphismes) est la propriété exclusive de l'association Premier Round. Toute reproduction, représentation ou diffusion, totale ou partielle, est interdite sans autorisation préalable écrite.</p>
+
+      <h3>Responsabilité</h3>
+      <p>L'association Premier Round s'efforce de fournir des informations exactes et à jour. Toutefois, elle ne saurait être tenue responsable des erreurs ou omissions présentes sur ce site, ni des dommages directs ou indirects pouvant résulter de son utilisation.</p>
+
+      <h3>Droit applicable</h3>
+      <p>Le présent site est soumis au droit français. Tout litige relatif à son utilisation sera soumis aux tribunaux compétents du ressort du siège de l'association.</p>
+    </div>
+  </div>
+</div>
+
+<!-- POLITIQUE DE CONFIDENTIALITÉ -->
+<div class="modal-overlay" id="modal-confidentialite">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Politique de Confidentialité</div>
+      <button class="modal-close" onclick="closeModal('confidentialite')">✕</button>
+    </div>
+    <div class="modal-content">
+      <h3>Responsable du traitement</h3>
+      <p>L'association Premier Round, association loi 1901, est responsable du traitement des données personnelles collectées via ce site. Contact : premier.round@gmail.com</p>
+
+      <h3>Données collectées</h3>
+      <p>Dans le cadre de l'utilisation de ce site, l'association est susceptible de collecter les données suivantes :</p>
+      <ul>
+        <li>Nom et prénom (via le formulaire de contact)</li>
+        <li>Adresse email</li>
+        <li>Numéro de téléphone (si communiqué volontairement)</li>
+        <li>Contenu des messages envoyés</li>
+      </ul>
+
+      <h3>Finalités du traitement</h3>
+      <p>Les données collectées sont utilisées exclusivement pour :</p>
+      <ul>
+        <li>Répondre à vos demandes de contact</li>
+        <li>Gérer les relations avec nos partenaires et sponsors</li>
+        <li>Traiter les commandes de merchandising</li>
+        <li>Gérer les dons et les adhésions à l'association</li>
+      </ul>
+
+      <h3>Base légale</h3>
+      <p>Le traitement de vos données repose sur votre consentement explicite, exprimé lors de l'envoi du formulaire de contact ou de tout échange avec l'association.</p>
+
+      <h3>Durée de conservation</h3>
+      <p>Vos données personnelles sont conservées pour une durée maximale de 3 ans à compter du dernier contact, sauf obligation légale contraire.</p>
+
+      <h3>Destinataires des données</h3>
+      <p>Vos données ne sont en aucun cas cédées, vendues ou louées à des tiers. Elles ne sont accessibles qu'aux membres dirigeants de l'association dans le cadre de leurs fonctions.</p>
+
+      <h3>Vos droits (RGPD)</h3>
+      <p>Conformément au Règlement Général sur la Protection des Données (RGPD — Règlement UE 2016/679) et à la loi Informatique et Libertés, vous disposez des droits suivants :</p>
+      <ul>
+        <li><strong>Droit d'accès</strong> : obtenir une copie de vos données</li>
+        <li><strong>Droit de rectification</strong> : corriger des données inexactes</li>
+        <li><strong>Droit à l'effacement</strong> : demander la suppression de vos données</li>
+        <li><strong>Droit d'opposition</strong> : vous opposer au traitement</li>
+        <li><strong>Droit à la portabilité</strong> : recevoir vos données dans un format lisible</li>
+      </ul>
+      <p>Pour exercer ces droits, contactez-nous à : <strong>premier.round@gmail.com</strong></p>
+      <p>En cas de litige, vous pouvez introduire une réclamation auprès de la <strong>CNIL</strong> (Commission Nationale de l'Informatique et des Libertés) : www.cnil.fr</p>
+
+      <h3>Cookies</h3>
+      <p>Ce site ne dépose aucun cookie de traçage ou de publicité. Aucun outil d'analyse de trafic tiers n'est utilisé. Le site fonctionne entièrement en local sans collecte automatisée de données.</p>
+
+      <h3>Sécurité</h3>
+      <p>L'association prend toutes les mesures raisonnables pour protéger vos données contre tout accès non autorisé, perte ou altération.</p>
+
+      <h3>Mise à jour</h3>
+      <p>Cette politique de confidentialité peut être mise à jour à tout moment. La version en vigueur est celle accessible sur ce site.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CGU -->
+<div class="modal-overlay" id="modal-cgv">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title">Conditions Générales d'Utilisation</div>
+      <button class="modal-close" onclick="closeModal('cgv')">✕</button>
+    </div>
+    <div class="modal-content">
+      <h3>Objet</h3>
+      <p>Les présentes Conditions Générales d'Utilisation (CGU) régissent l'accès et l'utilisation du site de l'association Premier Round. En accédant à ce site, vous acceptez sans réserve les présentes conditions.</p>
+
+      <h3>Accès au site</h3>
+      <p>Le site de l'association Premier Round est accessible gratuitement à tout utilisateur disposant d'un accès à Internet. L'association se réserve le droit de modifier, suspendre ou interrompre l'accès au site à tout moment, sans préavis ni indemnité.</p>
+
+      <h3>Utilisation du site</h3>
+      <p>L'utilisateur s'engage à utiliser ce site conformément aux lois et règlements en vigueur et aux présentes CGU. Il est notamment interdit de :</p>
+      <ul>
+        <li>Reproduire, copier ou détourner le contenu du site sans autorisation</li>
+        <li>Utiliser le site à des fins commerciales sans accord préalable</li>
+        <li>Diffuser des contenus illicites, diffamatoires ou portant atteinte aux droits de tiers</li>
+        <li>Tenter d'accéder aux données d'autres utilisateurs</li>
+      </ul>
+
+      <h3>Contenu du site</h3>
+      <p>L'association Premier Round s'efforce de maintenir les informations présentes sur ce site à jour et exactes. Toutefois, elle ne garantit pas l'exhaustivité, l'exactitude ou l'actualité des informations publiées, et décline toute responsabilité en cas d'erreur ou d'omission.</p>
+
+      <h3>Merchandising — Commandes</h3>
+      <p>La vente de produits merchandising s'effectue dans le cadre de l'activité accessoire de l'association, conformément à la réglementation fiscale applicable aux associations loi 1901. Les commandes sont traitées directement par contact (email ou WhatsApp) et donnent lieu à un accord amiable entre l'acheteur et l'association. Aucune vente automatisée en ligne n'est réalisée sur ce site.</p>
+
+      <h3>Dons</h3>
+      <p>Les dons effectués à l'association Premier Round sont volontaires et irrévocables. L'association s'engage à utiliser les fonds reçus exclusivement dans le cadre de son objet associatif. Aucun reçu fiscal n'est émis, l'association ne bénéficiant pas (à ce stade) du statut d'organisme d'intérêt général au sens de l'article 200 du CGI.</p>
+
+      <h3>Liens hypertextes</h3>
+      <p>Ce site peut contenir des liens vers des sites tiers. L'association Premier Round n'exerce aucun contrôle sur ces sites et décline toute responsabilité quant à leur contenu ou leur politique de confidentialité.</p>
+
+      <h3>Modifications des CGU</h3>
+      <p>L'association Premier Round se réserve le droit de modifier les présentes CGU à tout moment. Les modifications entrent en vigueur dès leur publication sur le site. Il appartient à l'utilisateur de les consulter régulièrement.</p>
+
+      <h3>Droit applicable et juridiction</h3>
+      <p>Les présentes CGU sont soumises au droit français. Tout litige relatif à leur interprétation ou exécution sera soumis à la compétence exclusive des tribunaux français compétents.</p>
+
+      <h3>Contact</h3>
+      <p>Pour toute question relative aux présentes CGU : <strong>premier.round@gmail.com</strong></p>
+    </div>
+  </div>
+</div>
 
 <script>
-// ══════════════════════════════════════
-// STATE
-// ══════════════════════════════════════
-let currentLevel = 'none'
-let articlesRead = 0
-let upgradeTimer = null
-const maxArticles = { visitor:3, free:3, premium:5, pro:999, corporate:999 }
-const levelLabels = { visitor:'Free (avec pubs)', free:'Free+ (compte gratuit)', premium:'Premium — 5€/mois', pro:'Pro — 49€/mois', corporate:'Corporate — 199€/mois' }
-let annualBilling = false
+  // CURSOR
+  const cursor = document.getElementById('cursor');
+  const cursorRing = document.getElementById('cursorRing');
+  let mouseX = 0, mouseY = 0;
+  let ringX = 0, ringY = 0;
 
-// ══════════════════════════════════════
-// COOKIE WALL
-// ══════════════════════════════════════
-function showCookieWall() {
-  document.getElementById('cookie-wall').classList.remove('hidden')
-  document.getElementById('upgrade-popup').classList.remove('show')
-  document.getElementById('demo-status').textContent = ''
-  setDemoBtn(null)
-}
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX - 6 + 'px';
+    cursor.style.top = mouseY - 6 + 'px';
+  });
 
-// ══════════════════════════════════════
-// SET ACCESS LEVEL
-// ══════════════════════════════════════
-function setAccess(level) {
-  currentLevel = level
-  articlesRead = 0
-  document.getElementById('cookie-wall').classList.add('hidden')
-  document.getElementById('upgrade-popup').classList.remove('show')
-  closeLimitPopup()
-  if (upgradeTimer) clearTimeout(upgradeTimer)
-
-  document.getElementById('demo-status').textContent = levelLabels[level] || ''
-  const map = { visitor:'db-v', free:'db-f', premium:'db-p', pro:'db-pr', corporate:'db-c' }
-  setDemoBtn(map[level])
-
-  updateNav(level)
-  updateArticleCounter(level)
-  updateArticleLocks(level)
-  updateGates(level)
-  updateSidebar(level)
-
-  // Popup 15s pour visitor et free
-  if (level === 'visitor' || level === 'free') {
-    upgradeTimer = setTimeout(() => showUpgradePopup(level), 15000)
+  function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    cursorRing.style.left = ringX - 18 + 'px';
+    cursorRing.style.top = ringY - 18 + 'px';
+    requestAnimationFrame(animateRing);
   }
-}
+  animateRing();
 
-function setDemoBtn(activeId) {
-  ['db-cw','db-v','db-f','db-p','db-pr','db-c','db-ab'].forEach(id => {
-    const el = document.getElementById(id)
-    if (el) el.classList.toggle('on', el.id === activeId)
-  })
-}
+  // SCROLL REVEAL
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 100);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
 
-// ══════════════════════════════════════
-// NAV ACTIONS
-// ══════════════════════════════════════
-function updateNav(level) {
-  const nav = document.getElementById('nav-actions')
-  const badges = { premium:'<span class="nav-ubadge badge-prem">PREMIUM</span>', pro:'<span class="nav-ubadge badge-pro">PRO</span>', corporate:'<span class="nav-ubadge badge-corp">CORP</span>' }
-  if (level === 'premium' || level === 'pro' || level === 'corporate') {
-    nav.innerHTML = `<div class="nav-user"><div class="nav-avatar">JD</div><div class="nav-uname">Jean D.</div>${badges[level]||''}</div>`
-  } else if (level === 'free') {
-    nav.innerHTML = `<div class="nav-user"><div class="nav-avatar">JD</div><div class="nav-uname">Mon compte</div></div><button class="btn-filled" onclick="showPage('abonnements')">Upgrader ↗</button>`
-  } else {
-    nav.innerHTML = `<a class="btn-ghost" href="#">Se connecter</a><button class="btn-filled" onclick="showCookieWall()">Voir les offres</button>`
+  // MODAL
+  function openModal(id) {
+    document.getElementById('modal-' + id).classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(id) {
+    document.getElementById('modal-' + id).classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+
+  // TOAST
+  function showToast(item) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-text').textContent = item + ' sélectionné';
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 4000);
   }
 
-  // Hero lock badge
-  const hl = document.getElementById('hero-lock')
-  const heroLocks = { visitor:'🔒 Compte requis', free:'⚡ Premium pour plus', premium:'⚡ Rapport complet — Pro', pro:'✓ Accès Pro actif', corporate:'✓ Accès Corporate actif' }
-  hl.textContent = heroLocks[level] || ''
-  hl.style.display = level === 'corporate' ? 'none' : ''
-  if (level === 'pro' || level === 'corporate') { hl.style.color='var(--vert)'; hl.style.borderColor='rgba(46,204,113,.4)' }
-  else { hl.style.color='var(--or)'; hl.style.borderColor='var(--or-b)' }
-}
-
-// ══════════════════════════════════════
-// ARTICLE COUNTER
-// ══════════════════════════════════════
-function updateArticleCounter(level) {
-  const bar = document.getElementById('art-counter-bar')
-  const max = maxArticles[level] || 3
-  const numEl = document.getElementById('art-count-num')
-  const maxEl = document.getElementById('art-count-max')
-  const subEl = document.getElementById('acb-sub')
-  const dotsEl = document.getElementById('acb-dots')
-
-  numEl.textContent = articlesRead
-  if (max >= 999) {
-    maxEl.textContent = '∞'
-    subEl.textContent = 'Articles illimités avec votre offre ' + levelLabels[level]
-  } else {
-    maxEl.textContent = max
-    const upsell = { visitor:'Créez un compte gratuit — sans pub', free:'Premium : 5 articles/jour · Pro & Corporate : illimité', premium:'Pro & Corporate : articles illimités + analyses complètes' }
-    subEl.textContent = upsell[level] || ''
-  }
-
-  // Points visuels
-  dotsEl.innerHTML = ''
-  if (max < 999) {
-    for (let i = 0; i < max; i++) {
-      const d = document.createElement('div')
-      d.className = 'acb-dot ' + (i < articlesRead ? 'used' : 'available')
-      dotsEl.appendChild(d)
+  // FORM
+  function handleSubmit() {
+    const nom = document.getElementById('form-nom').value;
+    const email = document.getElementById('form-email').value;
+    const objet = document.getElementById('form-objet').value;
+    const message = document.getElementById('form-message').value;
+    if (!nom || !email || !objet || !message) {
+      alert('Merci de remplir tous les champs.');
+      return;
     }
-  } else {
-    dotsEl.innerHTML = '<span style="font-family:var(--ft-mono);font-size:10px;color:var(--vert)">∞</span>'
-  }
-}
-
-// ══════════════════════════════════════
-// READ ARTICLE (simulate)
-// ══════════════════════════════════════
-function readArticle(num) {
-  const level = currentLevel
-  const max = maxArticles[level] || 3
-
-  // Vérifier si l'article est accessible
-  const accessMap = { 1:'public', 2:'free', 3:'premium', 4:'pro' }
-  const required = accessMap[num]
-
-  const levelRank = { none:0, visitor:1, free:2, premium:3, pro:4, corporate:5 }
-  const requiredRank = { public:0, free:2, premium:3, pro:4, corporate:5 }
-
-  if (levelRank[level] < requiredRank[required]) return // Lock overlay handles this
-
-  if (articlesRead >= max && max < 999) {
-    showLimitPopup(level)
-    return
+    const mailtoLink = `mailto:premier.round@gmail.com?subject=[Premier Round] ${encodeURIComponent(objet)} — ${encodeURIComponent(nom)}&body=${encodeURIComponent('Nom : ' + nom + '\nEmail : ' + email + '\n\n' + message)}`;
+    window.location.href = mailtoLink;
   }
 
-  articlesRead++
-  updateArticleCounter(level)
-
-  if (articlesRead >= max && max < 999) {
-    document.getElementById('cta-premium').style.display = 'flex'
-    showLimitPopup(level)
-  }
-}
-
-// ══════════════════════════════════════
-// ARTICLE LOCKS
-// ══════════════════════════════════════
-function updateArticleLocks(level) {
-  const levelRank = { none:0, visitor:1, free:2, premium:3, pro:4, corporate:5 }
-  const rank = levelRank[level]
-
-  // Article 2 (free)
-  const l2 = document.getElementById('lock-a2')
-  l2.style.display = rank < 2 ? 'flex' : 'none'
-
-  // Article 3 (premium)
-  const l3a = document.getElementById('lock-a3')
-  l3a.style.display = rank < 3 ? 'flex' : 'none'
-  document.getElementById('lock-a3-txt').textContent = rank === 0 ? 'Créez un compte pour accéder' : rank === 1 ? 'Créez un compte gratuit' : 'Accès Premium requis'
-  document.getElementById('lock-a3-btn').textContent = rank < 2 ? 'Créer un compte gratuit' : 'Premium — 5€/mois'
-  document.getElementById('lock-a3-btn').className = 'art-lock-btn ' + (rank < 2 ? 'alb-signup' : 'alb-prem')
-  document.getElementById('lock-a3-btn').onclick = function(e){e.stopPropagation();setAccess(rank<2?'free':'premium')}
-
-  // Article 4 (pro)
-  const l4a = document.getElementById('lock-a4')
-  l4a.style.display = rank < 4 ? 'flex' : 'none'
-  document.getElementById('lock-a4-txt').textContent = rank < 3 ? 'Accès Premium minimum requis' : 'Accès Pro requis'
-  document.getElementById('lock-a4-btn').textContent = rank < 3 ? 'Premium — 5€/mois' : 'Pro — 49€/mois'
-  document.getElementById('lock-a4-btn').className = 'art-lock-btn ' + (rank < 3 ? 'alb-prem' : 'alb-pro')
-  document.getElementById('lock-a4-btn').onclick = function(e){e.stopPropagation();setAccess(rank<3?'premium':'pro')}
-
-  // CTA in-feed premium
-  document.getElementById('cta-premium').style.display = 'none'
-}
-
-// ══════════════════════════════════════
-// PREMIUM GATES
-// ══════════════════════════════════════
-function updateGates(level) {
-  const rank = { none:0, visitor:1, free:2, premium:3, pro:4, corporate:5 }[level]
-
-  // Sondages (premium+)
-  setGate('gate-sondages','wall-sondages','prem-prev', rank >= 3,
-    rank < 3 ? { lbl:'Accès Premium', title:'Sondages en temps réel', sub:'IFOP · BVA · OpinionWay. Disponible dès Premium.', price:'5€ /mois', btnClass:'pb-bleu', btnText:'Premium — 5€/mois', btnAction:"setAccess('premium')", lblColor:'var(--bleu-v)' } : null)
-
-  // Blog (premium+)
-  setGate('gate-blog','wall-blog','prem-prev', rank >= 3,
-    rank < 3 ? { lbl:'Communauté Premium', title:'Rejoignez le débat', sub:'Publiez, réagissez, commentez. Disponible dès Premium.', price:'5€ /mois', btnClass:'pb-bleu', btnText:'Premium — 5€/mois', btnAction:"setAccess('premium')", lblColor:'var(--bleu-v)' } : null)
-
-  // Rapport (pro+)
-  setGate('gate-rapport','wall-rapport','prem-prev', rank >= 4,
-    rank < 4 ? {
-      lbl: rank >= 3 ? 'Accès Pro requis' : 'Rapport géopo',
-      title: rank >= 3 ? 'Passez à Pro pour le rapport complet' : 'Rapports géopolitiques 20+ pages',
-      sub: rank >= 3 ? 'Vous avez accès au résumé étendu. Le rapport complet (20 pages) est réservé Pro et Corporate.' : 'Les rapports complets sont réservés aux abonnés Pro et Corporate.',
-      price:'49€ /mois', btnClass:'pb-gold', btnText:'Pro — 49€/mois', btnAction:"setAccess('pro')", lblColor:'var(--or)'
-    } : null)
-
-  // Conflits (pro+)
-  setGate('gate-conflits','wall-conflits','prem-prev', rank >= 4,
-    rank < 4 ? { lbl: rank >= 3 ? 'Passez à Pro' : 'Accès Pro requis', title:'Tracker Armées & Conflits', sub: rank >= 3 ? 'Analyses militaires complètes disponibles en Pro.' : 'Suivi des zones de tension. Disponible dès Pro.', price:'49€ /mois', btnClass:'pb-gold', btnText:'Pro — 49€/mois', btnAction:"setAccess('pro')", lblColor:'var(--or)' } : null)
-}
-
-function setGate(gateId, wallId, prevClass, isUnlocked, config) {
-  const gate = document.getElementById(gateId)
-  const wall = document.getElementById(wallId)
-  if (!gate || !wall) return
-  const prevs = gate.querySelectorAll('.'+prevClass)
-
-  if (isUnlocked) {
-    prevs.forEach(p => { p.style.filter='none'; p.style.maxHeight='none'; p.style.pointerEvents='auto' })
-    wall.style.display = 'none'
-  } else {
-    prevs.forEach(p => { p.style.filter='blur(5px)'; p.style.maxHeight='160px'; p.style.pointerEvents='none' })
-    wall.style.display = 'flex'
-    if (config) {
-      const lbl = wall.querySelector('.prem-lbl')
-      const title = wall.querySelector('.prem-title')
-      const sub = wall.querySelector('.prem-sub')
-      if (lbl) { lbl.textContent = config.lbl; lbl.style.color = config.lblColor }
-      if (title) title.textContent = config.title
-      if (sub) sub.textContent = config.sub
-      // Update main button
-      const btns = wall.querySelectorAll('.prem-btn')
-      if (btns[0]) { btns[0].textContent = config.btnText; btns[0].className = 'prem-btn '+config.btnClass; btns[0].setAttribute('onclick', config.btnAction) }
-    }
-  }
-}
-
-// ══════════════════════════════════════
-// SIDEBAR UPGRADE
-// ══════════════════════════════════════
-function updateSidebar(level) {
-  const el = document.getElementById('sidebar-upgrade-content')
-  const rank = { none:0, visitor:1, free:2, premium:3, pro:4, corporate:5 }[level]
-
-  const configs = {
-    visitor: { color:'var(--bleu-v)', title:'Créez un compte Free+', sub:'Même accès, zéro publicité.', price:'Gratuit', btnText:'Créer un compte →', btnAction:"setAccess('free')", btnClass:'btn-filled' },
-    free:    { color:'var(--bleu-v)', title:'Passez à Premium', sub:'5 articles/jour, sondages, blog communauté.', price:'5€/mois ou 50€/an', btnText:'S\'abonner à Premium →', btnAction:"setAccess('premium')", btnClass:'btn-filled' },
-    premium: { color:'var(--or)',     title:'Découvrez Pro', sub:'Rapports complets, analyses, cartes interactives.', price:'49€/mois ou 550€/an', btnText:'Passer à Pro →', btnAction:"setAccess('pro')", btnClass:'btn-gold' },
-    pro:     { color:'var(--violet)', title:'Offre Corporate', sub:'Demandes sur mesure via Stratos Conseils.', price:'199€/mois ou 2 000€/an', btnText:'Découvrir Corporate →', btnAction:"setAccess('corporate')", btnClass:'btn-corp' },
-    corporate: null
-  }
-
-  const cfg = configs[level]
-  if (!cfg) { el.innerHTML = '<div style="font-size:12px;color:var(--vert)">✓ Vous bénéficiez de l\'offre maximale Corporate.</div>'; return }
-
-  el.innerHTML = `
-    <div style="border:1px solid ${cfg.color};border-top:2px solid ${cfg.color};padding:14px;background:var(--s3)">
-      <div style="font-family:var(--ft-mono);font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:${cfg.color};margin-bottom:6px">Offre recommandée</div>
-      <div style="font-family:var(--ft-serif);font-size:15px;font-weight:700;margin-bottom:5px">${cfg.title}</div>
-      <div style="font-size:12px;color:var(--b55);line-height:1.5;margin-bottom:10px">${cfg.sub}</div>
-      <div style="font-family:var(--ft-serif);font-size:16px;font-weight:700;color:${cfg.color};margin-bottom:10px">${cfg.price}</div>
-      <button onclick="${cfg.btnAction}" style="width:100%;padding:9px;border:none;background:${cfg.color === 'var(--or)' ? 'linear-gradient(135deg,#b8920e,var(--or))' : cfg.color};color:${cfg.color === 'var(--or)' ? '#0a0800' : '#fff'};font-family:var(--ft-sans);font-size:12px;font-weight:700;cursor:pointer">${cfg.btnText}</button>
-      <button onclick="showPage('abonnements')" style="width:100%;padding:7px;border:1px solid var(--rule2);background:transparent;color:var(--b25);font-family:var(--ft-mono);font-size:10px;cursor:pointer;margin-top:6px">Voir toutes les offres</button>
-    </div>`
-}
-
-// ══════════════════════════════════════
-// POPUPS
-// ══════════════════════════════════════
-function showUpgradePopup(level) {
-  const configs = {
-    visitor: { tier:'Passez à Free+', title:'Naviguez sans publicité', sub:'Même accès, zéro pub. Gratuit, sans carte bancaire.', price:'Gratuit', btnClass:'bleu', btnText:'Créer un compte gratuit', btnAction:"setAccess('free')", feats:['Aucune publicité','3 articles/jour','Résumé rapport géopo'] },
-    free:    { tier:'Passez à Premium', title:'Plus de contenu, plus d\'analyses', sub:'Débloquez les sondages, le blog et 5 articles/jour.', price:'5€/mois', btnClass:'bleu', btnText:'S\'abonner à Premium', btnAction:"setAccess('premium')", feats:['5 articles/jour','Sondages en temps réel','Blog communauté','Résumé étendu'] },
-  }
-  const cfg = configs[level]
-  if (!cfg) return
-
-  document.getElementById('popup-tier').textContent = cfg.tier
-  document.getElementById('popup-title').textContent = cfg.title
-  document.getElementById('popup-sub').textContent = cfg.sub
-  document.getElementById('popup-price').innerHTML = cfg.price + ' <small style="font-size:11px;color:var(--b25);font-family:var(--ft-sans);font-weight:400">' + (level === 'visitor' ? '· toujours gratuit' : '· sans engagement') + '</small>'
-  const btn = document.getElementById('popup-btn')
-  btn.className = 'popup-btn ' + cfg.btnClass
-  btn.textContent = cfg.btnText
-  btn.setAttribute('onclick', cfg.btnAction)
-  document.getElementById('popup-feats').innerHTML = cfg.feats.map(f => `<li>${f}</li>`).join('')
-  document.getElementById('upgrade-popup').classList.add('show')
-}
-
-function showLimitPopup(level) {
-  const max = maxArticles[level] || 3
-  const nextLevel = { visitor:'free', free:'premium', premium:'pro' }[level]
-  const nextName = { visitor:'Free+ (gratuit)', free:'Premium — 5€/mois', premium:'Pro — 49€/mois' }[level]
-  const nextMax = { visitor:'3 (sans pub)', free:'5', premium:'illimité' }[level]
-
-  document.getElementById('limit-title').textContent = `Limite atteinte — ${max} article${max>1?'s':''}/jour`
-  document.getElementById('limit-sub').innerHTML = `Vous avez lu vos <strong>${max} articles</strong> disponibles aujourd'hui avec votre offre ${levelLabels[level]}.<br><br>Passez à <strong>${nextName}</strong> pour accéder à <strong>${nextMax} article${nextMax==='illimité'?'s':''}</strong> par jour.`
-
-  const btn = document.getElementById('limit-btn')
-  if (nextLevel) {
-    btn.textContent = nextName + ' →'
-    btn.onclick = function(){ setAccess(nextLevel); closeLimitPopup() }
-    btn.style.background = nextLevel === 'free' ? 'var(--bleu-v)' : nextLevel === 'premium' ? 'var(--bleu-v)' : 'linear-gradient(135deg,#b8920e,var(--or))'
-    btn.style.color = nextLevel === 'pro' ? '#0a0800' : '#fff'
-  }
-
-  document.getElementById('limit-bg').classList.add('show')
-  document.getElementById('limit-popup').classList.add('show')
-}
-
-function closeLimitPopup() {
-  document.getElementById('limit-bg').classList.remove('show')
-  document.getElementById('limit-popup').classList.remove('show')
-}
-
-// ══════════════════════════════════════
-// PAGES
-// ══════════════════════════════════════
-function showPage(page) {
-  document.getElementById('page-accueil').style.display = page === 'accueil' ? '' : 'none'
-  document.getElementById('page-abonnements').style.display = page === 'abonnements' ? '' : 'none'
-  document.getElementById('db-ab').classList.toggle('on', page === 'abonnements')
-  if (page !== 'accueil') window.scrollTo({top:0,behavior:'smooth'})
-}
-
-// ══════════════════════════════════════
-// BILLING TOGGLE
-// ══════════════════════════════════════
-function toggleBilling() {
-  annualBilling = !annualBilling
-  const toggle = document.getElementById('billing-toggle')
-  toggle.classList.toggle('on', annualBilling)
-  document.getElementById('toggle-monthly').classList.toggle('active', !annualBilling)
-  document.getElementById('toggle-annual').classList.toggle('active', annualBilling)
-
-  const prices = {
-    premium: annualBilling ? ['50€', '/an', 'Économie de 10€ vs mensuel'] : ['5€', '/mois', 'ou 50€/an — économisez 10€'],
-    pro:     annualBilling ? ['550€', '/an', 'Économie de 38€ vs mensuel'] : ['49€', '/mois', 'ou 550€/an — économisez 38€'],
-    corp:    annualBilling ? ['2 000€', '/an', 'Économie de 388€ vs mensuel'] : ['199€', '/mois', 'ou 2 000€/an — économisez 388€']
-  }
-
-  document.querySelectorAll('.monthly-price').forEach((el, i) => {
-    const keys = ['premium','pro','corp']
-    if (prices[keys[i]]) el.textContent = prices[keys[i]][0]
-  })
-  document.querySelectorAll('.monthly-label').forEach((el, i) => {
-    const keys = ['premium','pro','corp']
-    if (prices[keys[i]]) el.textContent = prices[keys[i]][1]
-  })
-  if (document.getElementById('prem-annual')) document.getElementById('prem-annual').textContent = prices.premium[2]
-  if (document.getElementById('pro-annual')) document.getElementById('pro-annual').textContent = prices.pro[2]
-  if (document.getElementById('corp-annual')) document.getElementById('corp-annual').textContent = prices.corp[2]
-}
-
-// Date
-document.getElementById('topbar-date').textContent = new Date().toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long',year:'numeric'})
+  // NAV active state
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    nav.style.background = window.scrollY > 50
+      ? 'rgba(8,8,8,0.98)'
+      : 'linear-gradient(to bottom, rgba(8,8,8,0.98), transparent)';
+  });
 </script>
 </body>
 </html>
